@@ -1,209 +1,135 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SonhoReal Empréstimos</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sonho Real Empréstimos</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins, sans-serif;}
+    body{background:#ffffff;color:#1d2c4d;overflow-x:hidden;}
 
-    <style>
-        :root {
-            --primary-blue: #1E4DA1;
-            --gold: #D9A441;
-            --white: #ffffff;
-            --text-dark: #1a1a1a;
-            --gray-light: #f4f4f4;
-        }
+    /* HEADER */
+    header{
+      width:100%;padding:20px 6%;display:flex;justify-content:space-between;
+      align-items:center;background:white;box-shadow:0 4px 25px rgba(0,0,0,.08);
+      position:sticky;top:0;z-index:1000;
+    }
+    header img{height:85px;object-fit:contain;}
 
-        body {
-            margin: 0;
-            font-family: "Poppins", sans-serif;
-            background: var(--white);
-            color: var(--text-dark);
-            overflow-x: hidden;
-        }
+    nav a{
+      margin-left:25px;text-decoration:none;font-weight:600;font-size:16px;
+      color:#1d2c4d;transition:.3s;
+    }
+    nav a:hover{color:#c9a13d;}
 
-        header {
-            width: 100%;
-            padding: 15px 6%;
-            background: var(--white);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-        }
+    /* HERO */
+    .hero{
+      width:100%;padding:120px 6% 100px;background:white;display:flex;
+      align-items:center;justify-content:space-between;gap:50px;
+    }
+    .hero-text{max-width:550px;}
+    .hero-text h1{
+      font-size:48px;font-weight:800;color:#1d2c4d;line-height:1.2;margin-bottom:20px;
+    }
+    .hero-text h1 span{color:#c9a13d;}
+    .hero-text p{font-size:18px;margin-bottom:30px;color:#445578;}
 
-        header img.logo {
-            height: 55px;
-        }
+    .btn{
+      padding:15px 35px;background:#1d2c4d;color:white;font-weight:700;
+      border-radius:12px;font-size:17px;text-decoration:none;transition:.3s;
+      display:inline-block;
+    }
+    .btn:hover{background:#c9a13d;color:#1d2c4d;}
 
-        nav a {
-            margin-left: 25px;
-            text-decoration: none;
-            font-weight: 500;
-            color: var(--text-dark);
-            transition: 0.3s;
-        }
+    .hero img{
+      width:450px;max-width:100%;filter:drop-shadow(0 10px 30px rgba(0,0,0,.15));
+    }
 
-        nav a:hover {
-            color: var(--primary-blue);
-        }
+    /* SERVICES */
+    .services{
+      width:100%;padding:90px 6%;background:#f5f7fa;text-align:center;
+    }
+    .services h2{font-size:38px;font-weight:800;margin-bottom:15px;color:#1d2c4d;}
+    .services p.subtitle{color:#445578;margin-bottom:50px;font-size:18px;}
 
-        /* HERO */
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 130px 8% 80px;
-            gap: 40px;
-        }
+    .cards{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:35px;
+    }
 
-        .hero-text {
-            max-width: 550px;
-            animation: fadeUp 0.9s ease;
-        }
+    .card{
+      background:white;padding:35px;border-radius:18px;text-align:center;
+      box-shadow:0 8px 25px rgba(0,0,0,.08);transition:.35s;
+      border-top:6px solid #c9a13d;
+    }
+    .card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 15px 40px rgba(0,0,0,.15);
+    }
+    .card h3{margin:15px 0;font-size:22px;color:#1d2c4d;}
+    .card p{color:#445578;font-size:16px;}
 
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
+    /* CTA */
+    .cta{
+      padding:80px 6%;text-align:center;background:white;
+    }
+    .cta h2{font-size:34px;font-weight:800;color:#1d2c4d;margin-bottom:20px;}
+    .cta p{font-size:18px;color:#445578;margin-bottom:30px;}
 
-        .hero h1 span {
-            color: var(--primary-blue);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            opacity: 0.85;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 14px 32px;
-            background: var(--primary-blue);
-            border-radius: 8px;
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .btn-primary:hover {
-            background: var(--gold);
-        }
-
-        .hero img.hero-logo {
-            width: 370px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0); }
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(25px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* BENEFÍCIOS */
-        .beneficios {
-            padding: 90px 8%;
-            background: var(--gray-light);
-            text-align: center;
-        }
-
-        .beneficios h2 {
-            font-size: 2.2rem;
-            margin-bottom: 50px;
-            color: var(--primary-blue);
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.07);
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.12);
-        }
-
-        .card h3 {
-            color: var(--gold);
-            margin-bottom: 12px;
-            font-size: 1.3rem;
-        }
-
-        footer {
-            margin-top: 60px;
-            padding: 35px 5%;
-            background: var(--primary-blue);
-            color: var(--white);
-            text-align: center;
-        }
-    </style>
+    /* FOOTER */
+    footer{
+      padding:25px;background:#1d2c4d;color:white;text-align:center;font-size:15px;
+    }
+  </style>
 </head>
 <body>
-
-<header>
-    <img src="design02.png" class="logo" />
+  <header>
+    <img src="design01.png" alt="Logo Sonho Real" />
     <nav>
-        <a href="#inicio">Início</a>
-        <a href="#beneficios">Benefícios</a>
-        <a href="#contato">Contato</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#simulacao">Simulação</a>
+      <a href="#contato">Contato</a>
     </nav>
-</header>
+  </header>
 
-<section class="hero" id="inicio">
+  <section class="hero">
     <div class="hero-text">
-        <h1>Transforme seu <span>sonho</span> em realidade.</h1>
-        <p>A SonhoReal Empréstimos oferece soluções rápidas, seguras e personalizadas para você realizar seus objetivos com tranquilidade.</p>
-        <a class="btn-primary" href="#contato">Solicitar agora</a>
+      <h1>Realize seu <span>Sonho</span> com segurança e confiança.</h1>
+      <p>Empréstimos rápidos, seguros e com as melhores condições do mercado. Aqui seu sonho se torna possível.</p>
+      <a href="#contato" class="btn">Quero Simular Agora</a>
     </div>
+    <img src="design02.png" alt="Sonho Real Logo" />
+  </section>
 
-    <img src="design01.png" class="hero-logo" />
-</section>
-
-<section class="beneficios" id="beneficios">
-    <h2>Por que escolher a SonhoReal?</h2>
+  <section class="services" id="servicos">
+    <h2>Nossos Serviços</h2>
+    <p class="subtitle">Soluções financeiras feitas para você</p>
 
     <div class="cards">
-        <div class="card">
-            <h3>Aprovação Rápida</h3>
-            <p>Processos otimizados para você conseguir seu empréstimo sem burocracia.</p>
-        </div>
+      <div class="card">
+        <h3>Empréstimo Pessoal</h3>
+        <p>Condições acessíveis com aprovação rápida e zero burocracia.</p>
+      </div>
 
-        <div class="card">
-            <h3>Taxas Competitivas</h3>
-            <p>Oferecemos condições exclusivas que cabem no seu bolso.</p>
-        </div>
+      <div class="card">
+        <h3>Consignado</h3>
+        <p>Taxas mais baixas do mercado para aposentados e servidores.</p>
+      </div>
 
-        <div class="card">
-            <h3>Atendimento Humanizado</h3>
-            <p>Nossa equipe acompanha você em todas as etapas, com transparência e confiança.</p>
-        </div>
+      <div class="card">
+        <h3>Refinanciamento</h3>
+        <p>Troque dívidas caras por parcelas menores e organizadas.</p>
+      </div>
     </div>
-</section>
+  </section>
 
-<footer id="contato">
-    © 2025 SonhoReal Empréstimos — Todos os direitos reservados.
-</footer>
+  <section class="cta" id="simulacao">
+    <h2>Simule agora mesmo</h2>
+    <p>Atendimento rápido, direto no WhatsApp, totalmente personalizado.</p>
+    <a class="btn" href="https://wa.me/5537999365150" target="_blank">Falar no WhatsApp</a>
+  </section>
 
+  <footer id="contato">
+    © 2025 Sonho Real Empréstimos — Todos os direitos reservados.
+  </footer>
 </body>
 </html>
