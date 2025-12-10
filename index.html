@@ -1,1 +1,246 @@
-# SonhoReal-site
+<!--
+Front page HTML for a loan company ("Empréstimos").
+- Images expected in the repository under ./assets/design01.png and ./assets/design02.png
+- To deploy: push this file and the assets folder to GitHub, then connect the repo to Vercel.
+
+You can edit texts and colors later when you provide the company's details.
+-->
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sonho Real Empréstimos — Soluções Financeiras</title>
+  <meta name="description" content="Soluções rápidas e seguras de empréstimos pessoais e empresariais. Atendimento humano e taxas competitivas." />
+  <style>
+    :root {
+        --primary-blue: #1E4DA1;
+        --gold: #E2B45E;
+        --white: #ffffff;
+        --dark: #0A0A0A;
+    }
+
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: var(--dark);
+        color: var(--white);
+        overflow-x: hidden;
+    }
+
+    header {
+        width: 100%;
+        padding: 20px 5%;
+        background: rgba(0,0,0,0.6);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        backdrop-filter: blur(10px);
+        position: fixed;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    header img.logo {
+        height: 55px;
+    }
+
+    .hero {
+        height: 100vh;
+        width: 100%;
+        background: linear-gradient(135deg, rgba(30,77,161,0.7), rgba(0,0,0,0.9)), url('./assets/bg.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        padding: 0 8%;
+    }
+
+    .hero .content {
+        max-width: 600px;
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--white);
+    }
+
+    .hero h1 span {
+        color: var(--primary-blue);
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        opacity: 0.85;
+    }
+
+    .btn-primary {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 14px 32px;
+        background: var(--primary-blue);
+        border-radius: 8px;
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+        border: 2px solid var(--primary-blue);
+    }
+
+    .btn-primary:hover {
+        background: transparent;
+        color: var(--gold);
+        border-color: var(--gold);
+    }
+
+    .beneficios {
+        padding: 120px 8% 80px;
+        background: var(--dark);
+        text-align: center;
+    }
+
+    .beneficios h2 {
+        color: var(--white);
+        font-size: 2.4rem;
+        border-left: 6px solid var(--gold);
+        padding-left: 12px;
+        display: inline-block;
+        margin-bottom: 50px;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 30px;
+    }
+
+    .card {
+        background: #111;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        padding: 30px;
+        transition: 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-6px);
+        border-color: var(--gold);
+    }
+
+    .card h3 {
+        color: var(--gold);
+        margin-bottom: 12px;
+        font-size: 1.3rem;
+    }
+
+    .card p {
+        opacity: 0.85;
+    }
+
+    footer {
+        margin-top: 80px;
+        padding: 40px 5%;
+        background: #0D0D0D;
+        text-align: center;
+        font-size: 0.95rem;
+        color: rgba(255,255,255,0.7);
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">
+        <!-- design01: logo composta com nome. Place file at ./assets/design01.png -->
+        <img src="./assets/design01.png" alt="Sonho Real - logo composta (design01)"/>
+      </div>
+      <div class="brand">
+        <h1>SONHO REAL</h1>
+        <p>EMPRÉSTIMOS</p>
+      </div>
+    </header>
+
+    <main class="hero">
+      <section class="hero-left">
+        <div class="kicker">Crédito com respeito</div>
+        <h2>Empréstimos rápidos e personalizados para você e para a sua empresa</h2>
+        <p class="lead">A Sonho Real oferece soluções financeiras com análise humana, taxas competitivas e prazos que cabem no seu planejamento. Seja para investimento, dívida ou emergência, nós encontramos a melhor opção.</p>
+
+        <div class="cta-row">
+          <button class="btn btn-primary" onclick="location.href='#simule'">Faça uma simulação</button>
+          <button class="btn btn-outline" onclick="location.href='#contato'">Fale com um especialista</button>
+        </div>
+
+        <div class="features">
+          <div class="feature">
+            <strong>Resposta em 24h</strong>
+            <h4>Processo ágil</h4>
+          </div>
+          <div class="feature">
+            <strong>Condições flexíveis</strong>
+            <h4>Planos sob medida</h4>
+          </div>
+          <div class="feature">
+            <strong>Atendimento humano</strong>
+            <h4>Suporte dedicado</h4>
+          </div>
+        </div>
+      </section>
+
+      <aside class="hero-right">
+        <div class="card">
+          <!-- design02: logo separada. Place file at ./assets/design02.png -->
+          <img src="./assets/design02.png" alt="Logo isolada (design02)"/>
+          <p style="color:var(--muted);margin-top:8px">Confiabilidade e transparência em cada contrato</p>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 8px 0">Simule agora</h3>
+          <form id="simuleForm" onsubmit="event.preventDefault();simulate()" style="display:flex;flex-direction:column;gap:8px">
+            <input name="valor" type="number" placeholder="Valor (R$)" required style="padding:10px;border-radius:8px;border:0;background:#0a0a0a;color:#fff" />
+            <input name="parcelas" type="number" placeholder="Parcelas (meses)" required style="padding:10px;border-radius:8px;border:0;background:#0a0a0a;color:#fff" />
+            <button class="btn btn-primary" type="submit">Ver estimativa</button>
+          </form>
+          <div id="estimate" style="margin-top:10px;color:var(--gold);font-weight:700"></div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div id="contato">
+        <strong>Contato</strong>
+        <div style="color:var(--muted);">Telefone: (xx) xxxx-xxxx • Email: contato@sonhoreal.com</div>
+      </div>
+      <div>
+        <small>© <span id="year"></span> Sonho Real Empréstimos. Todos os direitos reservados.</small>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function simulate(){
+      const form = document.getElementById('simuleForm');
+      const v = Number(form.valor.value) || 0;
+      const n = Number(form.parcelas.value) || 1;
+      // taxa hipotética anual de 24% (0.24). Ajuste depois com dados reais.
+      const annualRate = 0.24;
+      const monthlyRate = annualRate / 12;
+      // cálculo de parcela fixa (sistema de amortização Price)
+      const parcela = (v * monthlyRate) / (1 - Math.pow(1+monthlyRate, -n));
+      if(!isFinite(parcela) || parcela <= 0){
+        document.getElementById('estimate').textContent = 'Informe valores válidos.';
+        return;
+      }
+      document.getElementById('estimate').textContent = 'Estimativa: R$ ' + parcela.toFixed(2) + ' /mês (taxa exemplar)';
+    }
+  </script>
+</body>
+</html>
+
