@@ -3,341 +3,195 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sonho Real Empréstimos — Crédito Consignado</title>
-  <meta name="description" content="Sonho Real Empréstimos — soluções em crédito consignado, portabilidade, refinanciamento e consultoria financeira. Atendimento humano e transparente." />
-  <meta name="theme-color" content="#0a2a52" />
+  <title>Sonho Real Empréstimos</title>
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Sonho Real Empréstimos" />
-  <meta property="og:description" content="Soluções em crédito consignado com atendimento transparente e humanizado." />
-  <meta property="og:image" content="logo_sonhoreal.png" />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Fonte premium: Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --blue:#0a2a52;
-      --blue-2:#1455a3;
+      --blue-light:#3b6ea8;
       --orange:#ff7a00;
-      --bg:#f5f8ff;
-      --card-bg:#ffffff;
+      --white:#ffffff;
       --radius:18px;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
+    *{margin:0;padding:0;box-sizing:border-box}
     body{
-      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
-      background:var(--bg);
+      font-family:'Montserrat',sans-serif;
+      background:linear-gradient(135deg,#f5f8ff 0%,#dbe8ff 40%,#ffe9d6 100%);
       color:var(--blue);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
+      overflow-x:hidden;
+    }
+
+    /* TEXTURED BACKGROUND */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:url('https://www.transparenttextures.com/patterns/white-diamond.png');
+      opacity:.35;
+      pointer-events:none;
+      z-index:-1;
     }
 
     /* NAVBAR */
     .nav{
-      position:sticky;top:0;z-index:70;
-      backdrop-filter: blur(6px);
-      background:rgba(255,255,255,0.75);
-      border-bottom:2px solid rgba(10,42,82,0.06);
-      display:flex;align-items:center;justify-content:space-between;padding:14px 26px;gap:20px;
+      position:sticky;top:0;z-index:90;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:18px 32px;
+      background:rgba(255,255,255,0.55);
+      backdrop-filter:blur(10px);
+      box-shadow:0 4px 18px rgba(0,0,0,0.08);
     }
-    .nav .brand{display:flex;align-items:center;gap:16px}
-    .nav img{height:56px}
-    .nav h1{font-size:20px;color:var(--blue);font-weight:700}
-    .nav .menu{display:flex;gap:18px;align-items:center}
-    .btn-primary{background:linear-gradient(90deg,var(--blue),var(--blue-2));color:#fff;padding:10px 16px;border-radius:12px;border:none;cursor:pointer;font-weight:600}
+    .nav img{height:60px}
+    .nav a{color:var(--blue);font-weight:600;text-decoration:none;margin:0 12px;transition:.3s}
+    .nav a:hover{color:var(--orange)}
+
+    /* BUTTON */
+    .btn-primary{
+      background:linear-gradient(90deg,var(--blue),var(--blue-light));
+      color:#fff;padding:12px 20px;border:none;border-radius:12px;
+      font-weight:700;cursor:pointer;transition:.3s;
+    }
+    .btn-primary:hover{transform:scale(1.06);background:linear-gradient(90deg,var(--orange),#ff9d44)}
 
     /* HERO */
-    .hero{display:flex;align-items:center;justify-content:center;padding:36px 20px 8px}
-    .hero-inner{width:100%;max-width:1200px;display:flex;gap:30px;align-items:center}
+    .hero{
+      display:flex;justify-content:center;padding:40px 20px;
+    }
+    .hero-inner{
+      max-width:1200px;width:100%;display:flex;gap:30px;
+    }
 
-    /* CAROUSEL */
-    .carousel-container{width:60%;max-width:60%;margin:0;overflow:hidden;border-radius:var(--radius);box-shadow:0 18px 50px rgba(10,42,82,0.08);position:relative}
-    .carousel{display:flex;transition:transform 600ms cubic-bezier(.2,.9,.2,1)}
-    .carousel img{width:100%;height:340px;object-fit:cover;display:block}
-    .carousel-controls{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;padding:0 14px}
-    .carousel-controls button{background:rgba(255,255,255,0.8);border:none;padding:8px;border-radius:999px;cursor:pointer;box-shadow:0 6px 18px rgba(10,42,82,0.12)}
-    .carousel-indicators{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);display:flex;gap:8px}
-    .indicator{width:10px;height:10px;background:rgba(255,255,255,0.7);border-radius:50%;cursor:pointer}
+    /* CARROSSEL MEDIO (1/3 DA TELA) */
+    .carousel-container{
+      width:38%;border-radius:var(--radius);
+      overflow:hidden;position:relative;
+      box-shadow:0 18px 40px rgba(0,0,0,0.12);
+    }
+    .carousel{display:flex;transition:transform .6s ease}
+    .carousel img{width:100%;height:340px;object-fit:cover}
+    .carousel-controls{
+      position:absolute;top:50%;left:0;right:0;
+      display:flex;justify-content:space-between;padding:0 12px;
+      transform:translateY(-50%);
+    }
+    .carousel-controls button{
+      background:rgba(255,255,255,0.8);border:none;padding:8px;
+      border-radius:50%;cursor:pointer;font-size:18px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.18);
+    }
+    .carousel-indicators{
+      position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+      display:flex;gap:8px;
+    }
+    .indicator{
+      width:12px;height:12px;border-radius:50%;
+      background:#ffffffa8;cursor:pointer;
+    }
     .indicator.active{background:var(--orange)}
 
-    /* SIDE CONTENT */
-    .hero-side{width:40%;display:flex;flex-direction:column;gap:18px}
-    .card{background:var(--card-bg);padding:20px;border-radius:14px;box-shadow:0 12px 30px rgba(10,42,82,0.06)}
-    .card h2{font-size:22px;color:var(--blue);margin-bottom:8px}
-    .lead{font-size:15px;color:rgba(10,42,82,0.9)}
-
-    /* SECTIONS */
-    .section{width:90%;max-width:1200px;margin:40px auto;padding:28px;border-radius:var(--radius);background:var(--card-bg);box-shadow:0 18px 40px rgba(10,42,82,0.05)}
-    .section h2{font-size:26px;margin-bottom:12px}
-    .section p{font-size:15px;color:rgba(10,42,82,0.9);margin-bottom:12px}
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
-    .service-list li{margin:8px 0}
-
-    /* FOOTER */
-    footer{background:var(--blue);color:#fff;padding:30px 20px;margin-top:36px}
-    footer .inner{max-width:1200px;margin:0 auto;display:flex;gap:20px;flex-wrap:wrap;justify-content:space-between}
-
-    /* WHATSAPP FLOAT */
-    .whatsapp{position:fixed;right:18px;bottom:18px;background:linear-gradient(180deg,var(--orange),#ff9d44);width:64px;height:64px;border-radius:999px;display:flex;align-items:center;justify-content:center;box-shadow:0 18px 40px rgba(10,42,82,0.18);z-index:80}
-    .whatsapp a{color:#fff;font-weight:700}
-
-    /* RESPONSIVE */
-    @media (max-width:1024px){
-      .carousel-container{width:65%;max-width:65%}
-      .hero-inner{flex-direction:column;align-items:center}
-      .hero-side{width:100%}
-      .carousel img{height:300px}
+    /* SIDE CARDS */
+    .hero-side{
+      width:62%;display:flex;flex-direction:column;gap:20px;
     }
-    @media (max-width:780px){
-      .nav h1{display:none}
-      .carousel-container{width:100%;max-width:100%}
-      .carousel img{height:220px}
-      .two-col{grid-template-columns:1fr}
-      .section{padding:18px}
+    .card{
+      background:#fff;padding:22px;border-radius:var(--radius);
+      box-shadow:0 12px 30px rgba(0,0,0,0.08);
+      animation:fadeUp .8s ease both;
     }
 
-    /* small helpers */
-    .muted{color:rgba(10,42,82,0.6)}
-    a{text-decoration:none}
+    /* IMG ZOOM EFFECT */
+    .zoom-img{
+      transition:.4s;
+    }
+    .zoom-img:hover{
+      transform:scale(1.05);
+    }
+
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(20px)}
+      to{opacity:1;transform:translateY(0)}
+    }
   </style>
 </head>
 <body>
 
-  <nav class="nav" role="navigation" aria-label="Menu principal">
+  <nav class="nav">
     <div class="brand">
-      <img src="design01.png" alt="Logo Sonho Real" />
-      <h1>Sonho Real</h1>
+      <img src="logo_sonhoreal.png" />
     </div>
-    <div class="menu">
-      <a class="muted" href="#quem">Quem Somos</a>
-      <a class="muted" href="#servicos">Serviços</a>
-      <a class="muted" href="#contato">Contato</a>
-      <button class="btn-primary" onclick="document.getElementById('contato-form').scrollIntoView({behavior:'smooth'})">Faça uma Simulação</button>
+    <div>
+      <a href="#quem">Quem Somos</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#contato">Contato</a>
+      <button class="btn-primary">Simulação</button>
     </div>
   </nav>
 
-  <header class="hero" role="banner">
+  <header class="hero">
     <div class="hero-inner">
 
-      <!-- CARROSSEL LATERAL -->
-      <div class="carousel-container" aria-roledescription="carrossel de imagens">
+      <!-- CARROSSEL -->
+      <div class="carousel-container">
         <div class="carousel" id="carousel">
-          <img src="foto01.jpeg" alt="Foto 1" loading="lazy" />
-          <img src="foto02.jpeg" alt="Foto 2" loading="lazy" />
-          <img src="foto03.jpeg" alt="Foto 3" loading="lazy" />
-          <img src="foto04.jpeg" alt="Foto 4" loading="lazy" />
-          <img src="foto05.jpeg" alt="Foto 5" loading="lazy" />
-          <img src="foto06.jpeg" alt="Foto 6" loading="lazy" />
+          <img src="foto01.jpeg" class="zoom-img" />
+          <img src="foto02.jpeg" class="zoom-img" />
+          <img src="foto03.jpeg" class="zoom-img" />
+          <img src="foto04.jpeg" class="zoom-img" />
+          <img src="foto05.jpeg" class="zoom-img" />
+          <img src="foto06.jpeg" class="zoom-img" />
         </div>
-
         <div class="carousel-controls">
-          <button aria-label="Anterior" id="prev">◀</button>
-          <button aria-label="Próximo" id="next">▶</button>
+          <button id="prev">◀</button>
+          <button id="next">▶</button>
         </div>
-        <div class="carousel-indicators" id="indicators" role="tablist"></div>
+        <div class="carousel-indicators" id="indicators"></div>
       </div>
 
-      <!-- LADO DIREITO: CTA / INFORMAÇÕES RÁPIDAS -->
-      <aside class="hero-side">
+      <!-- INFO -->
+      <div class="hero-side">
         <div class="card">
-          <h2>Crédito consignado com confiança</h2>
-          <p class="lead">Taxas competitivas, atendimento humano e processo simplificado. Simule agora e descubra a melhor opção para o seu perfil.</p>
-          <div style="display:flex;gap:10px;margin-top:12px">
-            <button class="btn-primary" onclick="document.getElementById('contato-form').scrollIntoView({behavior:'smooth'})">Simular Agora</button>
-            <a href="tel:+5537998431401" class="btn" style="padding:10px 14px;border-radius:12px;border:1px solid rgba(10,42,82,0.08);background:#fff;color:var(--blue);display:inline-flex;align-items:center;text-decoration:none">Ligar</a>
-          </div>
+          <h2>Crédito consignado com segurança e velocidade</h2>
+          <p>Atendimento humano, taxas competitivas e análise rápida. Tudo para facilitar sua vida.</p>
+          <button class="btn-primary">Simular Agora</button>
         </div>
-
-        <div class="card">
-          <h2>Atendimento próximo</h2>
-          <p class="muted">Temos unidades em Formiga, Arcos e Lagoa da Prata — atendimento presencial e remoto para todo o Brasil.</p>
-        </div>
-
-      </aside>
-
+      </div>
     </div>
   </header>
 
-  <!-- SEÇÕES INFORMATIVAS -->
-  <main>
-    <section id="quem" class="section" aria-labelledby="quem-title">
-      <h2 id="quem-title">Quem Somos</h2>
-      <div class="two-col">
-        <div>
-          <p>A <strong>Sonho Real Empréstimos</strong> é uma empresa especializada em crédito consignado, fundada para oferecer soluções financeiras seguras, rápidas e transparentes. Atuamos com foco total no cliente, oferecendo atendimento humanizado e processos claros do início ao fim.</p>
+  <!-- EXPLICAÇÕES DAS 3 IMAGENS ENVIADAS + ESPAÇO PARA A 10ª -->
+  <section style="max-width:1200px;margin:40px auto;padding:20px">
+    <div style="display:flex;gap:20px;flex-wrap:wrap">
 
-          <h3 class="muted" style="margin-top:12px">Nossa História</h3>
-          <p>Fundada em Formiga, no interior de Minas Gerais, a empresa nasceu com a missão de descomplicar o acesso ao crédito e transformar a vida de aposentados, pensionistas e trabalhadores CLT. Com mais de 8 anos de experiência no setor, hoje contamos com 3 unidades em Minas Gerais: Formiga, Arcos e Lagoa da Prata, mas não nos limitamos a cidades, atendemos a todo território brasileiro!</p>
-
-          <h3 style="margin-top:12px">Trabalhamos com:</h3>
-          <ul class="service-list">
-            <li>Empréstimo consignado INSS</li>
-            <li>Portabilidade</li>
-            <li>Refinanciamento</li>
-            <li>Cartão consignado</li>
-            <li>Margem extra</li>
-            <li>Consultoria financeira personalizada</li>
-            <li>Antecipação de FGTS</li>
-            <li>Empréstimo CLT</li>
-          </ul>
-
-          <p class="muted">Nosso objetivo é sempre garantir a melhor taxa, o melhor prazo e a melhor experiência no processo de contratação!</p>
-
-        </div>
-
-        <div>
-          <img src="foto07.jpeg" alt="Organização Financeira" style="width:100%;border-radius:12px;box-shadow:0 12px 30px rgba(10,42,82,0.08);" />
-        </div>
-      </div>
-    </section>
-
-    <!-- Seções com as outras imagens 08 e 09 e 10 pronta -->
-    <section class="section">
-      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:stretch">
-        <div style="flex:1;min-width:260px">
-          <img src="foto08.jpeg" alt="Uso Inteligente do FGTS" style="width:100%;height:280px;object-fit:cover;border-radius:12px;box-shadow:0 12px 30px rgba(10,42,82,0.06)" />
-          <h3 style="margin-top:12px">Uso Inteligente do FGTS</h3>
-          <p class="muted"> Uma solução rápida para transformar parte do saldo disponível em recursos imediatos para organizar a vida financeira, realizar projetos ou aliviar compromissos do dia a dia.</p>
-        </div>
-
-        <div style="flex:1;min-width:260px">
-          <img src="foto09.jpeg" alt="Consignado" style="width:100%;height:280px;object-fit:cover;border-radius:12px;box-shadow:0 12px 30px rgba(10,42,82,0.06)" />
-          <h3 style="margin-top:12px">Consignado com Taxas Imbatíveis</h3>
-          <p class="muted">Vantagens para aposentados, pensionistas e servidores — segurança, taxas reduzidas e condições especiais.</p>
-        </div>
-
-        <div style="flex:1;min-width:260px">
-          <img src="FOTO10.jpg" alt="Imagem 10" style="width:100%;height:280px;object-fit:cover;border-radius:12px;box-shadow:0 12px 30px rgba(10,42,82,0.06)" />
-          <h3 style="margin-top:12px">Descrição da Imagem 10</h3>
-          <p class="muted"><strong>Escreva aqui a explicação da 10ª foto:</strong></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTATO / SIMULAÇÃO -->
-    <section id="contato" class="section" aria-labelledby="contato-title">
-      <h2 id="contato-title">Entre em contato e faça sua simulação</h2>
-      <div class="two-col">
-        <div>
-          <p class="muted">Preencha o formulário abaixo que um de nossos consultores entrará em contato rapidamente.</p>
-
-          <form id="contato-form" style="display:flex;flex-direction:column;gap:10px;max-width:520px">
-            <input type="text" name="nome" placeholder="Nome completo" required style="padding:12px;border-radius:10px;border:1px solid rgba(10,42,82,0.08)" />
-            <input type="tel" name="tel" placeholder="Telefone" required style="padding:12px;border-radius:10px;border:1px solid rgba(10,42,82,0.08)" />
-            <input type="email" name="email" placeholder="E-mail (opcional)" style="padding:12px;border-radius:10px;border:1px solid rgba(10,42,82,0.08)" />
-            <select name="servico" style="padding:12px;border-radius:10px;border:1px solid rgba(10,42,82,0.08)">
-              <option value="sim">Simulação</option>
-              <option value="portabilidade">Portabilidade</option>
-              <option value="fgts">Antecipação de FGTS</option>
-              <option value="outro">Outro</option>
-            </select>
-            <textarea name="mensagem" placeholder="Mensagem (opcional)" rows="4" style="padding:12px;border-radius:10px;border:1px solid rgba(10,42,82,0.08)"></textarea>
-            <button type="submit" class="btn-primary">Enviar</button>
-          </form>
-        </div>
-
-        <div>
-          <div class="card" style="padding:18px">
-            <h3>Unidades</h3>
-            <p><strong>Formiga:</strong> (37) 99843-1401<br>Rua João Domingos da Fonseca Nº 31, Centro – Formiga MG<br>CNPJ: 32.851.952/0001-05</p>
-            <p><strong>Arcos:</strong> (37) 99861-5963<br>Rua Jarbas Ferreira Pires Nº 465, Centro – Arcos MG<br>CNPJ: 37.893.986/0001-05</p>
-            <p><strong>Lagoa da Prata:</strong> (37) 98803-6587<br>Avenida Benedito Valadares Nº 696, Centro – Lagoa da Prata MG<br>CNPJ: 43.286.201/0001-00</p>
-          </div>
-
-          <div style="height:12px"></div>
-
-          <div class="card">
-            <h3>Horário de Atendimento</h3>
-            <p class="muted">Segunda a Sexta: 09:00 — 18:00<br>Sábados: 09:00 — 12:00</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="inner">
-      <div>
-        <img src="design02.png" alt="Logo Sonho Real" style="height:56px;margin-bottom:8px" />
-        <p style="max-width:340px">© 2025 Sonho Real Empréstimos — Transformando sonhos em realidade. Atendimento humano, taxas justas e total transparência.</p>
+      <div style="flex:1;min-width:260px">
+        <img src="foto07.jpeg" class="zoom-img" style="width:100%;border-radius:14px" />
+        <h3>Organização Financeira</h3>
+        <p>Mostra o trabalho de consultoria financeira, onde ajudamos o cliente a entender suas margens, limites e melhores opções de crédito.</p>
       </div>
 
-      <div style="min-width:220px">
-        <h4>Contato Rápido</h4>
-        <p>(37) 99843-1401 — Formiga</p>
-        <p>contato@sonhoreal.com.br</p>
+      <div style="flex:1;min-width:260px">
+        <img src="foto08.jpeg" class="zoom-img" style="width:100%;border-radius:14px" />
+        <h3>Planejamento de Benefícios</h3>
+        <p>Imagem representando o uso inteligente de benefícios como FGTS e INSS para contratar crédito com segurança e economia.</p>
       </div>
 
-      <div style="min-width:220px">
-        <h4>Endereços</h4>
-        <p>Formiga / Arcos / Lagoa da Prata</p>
+      <div style="flex:1;min-width:260px">
+        <img src="foto09.jpeg" class="zoom-img" style="width:100%;border-radius:14px" />
+        <h3>Consignado Seguro</h3>
+        <p>Representa o empréstimo consignado tradicional, com taxas mais baixas e estabilidade para aposentados, pensionistas e servidores.</p>
       </div>
+
+      <div style="flex:1;min-width:260px">
+        <img src="FOTO10.jpg" class="zoom-img" style="width:100%;border-radius:14px" />
+        <h3>Descrição da Imagem 10</h3>
+        <p><strong>Escreva aqui a explicação da foto 10</strong></p>
+      </div>
+
     </div>
-  </footer>
-
-  <!-- WHATSAPP FLOAT -->
-  <div class="whatsapp" aria-hidden="false">
-    <a href="https://wa.me/5537998431401?text=Ol%C3%A1%2C+quero+simular+um+empr%C3%A9stimo" target="_blank" rel="noopener">WA</a>
-  </div>
-
-  <script>
-    // Carousel logic
-    (function(){
-      const carousel = document.getElementById('carousel');
-      const slides = Array.from(carousel.children);
-      const total = slides.length;
-      let index = 0;
-      const indicators = document.getElementById('indicators');
-
-      // build indicators
-      for(let i=0;i<total;i++){
-        const dot = document.createElement('button');
-        dot.className='indicator'+(i===0?' active':'');
-        dot.setAttribute('aria-label','Ir para slide '+(i+1));
-        dot.addEventListener('click',()=>{ goTo(i); resetAuto(); });
-        indicators.appendChild(dot);
-      }
-
-      function update(){
-        const w = carousel.clientWidth;
-        carousel.style.transform = `translateX(-${index * w}px)`;
-        [...indicators.children].forEach((d,i)=>d.classList.toggle('active', i===index));
-      }
-
-      function goTo(i){ index = (i+total)%total; update(); }
-      function next(){ goTo(index+1); }
-      function prev(){ goTo(index-1); }
-
-      document.getElementById('next').addEventListener('click',()=>{ next(); resetAuto(); });
-      document.getElementById('prev').addEventListener('click',()=>{ prev(); resetAuto(); });
-
-      // auto play
-      let timer = setInterval(next,4500);
-      function resetAuto(){ clearInterval(timer); timer = setInterval(next,4500); }
-
-      // pause on hover
-      const container = document.querySelector('.carousel-container');
-      container.addEventListener('mouseenter',()=>clearInterval(timer));
-      container.addEventListener('mouseleave',()=>{ resetAuto(); });
-
-      // resize handling
-      window.addEventListener('resize', update);
-      // initial
-      setTimeout(update,50);
-
-      // simple form submit (local) — here you can wire to backend
-      document.getElementById('contato-form').addEventListener('submit',function(e){
-        e.preventDefault();
-        alert('Obrigado! Seu formulário foi enviado. Em breve entraremos em contato.');
-        this.reset();
-      });
-    })();
-  </script>
+  </section>
 
 </body>
 </html>
