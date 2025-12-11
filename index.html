@@ -1,194 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sonho Real Empréstimos</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
-  body{background:white;color:#1a2340;overflow-x:hidden;}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sonho Real Empréstimos</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      color: #0a2a52;
+    }
+    header {
+      background: linear-gradient(90deg, #0a2a52, #ff7a00);
+      padding: 20px;
+      text-align: center;
+      color: white;
+      font-size: 32px;
+      font-weight: bold;
+    }
+    .carousel-container {
+      width: 100%;
+      max-width: 900px;
+      margin: 40px auto;
+      overflow: hidden;
+      border-radius: 20px;
+      border: 4px solid #0a2a52;
+    }
+    .carousel {
+      display: flex;
+      animation: slide 20s infinite;
+    }
+    .carousel img {
+      width: 100%;
+      object-fit: cover;
+    }
+    @keyframes slide {
+      0% {transform: translateX(0%);} 
+      16% {transform: translateX(0%);} 
+      20% {transform: translateX(-100%);} 
+      36% {transform: translateX(-100%);} 
+      40% {transform: translateX(-200%);} 
+      56% {transform: translateX(-200%);} 
+      60% {transform: translateX(-300%);} 
+      76% {transform: translateX(-300%);} 
+      80% {transform: translateX(-400%);} 
+      96% {transform: translateX(-400%);} 
+      100% {transform: translateX(-500%);} 
+    }
 
-  /* FUNDO TEXTURIZADO + GRADIENTE DINÂMICO */
-  body::before{
-    content:"";
-    position:fixed;inset:0;
-    background:url('https://www.transparenttextures.com/patterns/cubes.png'), linear-gradient(135deg,#ffffff,#eef1f7);
-    opacity:0.4;
-    z-index:-1;
-  }
-
-  /* HEADER FLUTUANTE */
-  header{
-    width:100%;padding:20px 6%;display:flex;justify-content:space-between;
-    align-items:center;background:white;backdrop-filter:blur(12px);
-    box-shadow:0 5px 25px rgba(0,0,0,.1);
-    position:sticky;top:0;z-index:1000;border-bottom:3px solid #c9a13d;
-  }
-  header img{height:100px;object-fit:contain;}
-
-  nav a{
-    margin-left:28px;text-decoration:none;font-weight:600;font-size:18px;
-    color:#1d2c4d;transition:.3s;
-  }
-  nav a:hover{color:#c9a13d;transform:scale(1.1);}
-
-  /* HERO CINEMÁTICO */
-  .hero{
-    padding:150px 6%;display:flex;justify-content:space-between;align-items:center;
-    gap:60px;position:relative;overflow:hidden;
-  }
-
-  /* ELEMENTOS FLUTUANTES DE LUZ */
-  .light-blob{
-    position:absolute;border-radius:50%;filter:blur(60px);
-    animation:rise 7s infinite ease-in-out alternate;
-    opacity:0.45;
-  }
-  .l1{width:350px;height:350px;background:#c9a13d;top:-10%;left:-5%;}
-  .l2{width:280px;height:280px;background:#1d2c4d;bottom:-10%;right:-5%;animation-delay:1.2s;}
-
-  @keyframes rise{
-    0%{transform:translateY(0);}100%{transform:translateY(60px);}
-  }
-
-  .hero-text{max-width:600px;animation:fadeUp 1.2s ease forwards;opacity:0;}
-  @keyframes fadeUp{from{transform:translateY(40px);opacity:0;}to{transform:translateY(0);opacity:1;}}
-
-  .hero-text h1{font-size:58px;font-weight:900;color:#1d2c4d;margin-bottom:25px;line-height:1.15;}
-  .hero-text h1 span{color:#c9a13d;}
-  .hero-text p{font-size:20px;margin-bottom:35px;color:#445578;}
-
-  .btn{
-    padding:20px 45px;background:#1d2c4d;color:white;font-weight:700;border-radius:15px;
-    font-size:20px;text-decoration:none;transition:.3s;display:inline-block;
-    box-shadow:0 12px 30px rgba(0,0,0,.2);
-  }
-  .btn:hover{background:#c9a13d;color:#1d2c4d;transform:scale(1.07);}
-
-  .hero img{width:520px;filter:drop-shadow(0 15px 40px rgba(0,0,0,.25));animation:zoomIn 1.3s ease forwards;opacity:0;}
-  @keyframes zoomIn{from{transform:scale(.7);opacity:0;}to{transform:scale(1);opacity:1;}}
-
-  /* SESSÃO SERVIÇOS LEVEL PRO */
-  .services{padding:110px 6%;text-align:center;background:#f6f8fb;}
-  .services h2{font-size:46px;font-weight:900;margin-bottom:15px;color:#1d2c4d;}
-  .services p.subtitle{font-size:21px;color:#55617d;margin-bottom:70px;}
-
-  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:45px;}
-
-  .card{background:white;padding:50px;border-radius:25px;box-shadow:0 15px 40px rgba(0,0,0,.1);
-    transition:.35s;border-top:6px solid #c9a13d;position:relative;overflow:hidden;}
-
-  .card:hover{transform:translateY(-15px) scale(1.03);box-shadow:0 25px 50px rgba(0,0,0,.2);}  
-
-  .card::before{
-    content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;
-    background:radial-gradient(circle,#c9a13d60,#1d2c4d60);
-    opacity:0;transition:.4s;transform:rotate(35deg);
-  }
-  .card:hover::before{opacity:0.6;}
-
-  .card h3{font-size:26px;font-weight:800;color:#1d2c4d;margin-bottom:15px;}
-  .card p{font-size:18px;color:#445578;line-height:1.5;}
-
-  /* ÁREA DESTAQUE ESTILO PREMIUM */
-  .feature{
-    padding:120px 6%;display:flex;align-items:center;justify-content:space-between;
-    gap:60px;background:white;
-  }
-  .feature-text h2{font-size:44px;font-weight:900;margin-bottom:20px;color:#1d2c4d;}
-  .feature-text p{font-size:20px;margin-bottom:20px;color:#445578;}
-
-  .check{display:flex;align-items:center;font-size:18px;margin:12px 0;color:#1d2c4d;font-weight:600;}
-  .check span{margin-right:10px;font-size:24px;color:#c9a13d;}
-
-  /* DEPOIMENTOS CARROSSEL */
-  .testimonials{
-    padding:110px 6%;background:#f6f8fb;text-align:center;
-  }
-  .testimonials h2{font-size:44px;font-weight:900;color:#1d2c4d;margin-bottom:50px;}
-
-  .testimonial-box{
-    width:100%;max-width:850px;margin:auto;background:white;padding:45px;
-    border-radius:22px;box-shadow:0 12px 35px rgba(0,0,0,.12);
-    animation:fadeUp 1s ease;
-  }
-
-  .testimonial-box p{font-size:20px;color:#445578;margin-bottom:15px;}
-  .testimonial-box h4{font-size:22px;font-weight:800;color:#1d2c4d;}
-
-  /* CTA FINAL */
-  .cta{padding:100px 6%;background:white;text-align:center;}
-  .cta h2{font-size:40px;font-weight:900;color:#1d2c4d;margin-bottom:20px;}
-  .cta p{font-size:20px;margin-bottom:35px;color:#445578;}
-
-  footer{padding:35px;background:#1d2c4d;color:white;text-align:center;margin-top:40px;font-size:16px;}
-</style>
+    .section {
+      width: 100%;
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    .section:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    .section img {
+      width: 45%;
+      border-radius: 20px;
+      border: 3px solid #ff7a00;
+    }
+    .section .text {
+      width: 55%;
+      font-size: 20px;
+      line-height: 1.4;
+    }
+    footer {
+      background: #0a2a52;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+    }
+  </style>
 </head>
 <body>
-<header>
-  <img src="design02.png" alt="Logo Sonho Real" />
-  <nav>
-    <a href="#servicos">Serviços</a>
-    <a href="#feature">Por que nós?</a>
-    <a href="#depoimentos">Depoimentos</a>
-    <a href="#contato">Contato</a>
-  </nav>
-</header>
+  <header>Sonho Real Empréstimos</header>
 
-<section class="hero">
-  <div class="light-blob l1"></div>
-  <div class="light-blob l2"></div>
-
-  <div class="hero-text">
-    <h1>Sua <span>Realização</span> Começa Aqui com Segurança e Confiança</h1>
-    <p>Empréstimos rápidos, atendimentos humanizados e soluções financeiras que combinam tecnologia com transparência total.</p>
-    <a href="#simulacao" class="btn">Simular Agora</a>
+  <!-- Carrossel 6 fotos -->
+  <div class="carousel-container">
+    <div class="carousel">
+      <img src="foto01.jpg" alt="Imagem 1" />
+      <img src="foto02.jpg" alt="Imagem 2" />
+      <img src="foto03.jpg" alt="Imagem 3" />
+      <img src="foto04.jpg" alt="Imagem 4" />
+      <img src="foto05.jpg" alt="Imagem 5" />
+      <img src="foto06.jpg" alt="Imagem 6" />
+    </div>
   </div>
 
-  <img src="design01.png" alt="Sonho Real Logo" />
-</section>
-
-<section class="services" id="servicos">
-  <h2>Nossos Serviços</h2>
-  <p class="subtitle">Uma solução ideal para cada objetivo</p>
-
-  <div class="cards">
-    <div class="card"><h3>Empréstimo Pessoal</h3><p>Conquiste objetivos de maneira rápida, prática e sem burocracia.</p></div>
-    <div class="card"><h3>Empréstimo Consignado</h3><p>Juros menores e condições especiais para aposentados e servidores.</p></div>
-    <div class="card"><h3>Refinanciamento</h3><p>Melhore sua organização financeira transformando dívidas em parcelas menores.</p></div>
-    <div class="card"><h3>Cartão Benefício</h3><p>Libere crédito mesmo sem margem de empréstimo e receba na hora.</p></div>
-  </div>
-</section>
-
-<section class="feature" id="feature">
-  <div class="feature-text">
-    <h2>Por que escolher a Sonho Real?</h2>
-    <p>Aqui, cada cliente recebe a atenção e transparência que merece.</p>
-
-    <div class="check"><span>✔</span> Aprovação ultra-rápida</div>
-    <div class="check"><span>✔</span> Suporte humanizado</div>
-    <div class="check"><span>✔</span> Tudo 100% seguro e digital</div>
-    <div class="check"><span>✔</span> Sem burocracia exagerada</div>
+  <!-- 4 fotos espalhadas -->
+  <div class="section">
+    <img src="foto07.jpg" />
+    <div class="text">
+      <h2>Atendimento Humanizado</h2>
+      <p>Explicação detalhada sobre como funciona o atendimento da empresa, sempre com clareza, respeito e agilidade.</p>
+    </div>
   </div>
 
-  <img src="design02.png" style="width:420px;filter:drop-shadow(0 12px 35px rgba(0,0,0,.25));" />
-</section>
-
-<section class="testimonials" id="depoimentos">
-  <h2>O que nossos clientes dizem</h2>
-  <div class="testimonial-box">
-    <p>“Fiz minha simulação e fui atendido imediatamente. Tudo muito transparente e seguro!”</p>
-    <h4>— Carlos Henrique</h4>
+  <div class="section">
+    <img src="foto08.jpg" />
+    <div class="text">
+      <h2>Agilidade no Processo</h2>
+      <p>Informações sobre a rapidez no processo de aprovação e liberação do empréstimo.</p>
+    </div>
   </div>
-</section>
 
-<section class="cta" id="simulacao">
-  <h2>Simule agora pelo WhatsApp</h2>
-  <p>Atendimento rápido e direto com nossa equipe especializada.</p>
-  <a class="btn" href="https://wa.me/5537999365150" target="_blank">Falar com Consultor</a>
-</section>
+  <div class="section">
+    <img src="foto09.jpg" />
+    <div class="text">
+      <h2>Credibilidade e Segurança</h2>
+      <p>Explicação sobre a transparência e confiança que a Sonho Real oferece ao cliente.</p>
+    </div>
+  </div>
 
-<footer id="contato">© 2025 Sonho Real Empréstimos — Todos os direitos reservados.</footer>
+  <div class="section">
+    <img src="foto10.jpg" />
+    <div class="text">
+      <h2>Resultados Reais</h2>
+      <p>Mostrando casos reais de clientes satisfeitos com seus resultados.</p>
+    </div>
+  </div>
+
+  <footer>© 2025 Sonho Real Empréstimos — Transformando sonhos em realidade</footer>
 </body>
 </html>
