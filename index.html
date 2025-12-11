@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sonho Real Empréstimos</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
 <style>
     body {
         margin: 0;
@@ -53,23 +53,19 @@
         display: flex;
         width: 600%;
         height: 100%;
-        animation: slide 45s infinite;
+        animation: slide 60s infinite;
     }
     .carousel img {
         width: 100%;
         object-fit: cover;
+        border-bottom: 8px solid #ff7b00;
     }
     @keyframes slide {
-        0% { transform: translateX(0%); }
-        16% { transform: translateX(0%); }
-        20% { transform: translateX(-100%); }
-        36% { transform: translateX(-100%); }
-        40% { transform: translateX(-200%); }
-        56% { transform: translateX(-200%); }
-        60% { transform: translateX(-300%); }
-        76% { transform: translateX(-300%); }
-        80% { transform: translateX(-400%); }
-        96% { transform: translateX(-400%); }
+        0%, 15% { transform: translateX(0%); }
+        20%, 35% { transform: translateX(-100%); }
+        40%, 55% { transform: translateX(-200%); }
+        60%, 75% { transform: translateX(-300%); }
+        80%, 95% { transform: translateX(-400%); }
         100% { transform: translateX(-500%); }
     }
 
@@ -87,6 +83,7 @@
     .section-img img {
         width: 40%;
         border-radius: 14px;
+        border: 4px solid #ff7b00;
         box-shadow: 0 4px 15px rgba(0,0,0,0.15);
     }
     .section-text {
@@ -94,6 +91,7 @@
         background: white;
         padding: 25px;
         border-radius: 14px;
+        border-left: 6px solid #004aad;
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         line-height: 1.6;
     }
@@ -120,7 +118,6 @@
     .zap-floating:hover {
         transform: scale(1.05);
     }
-
     .zap-modal {
         display: none;
         position: fixed;
@@ -132,7 +129,6 @@
         box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         z-index: 2001;
     }
-
     .zap-modal button {
         display: block;
         margin-bottom: 10px;
@@ -147,6 +143,16 @@
     }
     .zap-modal button:hover {
         background: #ff7b00;
+    }
+
+    footer {
+        background:#004aad;
+        color:white;
+        padding:40px 6%;
+        margin-top:60px;
+    }
+    footer h2, footer h3 {
+        color: white;
     }
 </style>
 <script>
@@ -176,61 +182,49 @@ function abrirZap() {
     </div>
 </div>
 
-<!-- IMAGEM 07 -->
-<section class="section-img">
+<section id="servicos" class="section-img">
     <img src="foto07.jpeg" />
     <div class="section-text">
         <h2>Antecipação do FGTS</h2>
-        Transforme parte do seu FGTS disponível em dinheiro imediato com segurança e sem burocracia. Ideal para organizar dívidas, investir ou realizar projetos pessoais.
+        Transforme parte do seu FGTS disponível em dinheiro imediato com segurança e sem burocracia.
     </div>
 </section>
 
-<!-- IMAGEM 08 -->
 <section class="section-img">
     <img src="foto08.jpeg" />
     <div class="section-text">
         <h2>Crédito Consignado INSS</h2>
-        Taxas reduzidas, segurança e aprovação rápida. Perfeito para aposentados e pensionistas que desejam condições acessíveis com parcelas fixas e desconto direto na folha.
+        Taxas reduzidas e aprovação rápida para aposentados e pensionistas.
     </div>
 </section>
 
-<!-- IMAGEM 09 -->
 <section class="section-img">
     <img src="foto09.jpeg" />
     <div class="section-text">
         <h2>Portabilidade e Refinanciamento</h2>
-        Migre seu empréstimo para uma taxa menor ou aumente o prazo de pagamento reduzindo parcelas. Refinancie valores já pagos e melhore sua saúde financeira.
+        Migre seu empréstimo para taxas menores ou refinancie valores já pagos.
     </div>
 </section>
 
-<!-- IMAGEM 10 COM ESPAÇO PARA TEXTO -->
 <section class="section-img">
     <img src="foto10.jpg" />
     <div class="section-text">
-        <h2>Descrição da Imagem</h2>
-        <p>Escreva aqui sua explicação personalizada desta imagem.</p>
+        <h2>Consultoria Financeira Personalizada</h2>
+        Análise completa para escolher a melhor solução de crédito.
     </div>
 </section>
 
-<!-- BOTÃO ZAP -->
-<div class="zap-floating" onclick="abrirZap()">WhatsApp</div>
-<div class="zap-modal" id="zapModal">
-    <button onclick="window.location.href='https://wa.me/5537998431401'">Formiga</button>
-    <button onclick="window.location.href='https://wa.me/5537998615963'">Arcos</button>
-    <button onclick="window.location.href='https://wa.me/5537988036587'">Lagoa da Prata</button>
-</div>
+<section id="sobre" style="padding:60px 6%;background:white;border-top:6px solid #ff7b00;">
+    <h2>Quem Somos</h2>
+    <p>A <strong>Sonho Real Empréstimos</strong> é uma empresa especializada em crédito consignado, fundada para oferecer soluções financeiras seguras, rápidas e transparentes. Atuamos com foco total no cliente, oferecendo atendimento humanizado e processos claros.</p>
 
-<footer style="background:#004aad;color:white;padding:40px 6%;margin-top:60px;">
-<h2>Sobre Nós</h2>
-<p>A Sonho Real Empréstimos é especializada em crédito consignado, portabilidade, refinanciamento e soluções financeiras com transparência e segurança. Com mais de 8 anos de experiência, atendemos todo o Brasil com foco total no cliente.</p>
-<br>
-<h3>Unidades</h3>
-<p><strong>Formiga:</strong> (37) 99843-1401 — Rua João Domingos da Fonseca, 31, Centro — CNPJ: 32.851.952/0001-05</p>
-<p><strong>Arcos:</strong> (37) 99861-5963 — Rua Jarbas Ferreira Pires, 465, Centro — CNPJ: 37.893.986/0001-05</p>
-<p><strong>Lagoa da Prata:</strong> (37) 98803-6587 — Av. Benedito Valadares, 696, Centro — CNPJ: 43.286.201/0001-00</p>
-<br>
-<p style="opacity:0.8;">© 2025 Sonho Real Empréstimos — Todos os direitos reservados.</p>
-</footer>
+    <h2>Nossa História</h2>
+    <p>Fundada em Formiga (MG), a empresa nasceu com a missão de descomplicar o acesso ao crédito e transformar vidas. Hoje contamos com 3 unidades em Minas Gerais: Formiga, Arcos e Lagoa da Prata, atendendo todo o Brasil.</p>
 
-</body>
-</html>
+    <h2>Trabalhamos com</h2>
+    <ul>
+        <li>Empréstimo consignado INSS</li>
+        <li>Portabilidade</li>
+        <li>Refinanciamento</li>
+        <li>Cartão consignado</li>
+        <li>Margem extra
