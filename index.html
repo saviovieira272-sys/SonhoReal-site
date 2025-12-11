@@ -1,197 +1,225 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sonho Real Empréstimos</title>
-
-  <!-- Fonte premium: Montserrat -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --blue:#0a2a52;
-      --blue-light:#3b6ea8;
-      --orange:#ff7a00;
-      --white:#ffffff;
-      --radius:18px;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sonho Real Empréstimos</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+    body {
+        margin: 0;
+        font-family: 'Montserrat', sans-serif;
+        background: linear-gradient(135deg, #e8f1ff, #ffffff, #ffeede);
+        background-size: cover;
+        color: #1d1d1d;
+    }
+    header {
+        width: 100%;
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        backdrop-filter: blur(10px);
+        background: rgba(255,255,255,0.6);
+        border-bottom: 2px solid rgba(0,0,0,0.05);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    header img.logo {
+        height: 55px;
+    }
+    nav a {
+        margin-left: 20px;
+        text-decoration: none;
+        font-weight: 600;
+        color: #004aad;
+        transition: 0.3s;
+    }
+    nav a:hover {
+        color: #ff7b00;
     }
 
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{
-      font-family:'Montserrat',sans-serif;
-      background:linear-gradient(135deg,#f5f8ff 0%,#dbe8ff 40%,#ffe9d6 100%);
-      color:var(--blue);
-      overflow-x:hidden;
+    /* CARROSSEL */
+    .carousel-container {
+        width: 100%;
+        height: 45vh;
+        max-height: 420px;
+        overflow: hidden;
+        position: relative;
+        margin-top: 20px;
+    }
+    .carousel {
+        display: flex;
+        width: 600%;
+        height: 100%;
+        animation: slide 20s infinite;
+    }
+    .carousel img {
+        width: 100%;
+        object-fit: cover;
+    }
+    @keyframes slide {
+        0% { transform: translateX(0%); }
+        16% { transform: translateX(0%); }
+        20% { transform: translateX(-100%); }
+        36% { transform: translateX(-100%); }
+        40% { transform: translateX(-200%); }
+        56% { transform: translateX(-200%); }
+        60% { transform: translateX(-300%); }
+        76% { transform: translateX(-300%); }
+        80% { transform: translateX(-400%); }
+        96% { transform: translateX(-400%); }
+        100% { transform: translateX(-500%); }
     }
 
-    /* TEXTURED BACKGROUND */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      background:url('https://www.transparenttextures.com/patterns/white-diamond.png');
-      opacity:.35;
-      pointer-events:none;
-      z-index:-1;
+    /* SESSÕES COM IMAGENS ALTERNADAS */
+    .section-img {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 60px 6%;
+        gap: 40px;
+    }
+    .section-img:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+    .section-img img {
+        width: 40%;
+        border-radius: 14px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    .section-text {
+        width: 55%;
+        background: white;
+        padding: 25px;
+        border-radius: 14px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        line-height: 1.6;
+    }
+    h2 {
+        color: #004aad;
+        font-weight: 700;
     }
 
-    /* NAVBAR */
-    .nav{
-      position:sticky;top:0;z-index:90;
-      display:flex;justify-content:space-between;align-items:center;
-      padding:18px 32px;
-      background:rgba(255,255,255,0.55);
-      backdrop-filter:blur(10px);
-      box-shadow:0 4px 18px rgba(0,0,0,0.08);
+    /* BOTÃO FLUTUANTE */
+    .zap-floating {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        background: #25d366;
+        padding: 18px 22px;
+        border-radius: 50px;
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        z-index: 2000;
+        transition: 0.3s;
     }
-    .nav img{height:60px}
-    .nav a{color:var(--blue);font-weight:600;text-decoration:none;margin:0 12px;transition:.3s}
-    .nav a:hover{color:var(--orange)}
-
-    /* BUTTON */
-    .btn-primary{
-      background:linear-gradient(90deg,var(--blue),var(--blue-light));
-      color:#fff;padding:12px 20px;border:none;border-radius:12px;
-      font-weight:700;cursor:pointer;transition:.3s;
-    }
-    .btn-primary:hover{transform:scale(1.06);background:linear-gradient(90deg,var(--orange),#ff9d44)}
-
-    /* HERO */
-    .hero{
-      display:flex;justify-content:center;padding:40px 20px;
-    }
-    .hero-inner{
-      max-width:1200px;width:100%;display:flex;gap:30px;
+    .zap-floating:hover {
+        transform: scale(1.05);
     }
 
-    /* CARROSSEL MEDIO (1/3 DA TELA) */
-    .carousel-container{
-      width:38%;border-radius:var(--radius);
-      overflow:hidden;position:relative;
-      box-shadow:0 18px 40px rgba(0,0,0,0.12);
-    }
-    .carousel{display:flex;transition:transform .6s ease}
-    .carousel img{width:100%;height:340px;object-fit:cover}
-    .carousel-controls{
-      position:absolute;top:50%;left:0;right:0;
-      display:flex;justify-content:space-between;padding:0 12px;
-      transform:translateY(-50%);
-    }
-    .carousel-controls button{
-      background:rgba(255,255,255,0.8);border:none;padding:8px;
-      border-radius:50%;cursor:pointer;font-size:18px;
-      box-shadow:0 6px 20px rgba(0,0,0,0.18);
-    }
-    .carousel-indicators{
-      position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
-      display:flex;gap:8px;
-    }
-    .indicator{
-      width:12px;height:12px;border-radius:50%;
-      background:#ffffffa8;cursor:pointer;
-    }
-    .indicator.active{background:var(--orange)}
-
-    /* SIDE CARDS */
-    .hero-side{
-      width:62%;display:flex;flex-direction:column;gap:20px;
-    }
-    .card{
-      background:#fff;padding:22px;border-radius:var(--radius);
-      box-shadow:0 12px 30px rgba(0,0,0,0.08);
-      animation:fadeUp .8s ease both;
+    .zap-modal {
+        display: none;
+        position: fixed;
+        bottom: 90px;
+        right: 25px;
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        z-index: 2001;
     }
 
-    /* IMG ZOOM EFFECT */
-    .zoom-img{
-      transition:.4s;
+    .zap-modal button {
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        background: #004aad;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
     }
-    .zoom-img:hover{
-      transform:scale(1.05);
+    .zap-modal button:hover {
+        background: #ff7b00;
     }
-
-    @keyframes fadeUp{
-      from{opacity:0;transform:translateY(20px)}
-      to{opacity:1;transform:translateY(0)}
-    }
-  </style>
+</style>
+<script>
+function abrirZap() {
+    let modal = document.getElementById('zapModal');
+    modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+}
+</script>
 </head>
 <body>
+<header>
+    <img src="design02.png" class="logo" alt="Logo Sonho Real">
+    <nav>
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#unidades">Unidades</a>
+    </nav>
+</header>
 
-  <nav class="nav">
-    <div class="brand">
-      <img src="logo_sonhoreal.png" />
+<div class="carousel-container">
+    <div class="carousel">
+        <img src="foto01.jpeg" />
+        <img src="foto02.jpeg" />
+        <img src="foto03.jpeg" />
+        <img src="foto04.jpeg" />
+        <img src="foto05.jpeg" />
+        <img src="foto06.jpeg" />
     </div>
-    <div>
-      <a href="#quem">Quem Somos</a>
-      <a href="#servicos">Serviços</a>
-      <a href="#contato">Contato</a>
-      <button class="btn-primary">Simulação</button>
+</div>
+
+<!-- IMAGEM 07 -->
+<section class="section-img">
+    <img src="foto07.jpeg" />
+    <div class="section-text">
+        <h2>Antecipação do FGTS</h2>
+        Transforme parte do seu FGTS disponível em dinheiro imediato com segurança e sem burocracia. Ideal para organizar dívidas, investir ou realizar projetos pessoais.
     </div>
-  </nav>
+</section>
 
-  <header class="hero">
-    <div class="hero-inner">
-
-      <!-- CARROSSEL -->
-      <div class="carousel-container">
-        <div class="carousel" id="carousel">
-          <img src="foto01.jpeg" class="zoom-img" />
-          <img src="foto02.jpeg" class="zoom-img" />
-          <img src="foto03.jpeg" class="zoom-img" />
-          <img src="foto04.jpeg" class="zoom-img" />
-          <img src="foto05.jpeg" class="zoom-img" />
-          <img src="foto06.jpeg" class="zoom-img" />
-        </div>
-        <div class="carousel-controls">
-          <button id="prev">◀</button>
-          <button id="next">▶</button>
-        </div>
-        <div class="carousel-indicators" id="indicators"></div>
-      </div>
-
-      <!-- INFO -->
-      <div class="hero-side">
-        <div class="card">
-          <h2>Crédito consignado com segurança e velocidade</h2>
-          <p>Atendimento humano, taxas competitivas e análise rápida. Tudo para facilitar sua vida.</p>
-          <button class="btn-primary">Simular Agora</button>
-        </div>
-      </div>
+<!-- IMAGEM 08 -->
+<section class="section-img">
+    <img src="foto08.jpeg" />
+    <div class="section-text">
+        <h2>Crédito Consignado INSS</h2>
+        Taxas reduzidas, segurança e aprovação rápida. Perfeito para aposentados e pensionistas que desejam condições acessíveis com parcelas fixas e desconto direto na folha.
     </div>
-  </header>
+</section>
 
-  <!-- EXPLICAÇÕES DAS 3 IMAGENS ENVIADAS + ESPAÇO PARA A 10ª -->
-  <section style="max-width:1200px;margin:40px auto;padding:20px">
-    <div style="display:flex;gap:20px;flex-wrap:wrap">
-
-      <div style="flex:1;min-width:260px">
-        <img src="foto07.jpeg" class="zoom-img" style="width:100%;border-radius:14px" />
-        <h3>Organização Financeira</h3>
-        <p>Mostra o trabalho de consultoria financeira, onde ajudamos o cliente a entender suas margens, limites e melhores opções de crédito.</p>
-      </div>
-
-      <div style="flex:1;min-width:260px">
-        <img src="foto08.jpeg" class="zoom-img" style="width:100%;border-radius:14px" />
-        <h3>Planejamento de Benefícios</h3>
-        <p>Imagem representando o uso inteligente de benefícios como FGTS e INSS para contratar crédito com segurança e economia.</p>
-      </div>
-
-      <div style="flex:1;min-width:260px">
-        <img src="foto09.jpeg" class="zoom-img" style="width:100%;border-radius:14px" />
-        <h3>Consignado Seguro</h3>
-        <p>Representa o empréstimo consignado tradicional, com taxas mais baixas e estabilidade para aposentados, pensionistas e servidores.</p>
-      </div>
-
-      <div style="flex:1;min-width:260px">
-        <img src="FOTO10.jpg" class="zoom-img" style="width:100%;border-radius:14px" />
-        <h3>Descrição da Imagem 10</h3>
-        <p><strong>Escreva aqui a explicação da foto 10</strong></p>
-      </div>
-
+<!-- IMAGEM 09 -->
+<section class="section-img">
+    <img src="foto09.jpeg" />
+    <div class="section-text">
+        <h2>Portabilidade e Refinanciamento</h2>
+        Migre seu empréstimo para uma taxa menor ou aumente o prazo de pagamento reduzindo parcelas. Refinancie valores já pagos e melhore sua saúde financeira.
     </div>
-  </section>
+</section>
+
+<!-- IMAGEM 10 COM ESPAÇO PARA TEXTO -->
+<section class="section-img">
+    <img src="foto10.jpeg" />
+    <div class="section-text">
+        <h2>Descrição da Imagem</h2>
+        <p>Escreva aqui sua explicação personalizada desta imagem.</p>
+    </div>
+</section>
+
+<!-- BOTÃO ZAP -->
+<div class="zap-floating" onclick="abrirZap()">WhatsApp</div>
+<div class="zap-modal" id="zapModal">
+    <button onclick="window.location.href='https://wa.me/5537998431401'">Formiga</button>
+    <button onclick="window.location.href='https://wa.me/5537998615963'">Arcos</button>
+    <button onclick="window.location.href='https://wa.me/5537988036587'">Lagoa da Prata</button>
+</div>
 
 </body>
 </html>
