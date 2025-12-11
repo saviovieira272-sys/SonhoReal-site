@@ -4,37 +4,66 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sonho Real Empréstimos</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #ffffff;
+      font-family: "Poppins", sans-serif;
+      background: #f5f8ff;
       color: #0a2a52;
+      overflow-x: hidden;
     }
+
+    /* HEADER PREMIUM */
     header {
-      background: linear-gradient(90deg, #0a2a52, #ff7a00);
-      padding: 20px;
+      background: linear-gradient(135deg, #0a2a52, #1455a3, #ff7a00);
+      padding: 40px 20px;
       text-align: center;
       color: white;
-      font-size: 32px;
-      font-weight: bold;
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      position: relative;
     }
+
+    header::after {
+      content: "";
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 60px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50px;
+      filter: blur(20px);
+    }
+
+    /* CARROSSEL PREMIUM */
     .carousel-container {
       width: 100%;
-      max-width: 900px;
-      margin: 40px auto;
+      max-width: 100%;
+      margin: 80px auto 0 auto;
       overflow: hidden;
-      border-radius: 20px;
-      border: 4px solid #0a2a52;
+      border-radius: 0;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+      position: relative;
     }
+
     .carousel {
       display: flex;
-      animation: slide 20s infinite;
+      animation: slide 22s infinite ease-in-out;
     }
+
     .carousel img {
       width: 100%;
       object-fit: cover;
     }
+
     @keyframes slide {
       0% {transform: translateX(0%);} 
       16% {transform: translateX(0%);} 
@@ -49,51 +78,91 @@
       100% {transform: translateX(-500%);} 
     }
 
+    /* SEÇÕES PREMIUM */
     .section {
-      width: 100%;
-      max-width: 1000px;
-      margin: 60px auto;
-      padding: 20px;
+      width: 90%;
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 30px;
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 40px;
+      background: white;
+      border-radius: 25px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+      transition: 0.4s;
+      position: relative;
+      overflow: hidden;
     }
+
+    .section:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+    }
+
+    .section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -150px;
+      width: 350px;
+      height: 350px;
+      background: rgba(255,122,0,0.12);
+      border-radius: 50%;
+      filter: blur(50px);
+    }
+
     .section:nth-child(even) {
       flex-direction: row-reverse;
     }
+
     .section img {
       width: 45%;
       border-radius: 20px;
-      border: 3px solid #ff7a00;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     }
+
     .section .text {
       width: 55%;
       font-size: 20px;
-      line-height: 1.4;
+      line-height: 1.6;
     }
+
+    .section h2 {
+      font-size: 30px;
+      margin-bottom: 18px;
+      color: #0a2a52;
+      font-weight: 700;
+    }
+
+    /* FOOTER */
     footer {
       background: #0a2a52;
       color: white;
       text-align: center;
-      padding: 20px;
-      margin-top: 60px;
+      padding: 30px;
+      margin-top: 80px;
+      font-size: 18px;
     }
+
   </style>
 </head>
 <body>
+
   <header>Sonho Real Empréstimos</header>
 
-  <!-- Carrossel 6 fotos -->
+  <!-- CARROSSEL PREMIUM COM 6 FOTOS -->
   <div class="carousel-container">
     <div class="carousel">
-      <img src="foto1.jpeg" alt="Imagem 1" />
-      <img src="foto02.jpeg" alt="Imagem 2" />
+      <img src="foto01.jpeg" alt="Imagem 1" />
+      <img src="foto20.jpeg" alt="Imagem 2" />
       <img src="foto03.jpeg" alt="Imagem 3" />
       <img src="foto04.jpeg" alt="Imagem 4" />
       <img src="foto05.jpeg" alt="Imagem 5" />
       <img src="foto06.jpeg" alt="Imagem 6" />
     </div>
   </div>
+
 
   <!-- FOTO 07 -->
   <div class="section">
@@ -122,7 +191,7 @@
     </div>
   </div>
 
-  <!-- FOTO 10 (com espaço para você escrever) -->
+  <!-- FOTO 10 -->
   <div class="section">
     <img src="foto10.jpeg" />
     <div class="text">
@@ -135,5 +204,6 @@
   </div>
 
   <footer>© 2025 Sonho Real Empréstimos — Transformando sonhos em realidade</footer>
+
 </body>
 </html>
