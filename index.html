@@ -5,22 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sonho Real Empréstimos</title>
 
+<!-- AOS (animações ao rolar) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
 <style>
 :root{
   --blue:#0a3d62;
   --orange:#ff7a00;
   --white:#ffffff;
+  --glass: rgba(255,255,255,0.92);
 }
 
-/* Reset simples */
+/* Reset */
 *{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
 body{
   font-family: "Montserrat", Arial, sans-serif;
   color:var(--blue);
-  margin: 0;
-  padding: 0;
-
-  /* Fundo cobrindo toda a tela */
+  margin:0;
   background-image: url('fundo.png');
   background-repeat: no-repeat;
   background-size: cover;
@@ -29,45 +31,33 @@ body{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   line-height:1.45;
+  scroll-behavior: smooth;
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER FIXO ===== */
 header{
-  position:sticky; top:0; z-index:1200;
-  width:100%;
+  position:fixed; top:0; left:0; right:0;
+  height:72px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:16px;
-  padding:12px 24px;
-  background: rgba(255,255,255,0.92);
+  padding:12px 28px;
+  background: var(--glass);
   backdrop-filter: blur(6px);
-  border-bottom:4px solid var(--orange);
+  z-index:1400;
+  box-shadow: 0 8px 30px rgba(10,42,82,0.12); /* sombra premium */
 }
 .brand{display:flex;align-items:center;gap:12px}
-.brand img{height:54px; width:auto; max-width:180px; display:block}
+.brand img{height:54px; width:auto; max-width:200px; display:block}
 .brand .title{font-weight:800;color:var(--orange); font-size:18px}
 
-nav{
-  display:flex;
-  gap:20px;
-  align-items:center;
-  flex-wrap:nowrap;
-}
-nav a{
-  text-decoration:none;
-  color:var(--blue);
-  font-weight:600;
-  padding:8px 10px;
-  border-radius:8px;
-}
+nav{ display:flex; gap:18px; align-items:center; }
+nav a{ text-decoration:none; color:var(--blue); font-weight:600; padding:8px 10px; border-radius:8px; }
 nav a:hover{ background: rgba(10,42,82,0.04); color:var(--orange) }
 
-/* Mobile */
-@media (max-width:700px){
-  .brand img{height:48px}
-  nav{gap:12px; overflow:auto; -webkit-overflow-scrolling:touch}
-}
+/* push content below header */
+.main-wrap{ padding-top:92px; }
 
 /* ===== CARROSSEL FULL-WIDTH ===== */
 .carousel-wrap{
@@ -75,88 +65,83 @@ nav a:hover{ background: rgba(10,42,82,0.04); color:var(--orange) }
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   border-bottom:6px solid var(--orange);
-  background:#000;
   overflow:hidden;
-  border-radius:12px;
   position:relative;
+  background:#000;
 }
 
 .carousel{
   position:relative;
-  height:85vh;
-  max-height:700px;
+  height:85vh;           /* aumentado conforme pedido */
+  max-height:820px;
   width:100%;
   overflow:hidden;
+  display:block;
 }
 
 .carousel-track{
   display:flex;
   height:100%;
   width:100%;
-  transition: transform 600ms ease-in-out;
+  transition: transform 700ms cubic-bezier(.22,.9,.2,1);
+  will-change: transform;
 }
 
 .carousel-slide{
   flex:0 0 100%;
   height:100%;
+  position:relative;
+  overflow:hidden;
   display:flex;
   align-items:center;
   justify-content:center;
-  position:relative;
-  overflow:hidden;
 }
 
 .carousel-slide img{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:cover;   /* preenche sem "sair" do retângulo */
   display:block;
+  user-select:none;
+  -webkit-user-drag:none;
 }
 
-/* overlay escura para destacar texto */
-.carousel-slide::after{
-  content:'';
-  position:absolute;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: rgba(0,0,0,0.25);
-  pointer-events:none;
-}
-
-/* controls */
+/* Controls */
 .carousel-btn{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  background:rgba(255,255,255,0.9);
+  background:rgba(255,255,255,0.95);
   border:none;
-  width:44px;height:44px;border-radius:999px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.12);
-  cursor:pointer;font-size:18px;
+  width:48px;height:48px;border-radius:999px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.14);
+  cursor:pointer;font-size:20px;
+  z-index:1300;
 }
-.carousel-btn.left{ left:14px }
-.carousel-btn.right{ right:14px }
+.carousel-btn.left{ left:16px }
+.carousel-btn.right{ right:16px }
 
-/* indicators */
+/* Indicators */
 .carousel-indicators{
   position:absolute;
-  bottom:14px; left:50%;
+  bottom:18px; left:50%;
   transform:translateX(-50%);
-  display:flex; gap:8px;
+  display:flex; gap:10px;
+  z-index:1300;
 }
 .indicator{
-  width:12px;height:12px;border-radius:999px;background:rgba(255,255,255,0.72);
-  border:2px solid rgba(0,0,0,0.06); cursor:pointer;
+  width:12px;height:12px;border-radius:999px;background:rgba(255,255,255,0.85);
+  border:2px solid rgba(0,0,0,0.06); cursor:pointer; transition:all .25s;
 }
-.indicator.active{ background:var(--orange); box-shadow:0 4px 10px rgba(255,122,0,0.18) }
+.indicator.active{ width:36px; border-radius:20px; background:var(--orange); box-shadow:0 6px 18px rgba(255,122,0,0.18) }
 
-/* ===== SERVICES ===== */
+/* ===== SERVICES (3 cards) ===== */
 .services-wrap{
   width:100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  padding:28px 40px;
-  background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.08));
+  padding:36px 40px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.04));
 }
 
 .services {
@@ -164,31 +149,28 @@ nav a:hover{ background: rgba(10,42,82,0.04); color:var(--orange) }
   margin: 0 auto;
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:22px;
+  gap:28px;
   align-items:start;
 }
 
-.card {
-  background: transparent;
-  text-align:left;
-  border-radius:14px;
-  overflow:visible;
-}
+.card { background: transparent; text-align:left; border-radius:14px; overflow:visible; }
 
 .card .frame{
   border-radius:14px;
   overflow:hidden;
   border:6px solid var(--orange);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-  background:linear-gradient(135deg, rgba(255,122,0,0.06), rgba(255,122,0,0.02));
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  background:linear-gradient(135deg, rgba(255,122,0,0.03), rgba(255,122,0,0.01));
 }
 
 .card img{
   width:100%;
-  height:320px;
+  height:380px; /* AUMENTADO, mas não exagerado */
   object-fit:cover;
   display:block;
+  transition: transform .35s ease, box-shadow .35s ease;
 }
+.card img:hover{ transform: translateY(-6px) scale(1.02); box-shadow:0 18px 50px rgba(10,42,82,0.12); }
 
 .card .textbox{
   background:var(--white);
@@ -196,7 +178,7 @@ nav a:hover{ background: rgba(10,42,82,0.04); color:var(--orange) }
   border-radius:10px;
   margin-top:12px;
   color:var(--blue);
-  box-shadow:0 10px 30px rgba(10,42,82,0.06);
+  box-shadow:0 10px 30px rgba(10,42,82,0.04);
 }
 
 /* ===== WHO (sobre) ===== */
@@ -248,50 +230,56 @@ footer{
 .footer-inner h4{ color:var(--orange) }
 .footer-inner a{ color:white; text-decoration:underline }
 
-/* ===== WHATSAPP FLOAT ===== */
-.whats {
+/* ===== WHATSAPP FLOAT (moderno) ===== */
+.whatsapp {
   position: fixed;
   right:20px;
   bottom:20px;
-  z-index:1400;
+  z-index:1500;
   display:flex;
-  flex-direction:column;
-  gap:10px;
-  align-items:flex-end;
+  align-items:center;
+  gap:12px;
+  pointer-events:auto;
 }
-.whats .btn{
-  background:linear-gradient(180deg,var(--orange),#ff9d44);
-  color:white; padding:12px 18px; border-radius:999px; font-weight:700; border:none; cursor:pointer;
-  box-shadow:0 10px 30px rgba(10,42,82,0.16);
+
+/* bubble */
+.whatsapp .bubble{
+  width:64px; height:64px; border-radius:20px;
+  background: linear-gradient(180deg,var(--orange), #ff9d44);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 12px 40px rgba(0,0,0,0.18);
+  cursor:pointer; transition:transform .18s;
 }
-.whats .menu{
-  display:none;
+.whatsapp .bubble:hover{ transform:scale(1.06); }
+
+/* small label */
+.whatsapp .label{
   background:white; color:var(--blue);
-  border-radius:12px; padding:12px; box-shadow:0 12px 40px rgba(0,0,0,0.12);
-  min-width:220px;
+  padding:10px 14px; border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.12);
+  font-weight:700; font-size:14px;
+  display:none; /* aparece em telas maiores */
 }
-.whats .menu button{
-  display:block; width:100%; padding:10px; margin:6px 0; border-radius:8px; border:none; background:var(--blue); color:white; font-weight:600;
+
+/* show label on wider screens */
+@media(min-width:880px){
+  .whatsapp .label{ display:block; }
 }
-.whats .menu button:hover{ background:var(--orange) }
 
 /* small screens tweaks */
-@media (max-width:700px){
-  header{ padding:10px 12px }
-  .brand .title{ font-size:16px }
-  .carousel{height:50vh}
-  .image10-wrap{flex-direction:column}
-  .image10-wrap img{ width:100%; }
-  .who{ margin:18px 12px }
-  .services-wrap{ padding:16px }
-  .services{ gap:16px; grid-template-columns:1fr }
+@media (max-width:900px){
+  .services{ grid-template-columns:1fr; gap:18px; }
+  .card img{ height:280px; }
+  .carousel{ height:55vh; }
+  .image10-wrap{ flex-direction:column; gap:14px; }
+  .image10-wrap img{ width:100% }
 }
 </style>
 </head>
 <body>
 
   <!-- HEADER -->
-  <header>
+  <header data-aos="fade-down">
     <div class="brand">
       <img src="design02.png" alt="Logo Sonho Real">
       <div class="title">Sonho Real Empréstimos</div>
@@ -305,155 +293,192 @@ footer{
     </nav>
   </header>
 
-  <!-- CARROSSEL FULL-WIDTH -->
-  <div class="carousel-wrap" id="carouselWrap">
-    <div class="carousel" role="region" aria-label="Carrossel de imagens">
-      <div class="carousel-track" id="carouselTrack">
-        <div class="carousel-slide"><img src="foto03.jpg" alt="Slide 2"></div>
-        <div class="carousel-slide"><img src="foto05.jpg" alt="Slide 4"></div>
-        <div class="carousel-slide"><img src="foto06.jpg" alt="Slide 5"></div>
+  <div class="main-wrap">
+
+    <!-- CARROSSEL FULL-WIDTH -->
+    <div class="carousel-wrap" id="carouselWrap" data-aos="fade-up">
+      <div class="carousel" role="region" aria-label="Carrossel de imagens">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide"><img src="foto03.jpg" alt="Slide 03" loading="eager"></div>
+          <div class="carousel-slide"><img src="foto05.jpg" alt="Slide 05" loading="lazy"></div>
+          <div class="carousel-slide"><img src="foto06.jpg" alt="Slide 06" loading="lazy"></div>
+        </div>
+
+        <button class="carousel-btn left" id="prevBtn" aria-label="Anterior">&lsaquo;</button>
+        <button class="carousel-btn right" id="nextBtn" aria-label="Próximo">&rsaquo;</button>
+
+        <div class="carousel-indicators" id="carouselIndicators" aria-hidden="false"></div>
       </div>
-
-      <button class="carousel-btn left" id="prevBtn" aria-label="Anterior">&lsaquo;</button>
-      <button class="carousel-btn right" id="nextBtn" aria-label="Próximo">&rsaquo;</button>
-
-      <div class="carousel-indicators" id="carouselIndicators" aria-hidden="false"></div>
     </div>
-  </div>
 
-  <!-- SERVICES -->
-  <div class="services-wrap">
-    <div class="services" id="servicos">
-      <div class="card">
-        <div class="frame"><img src="foto07.jpeg" alt="Antecipação FGTS"></div>
-        <div class="textbox card-textbox">
-          <h3>Antecipação de FGTS</h3>
-          <p>Transformamos parte do saldo do FGTS em recursos imediatos para pagar dívidas, investir em projetos ou organizar seu orçamento. Processo com orientação personalizada e segurança jurídica.</p>
+    <!-- SERVICES -->
+    <div class="services-wrap" data-aos="fade-up" id="servicos">
+      <div class="services">
+        <div class="card" data-aos="fade-up" data-aos-delay="80">
+          <div class="frame"><img src="foto07.jpeg" alt="Antecipação FGTS" loading="lazy"></div>
+          <div class="textbox card-textbox">
+            <h3>Antecipação de FGTS</h3>
+            <p>Transformamos parte do saldo do FGTS em recursos imediatos para pagar dívidas, investir em projetos ou organizar seu orçamento. Processo com orientação personalizada e segurança jurídica.</p>
+          </div>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="140">
+          <div class="frame"><img src="foto08.jpeg" alt="Crédito Consignado INSS" loading="lazy"></div>
+          <div class="textbox card-textbox">
+            <h3>Crédito Consignado INSS</h3>
+            <p>Empréstimo consignado para aposentados e pensionistas com taxas reduzidas, parcelas descontadas diretamente do benefício e aprovação simplificada.</p>
+          </div>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <div class="frame"><img src="foto09.jpeg" alt="Portabilidade e Refinanciamento" loading="lazy"></div>
+          <div class="textbox card-textbox">
+            <h3>Portabilidade & Refinanciamento</h3>
+            <p>Portabilidade para mover seu contrato a taxas melhores e refinanciamento para alongar prazos e reduzir parcelas, equilibrando suas finanças com clareza.</p>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="card">
-        <div class="frame"><img src="foto08.jpeg" alt="Crédito Consignado INSS"></div>
-        <div class="textbox card-textbox">
-          <h3>Crédito Consignado INSS</h3>
-          <p>Empréstimo consignado para aposentados e pensionistas com taxas reduzidas, parcelas descontadas diretamente do benefício e aprovação simplificada.</p>
+    <!-- WHO / SOBRE NÓS -->
+    <section id="sobre" class="who" aria-labelledby="sobreTitle" data-aos="fade-up">
+      <h2 id="sobreTitle">Quem Somos</h2>
+      <p><strong>A <em>Sonho Real Empréstimos</em></strong> é uma empresa especializada em crédito consignado, fundada para oferecer soluções financeiras seguras, rápidas e transparentes. Atuamos com foco total no cliente, oferecendo atendimento humanizado e processos claros do início ao fim.</p>
+
+      <h3>Nossa História</h3>
+      <p>Fundada em Formiga, no interior de Minas Gerais, a empresa nasceu com a missão de descomplicar o acesso ao crédito e transformar a vida de aposentados, pensionistas e trabalhadores CLT. Com mais de 8 anos de experiência no setor, hoje contamos com 3 unidades em Minas Gerais: Formiga, Arcos e Lagoa da Prata, mas atendemos a todo território brasileiro!</p>
+
+      <h3>Trabalhamos com:</h3>
+      <ul>
+        <li>Empréstimo consignado INSS</li>
+        <li>Portabilidade</li>
+        <li>Refinanciamento</li>
+        <li>Cartão consignado</li>
+        <li>Margem extra</li>
+        <li>Consultoria financeira personalizada</li>
+        <li>Antecipação de FGTS</li>
+        <li>Empréstimo CLT</li>
+      </ul>
+
+      <p><strong>Nosso objetivo</strong> é sempre garantir a melhor taxa, o melhor prazo e a melhor experiência no processo de contratação! Entre em contato e faça sua simulação!</p>
+    </section>
+
+    <!-- IMAGE 10 -->
+    <section class="image10-wrap" aria-label="Imagem 10" data-aos="fade-up">
+      <img src="foto10.jpeg" alt="Imagem 10" loading="lazy">
+      <div class="image10-box">
+        <h3>Descrição da Imagem</h3>
+        <p>Substitua este texto pela explicação que deseja para a 10ª foto — pode ser um caso de sucesso, oferta ou explicação do serviço.</p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="unidades" aria-labelledby="unidadesTitle" data-aos="fade-up">
+      <div class="footer-inner">
+        <div>
+          <h4 id="unidadesTitle">Unidades & Contato</h4>
+          <p><strong>Formiga:</strong> (37) 99843-1401 — <a href="https://goo.gl/maps/7t3LqgjERZK2" target="_blank">Rua João Domingos da Fonseca N 31, Centro — Formiga MG</a></p>
+          <p><strong>Arcos:</strong> (37) 99861-5963 — <a href="https://goo.gl/maps/9jGkL7rP5x92" target="_blank">Rua Jarbas Ferreira Pires N 465, Centro — Arcos MG</a></p>
+          <p><strong>Lagoa da Prata:</strong> (37) 98803-6587 — <a href="https://goo.gl/maps/1f9L4Zc8xGK2" target="_blank">Avenida Benedito Valadares N 696, Centro — Lagoa da Prata MG</a></p>
+        </div>
+
+        <div>
+          <h4>Informações Legais</h4>
+          <p class="footer-cnpj"><strong>Formiga CNPJ:</strong> 32.851.952/0001-05</p>
+          <p class="footer-cnpj"><strong>Arcos CNPJ:</strong> 37.893.986/0001-05</p>
+          <p class="footer-cnpj"><strong>Lagoa da Prata CNPJ:</strong> 43.286.201/0001-00</p>
+          <p style="margin-top:12px;font-size:14px;opacity:0.95">© 2025 Sonho Real Empréstimos — Transformando sonhos em realidade</p>
         </div>
       </div>
+    </footer>
 
-      <div class="card">
-        <div class="frame"><img src="foto09.jpeg" alt="Portabilidade e Refinanciamento"></div>
-        <div class="textbox card-textbox">
-          <h3>Portabilidade & Refinanciamento</h3>
-          <p>Portabilidade para mover seu contrato a taxas melhores e refinanciamento para alongar prazos e reduzir parcelas, equilibrando suas finanças com clareza.</p>
-        </div>
-      </div>
-    </div>
+  </div> <!-- /main-wrap -->
+
+  <!-- WHATSAPP FLOAT (moderno) -->
+  <div class="whatsapp" aria-hidden="false">
+    <div class="label" style="display:none"></div>
+    <a class="bubble" href="https://wa.me/5537998431401?text=Ol%C3%A1%2C%20gostaria%20de%20uma%20simula%C3%A7%C3%A3o" target="_blank" title="WhatsApp Formiga">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" style="width:36px">
+    </a>
+    <div class="label" style="display:none"></div>
   </div>
 
-  <!-- WHO / SOBRE NÓS -->
-  <section id="sobre" class="who" aria-labelledby="sobreTitle">
-    <h2 id="sobreTitle">Quem Somos</h2>
-    <p><strong>A <em>Sonho Real Empréstimos</em></strong> é uma empresa especializada em crédito consignado, fundada para oferecer soluções financeiras seguras, rápidas e transparentes. Atuamos com foco total no cliente, oferecendo atendimento humanizado e processos claros do início ao fim.</p>
-
-    <h3>Nossa História</h3>
-    <p>Fundada em Formiga, no interior de Minas Gerais, a empresa nasceu com a missão de descomplicar o acesso ao crédito e transformar a vida de aposentados, pensionistas e trabalhadores CLT. Com mais de 8 anos de experiência no setor, hoje contamos com 3 unidades em Minas Gerais: Formiga, Arcos e Lagoa da Prata, mas atendemos a todo território brasileiro!</p>
-
-    <h3>Trabalhamos com:</h3>
-    <ul>
-      <li>Empréstimo consignado INSS</li>
-      <li>Portabilidade</li>
-      <li>Refinanciamento</li>
-      <li>Cartão consignado</li>
-      <li>Margem extra</li>
-      <li>Consultoria financeira personalizada</li>
-      <li>Antecipação de FGTS</li>
-      <li>Empréstimo CLT</li>
-    </ul>
-
-    <p><strong>Nosso objetivo</strong> é sempre garantir a melhor taxa, o melhor prazo e a melhor experiência no processo de contratação! Entre em contato e faça sua simulação!</p>
-  </section>
-
-  <!-- IMAGE 10 -->
-  <section class="image10-wrap" aria-label="Imagem 10">
-    <img src="foto10.jpeg" alt="Imagem 10">
-    <div class="image10-box">
-      <h3>Descrição da Imagem</h3>
-      <p>Substitua este texto pela explicação que deseja para a 10ª foto — pode ser um caso de sucesso, oferta ou explicação do serviço.</p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer id="unidades" aria-labelledby="unidadesTitle">
-    <div class="footer-inner">
-      <div>
-        <h4 id="unidadesTitle">Unidades & Contato</h4>
-        <p><strong>Formiga:</strong> (37) 99843-1401 — <a href="https://goo.gl/maps/7t3LqgjERZK2" target="_blank">Rua João Domingos da Fonseca N 31, Centro — Formiga MG</a></p>
-        <p><strong>Arcos:</strong> (37) 99861-5963 — <a href="https://goo.gl/maps/9jGkL7rP5x92" target="_blank">Rua Jarbas Ferreira Pires N 465, Centro — Arcos MG</a></p>
-        <p><strong>Lagoa da Prata:</strong> (37) 98803-6587 — <a href="https://goo.gl/maps/1f9L4Zc8xGK2" target="_blank">Avenida Benedito Valadares N 696, Centro — Lagoa da Prata MG</a></p>
-      </div>
-
-      <div>
-        <h4>Informações Legais</h4>
-        <p class="footer-cnpj"><strong>Formiga CNPJ:</strong> 32.851.952/0001-05</p>
-        <p class="footer-cnpj"><strong>Arcos CNPJ:</strong> 37.893.986/0001-05</p>
-        <p class="footer-cnpj"><strong>Lagoa da Prata CNPJ:</strong> 43.286.201/0001-00</p>
-        <p style="margin-top:12px;font-size:14px;opacity:0.95">© 2025 Sonho Real Empréstimos — Transformando sonhos em realidade</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- WHATSAPP FLOAT -->
-  <div class="whats" aria-hidden="false">
-    <button class="btn" id="whatsBtn" aria-haspopup="true" aria-expanded="false" onclick="toggleWhats()">WhatsApp</button>
-    <div class="menu" id="whatsMenu" aria-hidden="true">
-      <button onclick="openWhats('5537998431401')">Formiga — (37) 99843-1401</button>
-      <button onclick="openWhats('5537998615963')">Arcos — (37) 99861-5963</button>
-      <button onclick="openWhats('5537988036587')">Lagoa da Prata — (37) 98803-6587</button>
-    </div>
-  </div>
+<!-- AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
 <script>
+/* INIT AOS */
+AOS.init({ duration: 800, once: false });
+
+/* CARROSSEL (simples, responsivo, indicadores + prev/next + autoplay) */
 (function(){
   const track = document.getElementById('carouselTrack');
   const slides = Array.from(track.children);
   const indicatorsWrap = document.getElementById('carouselIndicators');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
-
   let index = 0;
   const total = slides.length;
+  let autoplayTimer = null;
+  const AUTOPLAY_DELAY = 6000;
 
+  // create indicators
   for(let i=0;i<total;i++){
     const d = document.createElement('button');
     d.className = 'indicator' + (i===0 ? ' active' : '');
     d.setAttribute('aria-label','Ir para slide '+(i+1));
-    d.addEventListener('click',()=>{ index=i; updateCarousel(); });
+    d.addEventListener('click', ()=> { index = i; updateCarousel(); resetAuto(); });
     indicatorsWrap.appendChild(d);
   }
-
   const indicators = Array.from(indicatorsWrap.children);
 
   function updateCarousel(){
     track.style.transform = `translateX(-${index*100}%)`;
-    indicators.forEach((ind,i)=>ind.classList.toggle('active',i===index));
+    indicators.forEach((ind,i)=> ind.classList.toggle('active', i===index));
   }
 
-  prevBtn.addEventListener('click',()=>{ index=(index-1+total)%total; updateCarousel(); });
-  nextBtn.addEventListener('click',()=>{ index=(index+1)%total; updateCarousel(); });
+  function next(){ index = (index+1) % total; updateCarousel(); }
+  function prev(){ index = (index-1+total) % total; updateCarousel(); }
 
-  setInterval(()=>{ index=(index+1)%total; updateCarousel(); },8000);
+  prevBtn.addEventListener('click', ()=> { prev(); resetAuto(); });
+  nextBtn.addEventListener('click', ()=> { next(); resetAuto(); });
+
+  function resetAuto(){
+    if(autoplayTimer) clearInterval(autoplayTimer);
+    autoplayTimer = setInterval(next, AUTOPLAY_DELAY);
+  }
+
+  // pause on hover to let user read
+  const carouselEl = document.querySelector('.carousel');
+  carouselEl.addEventListener('mouseenter', ()=> { if(autoplayTimer) clearInterval(autoplayTimer); });
+  carouselEl.addEventListener('mouseleave', ()=> { resetAuto(); });
+
+  // ensure images fit inside their container (prevents overflow)
+  function containImages(){
+    slides.forEach(slide=>{
+      const img = slide.querySelector('img');
+      if(!img) return;
+      img.style.maxWidth = '100%';
+      img.style.maxHeight = '100%';
+    });
+  }
+  window.addEventListener('resize', containImages);
+  containImages();
+
+  // start autoplay
+  resetAuto();
+  updateCarousel();
 })();
 
-function toggleWhats(){
-  const menu = document.getElementById('whatsMenu');
-  const btn = document.getElementById('whatsBtn');
-  menu.style.display = menu.style.display==='flex'?'none':'flex';
-  btn.setAttribute('aria-expanded',menu.style.display==='flex');
-}
-
-function openWhats(num){
-  window.open(`https://wa.me/${num}`,'_blank');
-}
+/* WhatsApp bubble accessibility: show label on larger screens */
+(function(){
+  const bubble = document.querySelector('.whatsapp .bubble');
+  const label = document.querySelector('.whatsapp .label');
+  if(window.innerWidth >= 880){
+    label.style.display = 'block';
+    label.textContent = 'Fale conosco';
+  }
+})();
 </script>
 
 </body>
