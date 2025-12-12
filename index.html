@@ -1,257 +1,500 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sonho Real Empréstimos</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sonho Real Empréstimos</title>
+  <meta name="description" content="Sonho Real Empréstimos — crédito consignado, portabilidade, refinanciamento, antecipação de FGTS. Atendimento humano e transparente." />
 
-    <!-- Fonte moderna -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: url('https://i.imgur.com/Yq7Z6uM.png'); /* Fundo azul texturizado */
-            background-size: cover;
-            background-attachment: fixed;
-        }
+  <style>
+    :root{
+      --blue:#0a3d62;
+      --blue-2:#1455a3;
+      --orange:#ff7a00;
+      --white:#ffffff;
+      --card-radius:14px;
+    }
 
-        /* ---------------- CABEÇALHO ---------------- */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background: rgba(0, 40, 120, 0.7);
-            backdrop-filter: blur(6px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: var(--blue);
+      background: url('https://i.imgur.com/Yq7Z6uM.png') center/cover fixed no-repeat; /* textura azul */
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
 
-        header img {
-            height: 60px;
-        }
+    /* ---------- HEADER ---------- */
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      width:100%;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(6px);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:14px 24px;
+      border-bottom:4px solid var(--orange);
+    }
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand img{height:64px;width:auto}
+    nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+    nav a{color:var(--blue);text-decoration:none;font-weight:600;padding:8px 10px;border-radius:8px}
+    nav a:hover{background:rgba(10,42,82,0.06);color:var(--orange)}
 
-        nav a {
-            margin: 0 15px;
-            color: white;
-            font-weight: 600;
-            text-decoration: none;
-        }
+    /* ---------- CARROSSEL (LARGURA TOTAL) ---------- */
+    .carousel-wrap{
+      width:100vw; /* garante ocupar de lateral a lateral */
+      margin-left: calc(50% - 50vw); /* centra o full-bleed dentro do layout */
+      margin-right: calc(50% - 50vw);
+      overflow:hidden;
+      border-bottom:6px solid var(--orange);
+    }
+    .carousel{
+      position:relative;
+      height:42vh; /* altura mediana */
+      max-height:480px;
+      min-height:260px;
+      overflow:hidden;
+      background:linear-gradient(180deg,rgba(0,0,0,0.02), rgba(0,0,0,0.04));
+    }
+    .carousel-track{
+      display:flex;
+      height:100%;
+      transition: transform 700ms cubic-bezier(.22,.9,.2,1);
+      will-change: transform;
+    }
+    .carousel-slide{
+      flex:0 0 100%;
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      position:relative;
+    }
+    .carousel-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover; /* mantém cobertura, mas centraliza */
+      object-position:center center;
+      display:block;
+    }
+    .carousel-controls{
+      position:absolute;
+      top:50%;
+      left:0;
+      right:0;
+      transform:translateY(-50%);
+      display:flex;
+      justify-content:space-between;
+      pointer-events:none;
+      padding:0 18px;
+    }
+    .carousel-controls button{
+      pointer-events:all;
+      background:rgba(255,255,255,0.9);
+      border:none;
+      padding:10px 12px;
+      border-radius:999px;
+      font-size:18px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.12);
+      cursor:pointer;
+    }
+    .carousel-indicators{
+      position:absolute;
+      bottom:14px;
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      gap:8px;
+    }
+    .indicator{
+      width:12px;height:12px;border-radius:999px;background:rgba(255,255,255,0.7);cursor:pointer;border:2px solid rgba(0,0,0,0.05)
+    }
+    .indicator.active{background:var(--orange);box-shadow:0 4px 10px rgba(255,122,0,0.18)}
 
-        nav a:hover {
-            color: #ff7b00;
-        }
+    /* pause overlay when hovering */
+    .carousel:hover .carousel-track{transition:none}
 
-        /* ---------------- CARROSSEL ---------------- */
-        .carousel {
-            width: 100%;
-            height: 45vh; /* Altura mediana */
-            overflow: hidden;
-            position: relative;
-            margin-top: 20px;
-        }
+    /* ---------- SEÇÃO DE IMAGENS (3 IMAGENS em linha) ---------- */
+    .three-services {
+      max-width:1100px;
+      margin:28px auto;
+      padding:26px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+      align-items:start;
+    }
+    .svc-card{
+      background:transparent;
+      border-radius:var(--card-radius);
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+    }
+    .svc-image {
+      width:100%;
+      aspect-ratio: 16/10;
+      border-radius:16px;
+      overflow:hidden;
+      position:relative;
+      box-shadow: 0 10px 30px rgba(10,42,82,0.12);
+      border: 6px solid var(--orange);
+      background: linear-gradient(135deg, rgba(255,122,0,0.08), rgba(255,122,0,0.02));
+    }
+    /* creative orange frame using pseudo-element effect */
+    .svc-image::after{
+      content:"";
+      position:absolute;
+      inset:8px;
+      border-radius:12px;
+      box-shadow: inset 0 0 0 6px rgba(255,255,255,0.06);
+      pointer-events:none;
+    }
+    .svc-image img{width:100%;height:100%;object-fit:cover;display:block}
 
-        .carousel img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .svc-textbox{
+      background:var(--white);
+      color:var(--blue);
+      padding:16px;
+      margin-top:8px;
+      border-radius:12px;
+      width:100%;
+      box-shadow:0 10px 30px rgba(10,42,82,0.06);
+      text-align:left;
+    }
+    .svc-textbox h3{margin:0 0 8px 0;color:var(--blue)}
+    .svc-textbox p{margin:0;color:#333}
 
-        .carousel-track {
-            display: flex;
-            width: 600%;
-            animation: slide 18s infinite linear; /* Velocidade reduzida */
-        }
+    /* ---------- SOBRE NÓS (conteúdo) ---------- */
+    .who{
+      max-width:1100px;
+      margin:36px auto;
+      background:var(--white);
+      border-radius:18px;
+      padding:28px;
+      box-shadow:0 14px 40px rgba(10,42,82,0.06);
+      color:var(--blue);
+    }
+    .who h2{color:var(--blue);margin-top:0}
+    .who ul{margin:8px 0 0 18px}
 
-        @keyframes slide {
-            0%   { transform: translateX(0%); }
-            16%  { transform: translateX(0%); }
-            20%  { transform: translateX(-100%); }
-            36%  { transform: translateX(-100%); }
-            40%  { transform: translateX(-200%); }
-            56%  { transform: translateX(-200%); }
-            60%  { transform: translateX(-300%); }
-            76%  { transform: translateX(-300%); }
-            80%  { transform: translateX(-400%); }
-            96%  { transform: translateX(-400%); }
-            100% { transform: translateX(-500%); }
-        }
+    /* ---------- IMAGEM 10 (espaço para descrição) ---------- */
+    .image10{
+      max-width:1100px;
+      margin:28px auto;
+      display:flex;
+      gap:22px;
+      align-items:center;
+      padding:18px;
+    }
+    .image10 img{
+      width:48%;
+      border-radius:14px;
+      border:6px solid var(--orange);
+      box-shadow:0 12px 30px rgba(10,42,82,0.12);
+      object-fit:cover;
+    }
+    .image10 .image10-box{
+      width:52%;
+      background:var(--white);
+      padding:20px;
+      border-radius:12px;
+      color:var(--blue);
+      box-shadow:0 12px 30px rgba(10,42,82,0.06);
+    }
 
-        /* ---------------- IMAGENS EXPLICATIVAS ---------------- */
-        .servicos {
-            padding: 40px;
-            text-align: center;
-        }
+    /* ---------- RODAPÉ ---------- */
+    footer{
+      background:var(--blue);
+      color:var(--white);
+      padding:36px 22px;
+      margin-top:36px;
+    }
+    .footer-inner{
+      max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;
+    }
+    .footer-inner h4{color:var(--orange);margin-top:0}
+    .footer-inner p, .footer-inner li{color:var(--white);margin:6px 0;font-size:15px}
+    .footer-cnpj{margin-top:12px;color:#dfeeff;font-size:14px}
 
-        .servicos h2 {
-            color: white;
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
+    /* ---------- WHATSAPP FLOAT ---------- */
+    .whats{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      z-index:1200;
+      display:flex;
+      gap:12px;
+      align-items:flex-end;
+      flex-direction:column;
+    }
+    .whats .btn{
+      background:linear-gradient(180deg,var(--orange),#ff9d44);
+      color:white;
+      border:none;
+      padding:12px 18px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+      box-shadow:0 10px 30px rgba(10,42,82,0.18);
+    }
+    .whats .menu{
+      background:white;
+      border-radius:12px;
+      padding:8px;
+      box-shadow:0 10px 30px rgba(10,42,82,0.12);
+      display:none;
+      min-width:220px;
+    }
+    .whats .menu button{
+      display:block;
+      width:100%;
+      padding:10px;
+      border-radius:8px;
+      border:none;
+      background:var(--blue);
+      color:white;
+      font-weight:600;
+      margin:6px 0;
+      cursor:pointer;
+    }
+    .whats .menu button:hover{background:var(--orange)}
 
-        .servico-box {
-            background: white;
-            padding: 25px;
-            margin: 25px auto;
-            width: 70%;
-            border-radius: 15px;
-            border-top: 8px solid #ff7b00;
-            border-left: 8px solid #ff7b00;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
-        }
-
-        .servico-img {
-            width: 65%;
-            border-radius: 15px;
-            border: 6px solid #ff7b00;
-            display: block;
-            margin: auto;
-        }
-
-        /* ---------------- SOBRE NÓS ---------------- */
-        .sobre-nos {
-            background: rgba(255,255,255,0.9);
-            padding: 50px;
-            margin-top: 40px;
-            border-radius: 20px;
-        }
-
-        .sobre-nos h2 {
-            color: #003b9b;
-        }
-
-        /* ---------------- RODAPÉ ---------------- */
-        footer {
-            background: #002460;
-            padding: 30px;
-            color: white;
-            margin-top: 40px;
-        }
-
-        /* ---------------- WHATSAPP FLUTUANTE ---------------- */
-        #whats-btn {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: #25d366;
-            color: white;
-            font-size: 18px;
-            padding: 12px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 700;
-            box-shadow: 0 0 10px rgba(0,0,0,0.4);
-        }
-
-        #cidadeMenu {
-            display: none;
-            position: fixed;
-            bottom: 80px;
-            right: 25px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-            padding: 15px;
-        }
-
-        #cidadeMenu button {
-            display: block;
-            width: 100%;
-            background: #003b9b;
-            color: white;
-            font-weight: 600;
-            border: none;
-            padding: 10px 0;
-            margin: 8px 0;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        #cidadeMenu button:hover {
-            background: #ff7b00;
-        }
-    </style>
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width:980px){
+      .three-services{grid-template-columns:1fr}
+      .svc-image{aspect-ratio:16/9}
+      .image10{flex-direction:column}
+      .image10 img, .image10 .image10-box{width:100%}
+      .footer-inner{grid-template-columns:1fr}
+      nav{gap:10px}
+      header{padding:10px 14px}
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <img src="design02.png" alt="Sonho Real" />
-    <nav>
-        <a href="#carrossel">Início</a>
-        <a href="#servicos">Serviços</a>
-        <a href="#sobre">Sobre Nós</a>
-        <a href="#unidades">Unidades</a>
-    </nav>
-</header>
-
-<!-- ---------------- CARROSSEL ---------------- -->
-<section id="carrossel" class="carousel">
-    <div class="carousel-track">
-        <img src="foto02.jpeg" />
-        <img src="foto033.jpeg" />
-        <img src="foto04.jpeg" />
-        <img src="foto05.jpeg" />
-        <img src="foto06.jpeg" />
+  <!-- HEADER -->
+  <header>
+    <div class="brand">
+      <img src="design02.png" alt="Sonho Real — logo">
+      <div style="font-weight:700;color:var(--orange);font-size:18px">Sonho Real Empréstimos</div>
     </div>
-</section>
 
-<!-- ---------------- IMAGENS + SERVIÇOS ---------------- -->
-<section class="servicos" id="servicos">
-    <h2>Serviços Explicados</h2>
+    <nav>
+      <a href="#carrossel">Início</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#sobre">Sobre Nós</a>
+      <a href="#unidades">Unidades</a>
+    </nav>
+  </header>
 
-    <img class="servico-img" src="foto07.jpeg" />
-    <div class="servico-box">Empréstimo consignado INSS explicado aqui...</div>
+  <!-- CARROSSEL (full width) -->
+  <div class="carousel-wrap">
+    <section id="carrossel" class="carousel" aria-label="Carrossel de imagens">
+      <div class="carousel-track" id="carouselTrack">
+        <!-- Coloque os 6 nomes de arquivo das imagens abaixo (você pode alterar os nomes no código) -->
+        <div class="carousel-slide"><img src="foto02.jpeg" alt="Slide 1"></div>
+        <div class="carousel-slide"><img src="foto03.jpeg" alt="Slide 2"></div>
+        <div class="carousel-slide"><img src="foto04.jpeg" alt="Slide 3"></div>
+        <div class="carousel-slide"><img src="foto05.jpeg" alt="Slide 4"></div>
+        <div class="carousel-slide"><img src="foto06.jpeg" alt="Slide 5"></div>
+      </div>
 
-    <img class="servico-img" src="foto08.jpeg" />
-    <div class="servico-box">Portabilidade e refinanciamento explicados aqui...</div>
+      <div class="carousel-controls" aria-hidden="false">
+        <button id="prevBtn" aria-label="Anterior">◀</button>
+        <button id="nextBtn" aria-label="Próximo">▶</button>
+      </div>
 
-    <img class="servico-img" src="foto09.jpeg" />
-    <div class="servico-box">Antecipação de FGTS e outros benefícios...</div>
-</section>
+      <div class="carousel-indicators" id="carouselIndicators" role="tablist" aria-label="Indicadores do carrossel"></div>
+    </section>
+  </div>
 
-<!-- ---------------- SOBRE NÓS ---------------- -->
-<section class="sobre-nos" id="sobre">
-    <h2>Quem Somos</h2>
-    <p>A Sonho Real Empréstimos é uma empresa especializada em crédito consignado...</p>
+  <!-- 3 IMAGENS DE SERVIÇOS (img1 img2 img3) -->
+  <section id="servicos" class="three-services" aria-labelledby="servicosTitle">
+    <div class="svc-card">
+      <div class="svc-image"><img src="foto07.jpeg" alt="Antecipação FGTS"></div>
+      <div class="svc-textbox">
+        <h3>Antecipação de FGTS</h3>
+        <p>Transformamos parte do saldo do FGTS em recursos imediatos para pagar dívidas, investir em projetos ou organizar seu orçamento. Processo com orientação personalizada e segurança jurídica.</p>
+      </div>
+    </div>
 
-    <h2>Nossa História</h2>
-    <p>Fundada em Formiga, no interior de Minas Gerais...</p>
-</section>
+    <div class="svc-card">
+      <div class="svc-image"><img src="foto08.jpeg" alt="Crédito Consignado INSS"></div>
+      <div class="svc-textbox">
+        <h3>Crédito Consignado INSS</h3>
+        <p>Empréstimo consignado para aposentados e pensionistas com taxas reduzidas, parcelas descontadas diretamente do benefício e aprovação simplificada. Ideal para quem busca condições estáveis.</p>
+      </div>
+    </div>
 
-<!-- ---------------- IMAGEM 10 ---------------- -->
-<section class="servicos">
-    <h2>Informação Importante</h2>
-    <img class="servico-img" src="img10.jpg" />
-    <div class="servico-box">Escreva aqui sua explicação personalizada...</div>
-</section>
+    <div class="svc-card">
+      <div class="svc-image"><img src="foto09.jpeg" alt="Portabilidade e Refinanciamento"></div>
+      <div class="svc-textbox">
+        <h3>Portabilidade & Refinanciamento</h3>
+        <p>Portabilidade para mover seu contrato a taxas melhores e refinanciamento para alongar prazos e reduzir parcelas, equilibrando suas finanças com transparência e análise detalhada.</p>
+      </div>
+    </div>
+  </section>
 
-<!-- ---------------- RODAPÉ ---------------- -->
-<footer id="unidades">
-    <h3>Unidades</h3>
-    <p><b>Formiga:</b> (37) 99843-1401 - Rua João Domingos da Fonseca, 31 - Centro - Formiga MG - CNPJ: 32.851.952/0001-05</p>
-    <p><b>Arcos:</b> (37) 99861-5963 - Rua Jarbas Ferreira Pires, 465 - Centro - Arcos MG - CNPJ: 37.893.986/0001-05</p>
-    <p><b>Lagoa da Prata:</b> (37) 98803-6587 - Av. Benedito Valadares, 696 - Centro - Lagoa da Prata MG - CNPJ: 43.286.201/0001-00</p>
-</footer>
+  <!-- SOBRE NÓS (completo) -->
+  <section id="sobre" class="who" aria-labelledby="sobreTitle">
+    <h2 id="sobreTitle">Quem Somos</h2>
+    <p><strong>A Sonho Real Empréstimos</strong> é uma empresa especializada em crédito consignado, fundada para oferecer soluções financeiras seguras, rápidas e transparentes. Atuamos com foco total no cliente, oferecendo atendimento humanizado e processos claros do início ao fim.</p>
 
-<!-- ---------------- WHATSAPP FLUTUANTE ---------------- -->
-<div id="whats-btn" onclick="toggleMenu()">WhatsApp</div>
+    <h3>Nossa História</h3>
+    <p>Fundada em Formiga, no interior de Minas Gerais, a empresa nasceu com a missão de descomplicar o acesso ao crédito e transformar a vida de aposentados, pensionistas e trabalhadores CLT. Com mais de 8 anos de experiência no setor, hoje contamos com 3 unidades em Minas Gerais: Formiga, Arcos e Lagoa da Prata, mas não nos limitamos a cidades — atendemos a todo território brasileiro!</p>
 
-<div id="cidadeMenu">
-    <button onclick="window.open('https://wa.me/5537998431401')">Formiga</button>
-    <button onclick="window.open('https://wa.me/5537998615963')">Arcos</button>
-    <button onclick="window.open('https://wa.me/5537988036587')">Lagoa da Prata</button>
-</div>
+    <h3>Trabalhamos com:</h3>
+    <ul>
+      <li>Empréstimo consignado INSS</li>
+      <li>Portabilidade</li>
+      <li>Refinanciamento</li>
+      <li>Cartão consignado</li>
+      <li>Margem extra</li>
+      <li>Consultoria financeira personalizada</li>
+      <li>Antecipação de FGTS</li>
+      <li>Empréstimo CLT</li>
+    </ul>
 
-<script>
-function toggleMenu() {
-    var menu = document.getElementById('cidadeMenu');
-    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-}
-</script>
+    <p><strong>Nosso objetivo</strong> é sempre garantir a melhor taxa, o melhor prazo e a melhor experiência no processo de contratação! Entre em contato e faça sua simulação.</p>
+  </section>
+
+  <!-- IMAGEM 10 (espaço para você escrever) -->
+  <section class="image10" aria-label="Imagem 10">
+    <img src="foto10.jpg" alt="Imagem 10 — descreva aqui">
+    <div class="image10-box">
+      <h3>Escreva aqui a explicação da 10ª foto</h3>
+      <p>Substitua este texto com a descrição que deseja inserir para a 10ª imagem. Pode ser um caso de sucesso, um produto específico, ou uma oferta especial.</p>
+    </div>
+  </section>
+
+  <!-- RODAPÉ (UNIDADES) -->
+  <footer id="unidades" aria-labelledby="unidadesTitle">
+    <div class="footer-inner">
+      <div>
+        <h4 id="unidadesTitle">Unidades & Contato</h4>
+        <p><strong>Formiga:</strong> (37) 99843-1401 — Rua João Domingos da Fonseca N 31, Centro — Formiga MG</p>
+        <p><strong>Arcos:</strong> (37) 99861-5963 — Rua Jarbas Ferreira Pires N 465, Centro — Arcos MG</p>
+        <p><strong>Lagoa da Prata:</strong> (37) 98803-6587 — Avenida Benedito Valadares N 696, Centro — Lagoa da Prata MG</p>
+      </div>
+
+      <div>
+        <h4>Informações Legais</h4>
+        <p class="footer-cnpj"><strong>Formiga CNPJ:</strong> 32.851.952/0001-05</p>
+        <p class="footer-cnpj"><strong>Arcos CNPJ:</strong> 37.893.986/0001-05</p>
+        <p class="footer-cnpj"><strong>Lagoa da Prata CNPJ:</strong> 43.286.201/0001-00</p>
+        <p style="margin-top:12px;font-size:14px;opacity:0.95">© 2025 Sonho Real Empréstimos — Transformando sonhos em realidade</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLUTUANTE (menu por cidade) -->
+  <div class="whats" aria-hidden="false">
+    <button class="btn" id="whatsBtn" aria-haspopup="true" aria-expanded="false">WhatsApp</button>
+
+    <div class="menu" id="whatsMenu" role="menu" aria-hidden="true">
+      <button onclick="openWhats('5537998431401')">Formiga — (37) 99843-1401</button>
+      <button onclick="openWhats('5537998615963')">Arcos — (37) 99861-5963</button>
+      <button onclick="openWhats('5537988036587')">Lagoa da Prata — (37) 98803-6587</button>
+    </div>
+  </div>
+
+  <!-- SCRIPTS: CARROSSEL LENTO E WHATSAPP MENU -->
+  <script>
+    // CARROSSEL: logic to auto-play slower, pause on hover, prev/next, indicators
+    (function(){
+      const track = document.getElementById('carouselTrack');
+      const slides = Array.from(track.children);
+      const total = slides.length;
+      const indicatorsWrap = document.getElementById('carouselIndicators');
+
+      // build indicators
+      for(let i=0;i<total;i++){
+        const dot = document.createElement('button');
+        dot.className = 'indicator' + (i===0 ? ' active' : '');
+        dot.setAttribute('aria-label','Ir para slide ' + (i+1));
+        dot.addEventListener('click', ()=> goTo(i));
+        indicatorsWrap.appendChild(dot);
+      }
+
+      let index = 0;
+      function update(){ track.style.transform = `translateX(-${index*100}%)`; updateIndicators(); }
+      function next(){ index = (index+1) % total; update(); }
+      function prev(){ index = (index-1 + total) % total; update(); }
+      function goTo(i){ index = i % total; update(); }
+
+      function updateIndicators(){
+        Array.from(indicatorsWrap.children).forEach((d, i) => {
+          d.classList.toggle('active', i === index);
+        });
+      }
+
+      // controls
+      document.getElementById('nextBtn').addEventListener('click', ()=>{
+        next();
+        resetAuto();
+      });
+      document.getElementById('prevBtn').addEventListener('click', ()=>{
+        prev();
+        resetAuto();
+      });
+
+      // autoplay (slower): 8 seconds per slide
+      let autoplayInterval = 8000;
+      let timer = setInterval(next, autoplayInterval);
+
+      function resetAuto(){ clearInterval(timer); timer = setInterval(next, autoplayInterval); }
+
+      // pause on hover
+      const carousel = document.querySelector('.carousel');
+      carousel.addEventListener('mouseenter', ()=> clearInterval(timer));
+      carousel.addEventListener('mouseleave', ()=> { resetAuto(); });
+
+      // responsive: update translate on resize to keep proper view
+      window.addEventListener('resize', update);
+
+      // initial
+      update();
+    })();
+
+    // WhatsApp menu toggle and open
+    const whatsBtn = document.getElementById('whatsBtn');
+    const whatsMenu = document.getElementById('whatsMenu');
+    whatsBtn.addEventListener('click', ()=>{
+      const open = whatsMenu.style.display === 'block';
+      whatsMenu.style.display = open ? 'none' : 'block';
+      whatsBtn.setAttribute('aria-expanded', String(!open));
+    });
+
+    function openWhats(phone){
+      // opens a new tab to the correct WhatsApp number
+      const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent('Olá, gostaria de uma simulação.');
+      window.open(url, '_blank');
+    }
+
+    // close WhatsApp menu when clicking outside
+    document.addEventListener('click', (e)=>{
+      const within = e.composedPath().includes(document.querySelector('.whats'));
+      if(!within){
+        document.getElementById('whatsMenu').style.display = 'none';
+        whatsBtn.setAttribute('aria-expanded','false');
+      }
+    });
+  </script>
 
 </body>
 </html>
