@@ -36,7 +36,6 @@ header{
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(6px);
   border-bottom:4px solid var(--orange);
-  overflow:visible;
 }
 .brand{display:flex;align-items:center;gap:12px}
 .brand img{height:54px; width:auto; max-width:180px; display:block}
@@ -69,17 +68,20 @@ nav a:hover{ background: rgba(10,42,82,0.04); color:var(--orange) }
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   border-bottom:6px solid var(--orange);
+  background:#000;  /* retângulo preto */
+  overflow:hidden;  /* mantém as imagens dentro do retângulo */
+  border-radius:12px;
 }
 
 .carousel{
   position:relative;
-  height:70vh;       /* altura maior para visibilidade das imagens */
+  height:70vh;       /* altura maior para visibilidade */
   max-height:680px;
   overflow:hidden;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#000;
+  width:100%;
 }
 
 .carousel-track{
@@ -102,11 +104,12 @@ nav a:hover{ background: rgba(10,42,82,0.04); color:var(--orange) }
 .carousel-slide img{
   width:auto;
   height:100%;
-  object-fit:contain; /* mantém toda a imagem visível, sem corte */
+  max-width:100%;
+  object-fit:contain;
   display:block;
 }
 
-/* opcional: leve faixa semi-transparente para legibilidade de texto */
+/* faixa semi-transparente opcional */
 .carousel-slide::after{
   content:'';
   position:absolute;
@@ -178,7 +181,7 @@ nav a:hover{ background: rgba(10,42,82,0.04); color:var(--orange) }
 
 .card img{
   width:100%;
-  height:260px;
+  height:300px;  /* aumentado de 260px para 300px */
   object-fit:cover;
   display:block;
 }
@@ -239,6 +242,7 @@ footer{
 }
 .footer-inner{ max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:20px }
 .footer-inner h4{ color:var(--orange) }
+.footer-inner a{ color:white; text-decoration:underline }
 
 /* ===== WHATSAPP FLOAT ===== */
 .whats {
@@ -381,9 +385,9 @@ footer{
     <div class="footer-inner">
       <div>
         <h4 id="unidadesTitle">Unidades & Contato</h4>
-        <p><strong>Formiga:</strong> <a href="https://goo.gl/maps/jY9kK3Yk9rVd8XvH7" target="_blank" style="color:white;text-decoration:underline;">Rua João Domingos da Fonseca N 31, Centro — Formiga MG</a> — (37) 99843-1401</p>
-        <p><strong>Arcos:</strong> <a href="https://goo.gl/maps/xX9hK4bP4dH2qM7v7" target="_blank" style="color:white;text-decoration:underline;">Rua Jarbas Ferreira Pires N 465, Centro — Arcos MG</a> — (37) 99861-5963</p>
-        <p><strong>Lagoa da Prata:</strong> <a href="https://goo.gl/maps/5Lp1kH5vGJp8kKZB8" target="_blank" style="color:white;text-decoration:underline;">Avenida Benedito Valadares N 696, Centro — Lagoa da Prata MG</a> — (37) 98803-6587</p>
+        <p><strong>Formiga:</strong> (37) 99843-1401 — <a href="https://goo.gl/maps/7t3LqgjERZK2" target="_blank">Rua João Domingos da Fonseca N 31, Centro — Formiga MG</a></p>
+        <p><strong>Arcos:</strong> (37) 99861-5963 — <a href="https://goo.gl/maps/9jGkL7rP5x92" target="_blank">Rua Jarbas Ferreira Pires N 465, Centro — Arcos MG</a></p>
+        <p><strong>Lagoa da Prata:</strong> (37) 98803-6587 — <a href="https://goo.gl/maps/1f9L4Zc8xGK2" target="_blank">Avenida Benedito Valadares N 696, Centro — Lagoa da Prata MG</a></p>
       </div>
 
       <div>
@@ -407,7 +411,6 @@ footer{
   </div>
 
 <script>
-/* -------- CARROSSEL SCRIPT -------- */
 (function(){
   const track = document.getElementById('carouselTrack');
   const slides = Array.from(track.children);
@@ -418,57 +421,40 @@ footer{
   let index = 0;
   const total = slides.length;
 
-  // create indicators
   for(let i=0;i<total;i++){
     const d = document.createElement('button');
     d.className = 'indicator' + (i===0 ? ' active' : '');
     d.setAttribute('aria-label','Ir para slide '+(i+1));
-    d.addEventListener('click', ()=> goTo(i));
+    d.addEventListener('click',()=>{ index=i; updateCarousel(); });
     indicatorsWrap.appendChild(d);
   }
 
-  function update(){
-    track.style.transform = `translateX(-${index * 100}%)`;
-    Array.from(indicatorsWrap.children).forEach((dot, i)=> dot.classList.toggle('active', i===index));
+  const indicators = Array.from(indicatorsWrap.children);
+
+  function updateCarousel(){
+    track.style.transform = `translateX(-${index*100}%)`;
+    indicators.forEach((ind,i)=>ind.classList.toggle('active',i===index));
   }
 
-  function next(){ index = (index+1) % total; update(); }
-  function prev(){ index = (index-1 + total) % total; update(); }
-  function goTo(i){ index = i; update(); resetAuto(); }
-
-  prevBtn.addEventListener('click', ()=> { prev(); resetAuto(); });
-  nextBtn.addEventListener('click', ()=> { next(); resetAuto(); });
-
-  const autoplayInterval = 8000;
-  let timer = setInterval(next, autoplayInterval);
-  function resetAuto(){ clearInterval(timer); timer = setInterval(next, autoplayInterval); }
-
-  const carousel = document.querySelector('.carousel');
-  carousel.addEventListener('mouseenter', ()=> clearInterval(timer));
-  carousel.addEventListener('mouseleave', ()=> { resetAuto(); });
-
-  update();
+  prevBtn.addEventListener('click',()=>{
+    index = (index-1+total)%total; updateCarousel();
+  });
+  nextBtn.addEventListener('click',()=>{
+    index = (index+1)%total; updateCarousel();
+  });
+  setInterval(()=>{ index = (index+1)%total; updateCarousel(); },6000);
 })();
 
-/* -------- WHATSAPP MENU -------- */
 function toggleWhats(){
   const menu = document.getElementById('whatsMenu');
-  const isShown = menu.style.display === 'block';
-  menu.style.display = isShown ? 'none' : 'block';
-  document.getElementById('whatsBtn').setAttribute('aria-expanded', String(!isShown));
+  const btn = document.getElementById('whatsBtn');
+  menu.style.display = menu.style.display==='flex'?'none':'flex';
+  btn.setAttribute('aria-expanded',menu.style.display==='flex');
 }
-function openWhats(phone){
-  const url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent('Olá, gostaria de uma simulação.');
-  window.open(url, '_blank');
+
+function openWhats(num){
+  window.open(`https://wa.me/${num}`,'_blank');
 }
-document.addEventListener('click', function(e){
-  const wh = document.querySelector('.whats');
-  if(!wh) return;
-  if(!wh.contains(e.target)){
-    document.getElementById('whatsMenu').style.display = 'none';
-    document.getElementById('whatsBtn').setAttribute('aria-expanded','false');
-  }
-});
 </script>
 
 </body>
