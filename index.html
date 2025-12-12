@@ -563,6 +563,24 @@ wpPopup.addEventListener("click", (e) => {
     wpPopup.style.display = "none";
   }
 });
+  <!-- SCRIPT POPUP WHATSAPP -->
+<script>
+  // abrir popup ao clicar no ícone
+  document.querySelector('.whatsapp .bubble').addEventListener('click', () => {
+    document.querySelector('.whatsapp-popup').style.display = 'flex';
+  });
+
+  // fechar popup ao clicar no botão X
+  document.querySelector('.wp-close').addEventListener('click', () => {
+    document.querySelector('.whatsapp-popup').style.display = 'none';
+  });
+
+  // fechar popup ao clicar fora do card
+  document.querySelector('.whatsapp-popup').addEventListener('click', (e) => {
+    if (e.target.classList.contains('whatsapp-popup')) {
+      document.querySelector('.whatsapp-popup').style.display = 'none';
+    }
+  });
 </script>
 <!-- POPUP WHATSAPP -->
 <div id="whatsappPopup" class="whatsapp-popup">
