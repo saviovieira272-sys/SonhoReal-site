@@ -57,7 +57,7 @@ nav a{ text-decoration:none; color:var(--blue); font-weight:600; padding:8px 10p
 nav a:hover{ background: rgba(10,42,82,0.04); color:var(--orange) }
 
 /* push content below header */
-.main-wrap{ padding-top:72px; }
+.main-wrap{ padding-top:92px; }
 
 /* ===== CARROSSEL FULL-WIDTH ===== */
 .carousel-wrap{
@@ -274,71 +274,6 @@ footer{
   .image10-wrap{ flex-direction:column; gap:14px; }
   .image10-wrap img{ width:100% }
 }
-  /* POPUP WHATSAPP */
-.whatsapp-popup{
-  position:fixed;
-  top:0; left:0; right:0; bottom:0;
-  background:rgba(0,0,0,0.55);
-  backdrop-filter: blur(3px);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:3000;
-}
-
-.wp-content{
-  background:white;
-  width:90%;
-  max-width:420px;
-  padding:28px;
-  border-radius:16px;
-  box-shadow:0 18px 40px rgba(0,0,0,0.25);
-  text-align:center;
-  animation: wpFade .28s ease;
-  position:relative;
-}
-
-.wp-content h3{
-  color:var(--blue);
-  margin-bottom:20px;
-  font-size:20px;
-  font-weight:800;
-}
-
-.wp-btn{
-  display:block;
-  background:#25d366;
-  color:white;
-  padding:14px;
-  border-radius:12px;
-  text-decoration:none;
-  margin:10px 0;
-  font-weight:700;
-  font-size:16px;
-  box-shadow:0 8px 20px rgba(37,211,102,0.35);
-  transition:0.25s;
-}
-
-.wp-btn:hover{
-  transform:scale(1.03);
-}
-
-.wp-close{
-  position:absolute;
-  right:12px;
-  top:12px;
-  width:32px;height:32px;
-  border:none;
-  font-size:24px;
-  cursor:pointer;
-  background:none;
-  color:#333;
-}
-
-@keyframes wpFade{
-  from{ transform:scale(.9); opacity:0; }
-  to{ transform:scale(1); opacity:1; }
-}
 </style>
 </head>
 <body>
@@ -432,8 +367,8 @@ footer{
     <section class="image10-wrap" aria-label="Imagem 10" data-aos="fade-up">
       <img src="foto10.jpeg" alt="Imagem 10" loading="lazy">
       <div class="image10-box">
-        <h3>PARE DE PERDER TEMPO! Seu futuro financeiro começa agora.</h3>
-        <p>Aposentado(a) ou Pensionista? Solicite hoje mesmo seu Empréstimo Consignado Sonhoreal com Taxas Reduzidas e dinheiro rápido na conta!</p>
+        <h3>Descrição da Imagem</h3>
+        <p>Substitua este texto pela explicação que deseja para a 10ª foto — pode ser um caso de sucesso, oferta ou explicação do serviço.</p>
       </div>
     </section>
 
@@ -544,62 +479,7 @@ AOS.init({ duration: 800, once: false });
     label.textContent = 'Fale conosco';
   }
 })();
-  /* WHATSAPP POPUP */
-const wpPopup = document.getElementById("whatsappPopup");
-const wpBtn = document.querySelector(".whatsapp .bubble");
-const wpClose = document.querySelector(".wp-close");
-
-wpBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  wpPopup.style.display = "flex";
-});
-
-wpClose.addEventListener("click", () => {
-  wpPopup.style.display = "none";
-});
-
-wpPopup.addEventListener("click", (e) => {
-  if(e.target === wpPopup){
-    wpPopup.style.display = "none";
-  }
-});
-  <!-- SCRIPT POPUP WHATSAPP -->
-<script>
-  // abrir popup ao clicar no ícone
-  document.querySelector('.whatsapp .bubble').addEventListener('click', () => {
-    document.querySelector('.whatsapp-popup').style.display = 'flex';
-  });
-
-  // fechar popup ao clicar no botão X
-  document.querySelector('.wp-close').addEventListener('click', () => {
-    document.querySelector('.whatsapp-popup').style.display = 'none';
-  });
-
-  // fechar popup ao clicar fora do card
-  document.querySelector('.whatsapp-popup').addEventListener('click', (e) => {
-    if (e.target.classList.contains('whatsapp-popup')) {
-      document.querySelector('.whatsapp-popup').style.display = 'none';
-    }
-  });
 </script>
-<!-- POPUP WHATSAPP -->
-<div id="whatsappPopup" class="whatsapp-popup">
-  <div class="wp-content">
-    <button class="wp-close">×</button>
-    <h3>Escolha a unidade para atendimento</h3>
 
-    <a class="wp-btn" href="https://wa.me/5537998431401?text=Olá! Quero uma simulação." target="_blank">
-      📍 Formiga — (37) 99843-1401
-    </a>
-
-    <a class="wp-btn" href="https://wa.me/5537998615963?text=Olá! Quero uma simulação." target="_blank">
-      📍 Arcos — (37) 99861-5963
-    </a>
-
-    <a class="wp-btn" href="https://wa.me/5537988036587?text=Olá! Quero uma simulação." target="_blank">
-      📍 Lagoa da Prata — (37) 98803-6587
-    </a>
-  </div>
-</div>
 </body>
 </html>
