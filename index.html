@@ -1,230 +1,257 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sonho Real Empréstimos</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-<style>
-    body {
-        margin: 0;
-        font-family: 'Montserrat', sans-serif;
-        background: linear-gradient(135deg, #e8f1ff, #ffffff, #ffeede);
-        background-size: cover;
-        color: #1d1d1d;
-    }
-    header {
-        width: 100%;
-        padding: 20px 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        backdrop-filter: blur(10px);
-        background: rgba(255,255,255,0.6);
-        border-bottom: 2px solid rgba(0,0,0,0.05);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
-    header img.logo {
-        height: 55px;
-    }
-    nav a {
-        margin-left: 20px;
-        text-decoration: none;
-        font-weight: 600;
-        color: #004aad;
-        transition: 0.3s;
-    }
-    nav a:hover {
-        color: #ff7b00;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sonho Real Empréstimos</title>
 
-    /* CARROSSEL */
-    .carousel-container {
-        width: 100%;
-        height: 45vh;
-        max-height: 420px;
-        overflow: hidden;
-        position: relative;
-        margin-top: 20px;
-    }
-    .carousel {
-        display: flex;
-        width: 600%;
-        height: 100%;
-        animation: slide 60s infinite;
-    }
-    .carousel img {
-        width: 100%;
-        object-fit: cover;
-        border-bottom: 8px solid #ff7b00;
-    }
-    @keyframes slide {
-        0%, 15% { transform: translateX(0%); }
-        20%, 35% { transform: translateX(-100%); }
-        40%, 55% { transform: translateX(-200%); }
-        60%, 75% { transform: translateX(-300%); }
-        80%, 95% { transform: translateX(-400%); }
-        100% { transform: translateX(-500%); }
-    }
+    <!-- Fonte moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-    /* SESSÕES COM IMAGENS ALTERNADAS */
-    .section-img {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 60px 6%;
-        gap: 40px;
-    }
-    .section-img:nth-child(even) {
-        flex-direction: row-reverse;
-    }
-    .section-img img {
-        width: 40%;
-        border-radius: 14px;
-        border: 4px solid #ff7b00;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    }
-    .section-text {
-        width: 55%;
-        background: white;
-        padding: 25px;
-        border-radius: 14px;
-        border-left: 6px solid #004aad;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        line-height: 1.6;
-    }
-    h2 {
-        color: #004aad;
-        font-weight: 700;
-    }
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://i.imgur.com/Yq7Z6uM.png'); /* Fundo azul texturizado */
+            background-size: cover;
+            background-attachment: fixed;
+        }
 
-    /* BOTÃO FLUTUANTE */
-    .zap-floating {
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        background: #25d366;
-        padding: 18px 22px;
-        border-radius: 50px;
-        color: white;
-        font-weight: 700;
-        cursor: pointer;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        z-index: 2000;
-        transition: 0.3s;
-    }
-    .zap-floating:hover {
-        transform: scale(1.05);
-    }
-    .zap-modal {
-        display: none;
-        position: fixed;
-        bottom: 90px;
-        right: 25px;
-        background: white;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        z-index: 2001;
-    }
-    .zap-modal button {
-        display: block;
-        margin-bottom: 10px;
-        width: 100%;
-        padding: 10px;
-        border: none;
-        border-radius: 6px;
-        background: #004aad;
-        color: white;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-    .zap-modal button:hover {
-        background: #ff7b00;
-    }
+        /* ---------------- CABEÇALHO ---------------- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(0, 40, 120, 0.7);
+            backdrop-filter: blur(6px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    footer {
-        background:#004aad;
-        color:white;
-        padding:40px 6%;
-        margin-top:60px;
-    }
-    footer h2, footer h3 {
-        color: white;
-    }
-</style>
-<script>
-function abrirZap() {
-    let modal = document.getElementById('zapModal');
-    modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
-}
-</script>
+        header img {
+            height: 60px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #ff7b00;
+        }
+
+        /* ---------------- CARROSSEL ---------------- */
+        .carousel {
+            width: 100%;
+            height: 45vh; /* Altura mediana */
+            overflow: hidden;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 600%;
+            animation: slide 18s infinite linear; /* Velocidade reduzida */
+        }
+
+        @keyframes slide {
+            0%   { transform: translateX(0%); }
+            16%  { transform: translateX(0%); }
+            20%  { transform: translateX(-100%); }
+            36%  { transform: translateX(-100%); }
+            40%  { transform: translateX(-200%); }
+            56%  { transform: translateX(-200%); }
+            60%  { transform: translateX(-300%); }
+            76%  { transform: translateX(-300%); }
+            80%  { transform: translateX(-400%); }
+            96%  { transform: translateX(-400%); }
+            100% { transform: translateX(-500%); }
+        }
+
+        /* ---------------- IMAGENS EXPLICATIVAS ---------------- */
+        .servicos {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .servicos h2 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .servico-box {
+            background: white;
+            padding: 25px;
+            margin: 25px auto;
+            width: 70%;
+            border-radius: 15px;
+            border-top: 8px solid #ff7b00;
+            border-left: 8px solid #ff7b00;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+
+        .servico-img {
+            width: 65%;
+            border-radius: 15px;
+            border: 6px solid #ff7b00;
+            display: block;
+            margin: auto;
+        }
+
+        /* ---------------- SOBRE NÓS ---------------- */
+        .sobre-nos {
+            background: rgba(255,255,255,0.9);
+            padding: 50px;
+            margin-top: 40px;
+            border-radius: 20px;
+        }
+
+        .sobre-nos h2 {
+            color: #003b9b;
+        }
+
+        /* ---------------- RODAPÉ ---------------- */
+        footer {
+            background: #002460;
+            padding: 30px;
+            color: white;
+            margin-top: 40px;
+        }
+
+        /* ---------------- WHATSAPP FLUTUANTE ---------------- */
+        #whats-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25d366;
+            color: white;
+            font-size: 18px;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 0 10px rgba(0,0,0,0.4);
+        }
+
+        #cidadeMenu {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            padding: 15px;
+        }
+
+        #cidadeMenu button {
+            display: block;
+            width: 100%;
+            background: #003b9b;
+            color: white;
+            font-weight: 600;
+            border: none;
+            padding: 10px 0;
+            margin: 8px 0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #cidadeMenu button:hover {
+            background: #ff7b00;
+        }
+    </style>
 </head>
 <body>
+
 <header>
-    <img src="design02.png" class="logo" alt="Logo Sonho Real">
+    <img src="design02.png" alt="Sonho Real" />
     <nav>
-        <a href="#sobre">Sobre</a>
+        <a href="#carrossel">Início</a>
         <a href="#servicos">Serviços</a>
+        <a href="#sobre">Sobre Nós</a>
         <a href="#unidades">Unidades</a>
     </nav>
 </header>
 
-<div class="carousel-container">
-    <div class="carousel">
+<!-- ---------------- CARROSSEL ---------------- -->
+<section id="carrossel" class="carousel">
+    <div class="carousel-track">
         <img src="foto02.jpeg" />
-        <img src="foto03.jpeg" />
+        <img src="foto033.jpeg" />
         <img src="foto04.jpeg" />
         <img src="foto05.jpeg" />
         <img src="foto06.jpeg" />
     </div>
-</div>
-
-<section id="servicos" class="section-img">
-    <img src="foto07.jpeg" />
-    <div class="section-text">
-        <h2>Antecipação do FGTS</h2>
-        Transforme parte do seu FGTS disponível em dinheiro imediato com segurança e sem burocracia.
-    </div>
 </section>
 
-<section class="section-img">
-    <img src="foto08.jpeg" />
-    <div class="section-text">
-        <h2>Crédito Consignado INSS</h2>
-        Taxas reduzidas e aprovação rápida para aposentados e pensionistas.
-    </div>
+<!-- ---------------- IMAGENS + SERVIÇOS ---------------- -->
+<section class="servicos" id="servicos">
+    <h2>Serviços Explicados</h2>
+
+    <img class="servico-img" src="foto07.jpeg" />
+    <div class="servico-box">Empréstimo consignado INSS explicado aqui...</div>
+
+    <img class="servico-img" src="foto08.jpeg" />
+    <div class="servico-box">Portabilidade e refinanciamento explicados aqui...</div>
+
+    <img class="servico-img" src="foto09.jpeg" />
+    <div class="servico-box">Antecipação de FGTS e outros benefícios...</div>
 </section>
 
-<section class="section-img">
-    <img src="foto09.jpeg" />
-    <div class="section-text">
-        <h2>Portabilidade e Refinanciamento</h2>
-        Migre seu empréstimo para taxas menores ou refinancie valores já pagos.
-    </div>
-</section>
-
-<section class="section-img">
-    <img src="foto10.jpg" />
-    <div class="section-text">
-        <h2>Consultoria Financeira Personalizada</h2>
-        Análise completa para escolher a melhor solução de crédito.
-    </div>
-</section>
-
-<section id="sobre" style="padding:60px 6%;background:white;border-top:6px solid #ff7b00;">
+<!-- ---------------- SOBRE NÓS ---------------- -->
+<section class="sobre-nos" id="sobre">
     <h2>Quem Somos</h2>
-    <p>A <strong>Sonho Real Empréstimos</strong> é uma empresa especializada em crédito consignado, fundada para oferecer soluções financeiras seguras, rápidas e transparentes. Atuamos com foco total no cliente, oferecendo atendimento humanizado e processos claros.</p>
+    <p>A Sonho Real Empréstimos é uma empresa especializada em crédito consignado...</p>
 
     <h2>Nossa História</h2>
-    <p>Fundada em Formiga (MG), a empresa nasceu com a missão de descomplicar o acesso ao crédito e transformar vidas. Hoje contamos com 3 unidades em Minas Gerais: Formiga, Arcos e Lagoa da Prata, atendendo todo o Brasil.</p>
+    <p>Fundada em Formiga, no interior de Minas Gerais...</p>
+</section>
 
-    <h2>Trabalhamos com</h2>
-    <ul>
-        <li>Empréstimo consignado INSS</li>
-        <li>Portabilidade</li>
-        <li>Refinanciamento</li>
-        <li>Cartão consignado</li>
-        <li>Margem extra
+<!-- ---------------- IMAGEM 10 ---------------- -->
+<section class="servicos">
+    <h2>Informação Importante</h2>
+    <img class="servico-img" src="img10.jpg" />
+    <div class="servico-box">Escreva aqui sua explicação personalizada...</div>
+</section>
+
+<!-- ---------------- RODAPÉ ---------------- -->
+<footer id="unidades">
+    <h3>Unidades</h3>
+    <p><b>Formiga:</b> (37) 99843-1401 - Rua João Domingos da Fonseca, 31 - Centro - Formiga MG - CNPJ: 32.851.952/0001-05</p>
+    <p><b>Arcos:</b> (37) 99861-5963 - Rua Jarbas Ferreira Pires, 465 - Centro - Arcos MG - CNPJ: 37.893.986/0001-05</p>
+    <p><b>Lagoa da Prata:</b> (37) 98803-6587 - Av. Benedito Valadares, 696 - Centro - Lagoa da Prata MG - CNPJ: 43.286.201/0001-00</p>
+</footer>
+
+<!-- ---------------- WHATSAPP FLUTUANTE ---------------- -->
+<div id="whats-btn" onclick="toggleMenu()">WhatsApp</div>
+
+<div id="cidadeMenu">
+    <button onclick="window.open('https://wa.me/5537998431401')">Formiga</button>
+    <button onclick="window.open('https://wa.me/5537998615963')">Arcos</button>
+    <button onclick="window.open('https://wa.me/5537988036587')">Lagoa da Prata</button>
+</div>
+
+<script>
+function toggleMenu() {
+    var menu = document.getElementById('cidadeMenu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+</script>
+
+</body>
+</html>
