@@ -1,275 +1,288 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sonho Real Empréstimos</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 <style>
-:root{
-  --blue:#0a3d62;
-  --orange:#ff7a00;
-  --white:#ffffff;
-  --glass: rgba(255,255,255,0.95);
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* RESET TOTAL */
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{
+html, body{
   width:100%;
   overflow-x:hidden;
 }
 
 body{
-  font-family:Montserrat,Arial,sans-serif;
-  color:var(--blue);
-  background:url('fundo.png') center/cover no-repeat;
-  background-attachment:scroll;
-  line-height:1.45;
+  background:#f5f7fa;
+  color:#222;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 header{
   position:fixed;
-  top:0;left:0;right:0;
-  height:72px;
-  background:var(--glass);
+  top:0;
+  left:0;
+  width:100%;
+  height:80px;
+  background:#f0f3f9;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:12px 24px;
-  z-index:2000;
-  box-shadow:0 6px 20px rgba(0,0,0,.1);
+  padding:0 40px;
+  z-index:1000;
 }
 
-.brand{
+.logo{
   display:flex;
   align-items:center;
   gap:10px;
 }
 
-.brand img{height:48px}
-.brand span{
-  font-weight:800;
-  color:var(--orange);
+.logo img{
+  height:48px;
 }
 
-nav{
-  display:flex;
-  gap:18px;
+.logo span{
+  font-size:20px;
+  font-weight:bold;
+  color:#ff7a00;
 }
 
 nav a{
+  margin-left:25px;
   text-decoration:none;
-  color:var(--blue);
   font-weight:600;
+  color:#003366;
 }
 
-/* ESPAÇO HEADER */
-.main{
-  padding-top:90px;
-}
-
-/* CARROSSEL */
-.carousel-wrap{
-  width:100%;
-  overflow:hidden;
-  border-bottom:6px solid var(--orange);
-}
-
+/* ================= CARROSSEL ================= */
 .carousel{
-  position:relative;
+  margin-top:80px;
   width:100%;
-  height:80vh;
-  max-height:700px;
+  height:520px;
+  position:relative;
+  overflow:hidden;
 }
 
-.carousel-track{
-  display:flex;
-  height:100%;
-  transition:transform .6s ease;
-}
-
-.carousel-slide{
-  min-width:100%;
-  height:100%;
-}
-
-.carousel-slide img{
+.carousel img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-.carousel-btn{
+.carousel::after{
+  content:"";
   position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:#fff;
-  border:none;
-  width:44px;height:44px;
-  border-radius:50%;
-  font-size:22px;
-  cursor:pointer;
-  z-index:10;
+  inset:0;
+  background:linear-gradient(to right, rgba(0,0,0,.35), transparent);
 }
 
-.carousel-btn.left{left:12px}
-.carousel-btn.right{right:12px}
-
-.carousel-indicators{
-  position:absolute;
-  bottom:16px;
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  gap:8px;
-}
-
-.indicator{
-  width:12px;height:12px;
-  background:#fff;
-  border-radius:50%;
-  opacity:.6;
-}
-
-.indicator.active{
-  width:30px;
-  border-radius:20px;
-  background:var(--orange);
-  opacity:1;
-}
-
-/* SERVICES */
+/* ================= SERVICES ================= */
 .services-wrap{
-  padding:40px 20px;
+  padding:80px 5%;
+  background:#0c2e66;
 }
 
 .services{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-}
-
-.card img{
-  width:100%;
-  height:420px;
-  object-fit:cover;
-  border:6px solid var(--orange);
-  border-radius:14px;
-}
-
-.textbox{
-  background:#fff;
-  padding:14px;
-  margin-top:10px;
-  border-radius:10px;
-}
-
-/* SOBRE */
-.who{
-  max-width:1100px;
-  margin:40px auto;
-  background:#fff;
-  padding:26px;
-  border-radius:14px;
-  border-left:8px solid var(--orange);
-  border-right:8px solid var(--orange);
-}
-
-/* IMAGE 10 */
-.image10{
-  max-width:1100px;
-  margin:40px auto;
   display:flex;
-  gap:20px;
-}
-
-.image10 img{
-  width:50%;
-  border:6px solid var(--orange);
-  border-radius:12px;
-}
-
-.image10 .box{
-  width:50%;
-  background:#fff;
-  padding:20px;
-  border-radius:12px;
-}
-
-/* FOOTER */
-footer{
-  background:var(--blue);
-  color:#fff;
-  padding:40px 20px;
-}
-
-.footer-inner{
-  max-width:1100px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-
-footer h4{color:var(--orange)}
-
-/* WHATSAPP */
-.whatsapp{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  z-index:3000;
-}
-
-.whatsapp a{
-  display:flex;
-  width:64px;height:64px;
-  background:var(--orange);
-  border-radius:20px;
-  align-items:center;
+  gap:30px;
+  flex-wrap:wrap;
   justify-content:center;
 }
 
-/* MOBILE FIX TOTAL */
+.card{
+  background:#fff;
+  width:320px;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 12px 30px rgba(0,0,0,.2);
+}
+
+.frame img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.card-textbox{
+  padding:20px;
+}
+
+.card-textbox h3{
+  color:#0c2e66;
+  margin-bottom:10px;
+}
+
+.card-textbox p{
+  font-size:15px;
+  line-height:1.5;
+}
+
+/* ================= QUEM SOMOS ================= */
+.who{
+  padding:90px 8%;
+  background:#fff;
+}
+
+.who h2{
+  font-size:36px;
+  color:#0c2e66;
+  margin-bottom:20px;
+}
+
+.who h3{
+  margin-top:25px;
+  margin-bottom:10px;
+  color:#ff7a00;
+}
+
+.who p, .who li{
+  font-size:16px;
+  line-height:1.6;
+}
+
+.who ul{
+  margin-left:20px;
+}
+
+/* ================= IMAGE 10 ================= */
+.image10-wrap{
+  position:relative;
+  margin:80px 0;
+}
+
+.image10-wrap img{
+  width:100%;
+  height:420px;
+  object-fit:cover;
+}
+
+.image10-box{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:rgba(255,122,0,.92);
+  color:#fff;
+  padding:35px;
+  border-radius:20px;
+  max-width:520px;
+  text-align:center;
+}
+
+.image10-box h3{
+  font-size:26px;
+  margin-bottom:12px;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  background:#0c2e66;
+  color:#fff;
+  padding:60px 8%;
+}
+
+.footer-inner{
+  display:flex;
+  gap:50px;
+  flex-wrap:wrap;
+}
+
+footer a{
+  color:#ffd199;
+  text-decoration:none;
+}
+
+/* ================= WHATSAPP ================= */
+.whatsapp{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  z-index:2000;
+}
+
+.whatsapp-btn{
+  width:60px;
+  height:60px;
+  background:#25d366;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  color:#fff;
+  cursor:pointer;
+}
+
+.whatsapp-menu{
+  position:absolute;
+  bottom:75px;
+  right:0;
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+  display:none;
+  overflow:hidden;
+}
+
+.whatsapp-menu a{
+  display:block;
+  padding:12px 18px;
+  color:#0c2e66;
+  font-weight:600;
+  border-bottom:1px solid #eee;
+}
+
+.whatsapp-menu a:last-child{
+  border-bottom:none;
+}
+
+/* ================= MOBILE ================= */
 @media(max-width:768px){
 
-  header{
-    height:auto;
-    flex-direction:column;
-    gap:8px;
-  }
+header{
+  padding:0 20px;
+}
 
-  nav{
-    flex-wrap:wrap;
-    justify-content:center;
-  }
+nav{
+  display:none;
+}
 
-  .carousel{height:55vh}
+.carousel{
+  height:300px;
+}
 
-  .services{
-    grid-template-columns:1fr;
-  }
+.carousel img{
+  object-fit:contain;
+  background:#0c2e66;
+}
 
-  .card img{height:260px}
+.services{
+  flex-direction:column;
+  align-items:center;
+}
 
-  .image10{
-    flex-direction:column;
-  }
+.image10-wrap img{
+  height:320px;
+}
 
-  .image10 img,
-  .image10 .box{
-    width:100%;
-  }
+.image10-box{
+  width:90%;
+  padding:25px;
+}
 
-  .footer-inner{
-    grid-template-columns:1fr;
-  }
+.who{
+  padding:60px 6%;
+}
+
 }
 </style>
 </head>
@@ -277,8 +290,8 @@ footer h4{color:var(--orange)}
 <body>
 
 <header>
-  <div class="brand">
-    <img src="design02.png">
+  <div class="logo">
+    <img src="logo.png" alt="Sonho Real">
     <span>Sonho Real Empréstimos</span>
   </div>
   <nav>
@@ -289,106 +302,102 @@ footer h4{color:var(--orange)}
   </nav>
 </header>
 
-<div class="main" id="inicio">
+<section class="carousel" id="inicio">
+  <img src="foto01.jpeg" alt="Sonho Real Empréstimos">
+</section>
 
-<div class="carousel-wrap">
-  <div class="carousel">
-    <div class="carousel-track" id="track">
-      <div class="carousel-slide"><img src="foto03.jpg"></div>
-      <div class="carousel-slide"><img src="foto05.jpg"></div>
-      <div class="carousel-slide"><img src="foto06.jpg"></div>
+<div class="services-wrap" id="servicos">
+  <div class="services">
+
+    <div class="card">
+      <div class="frame"><img src="foto07.jpeg"></div>
+      <div class="textbox card-textbox">
+        <h3>Antecipação de FGTS</h3>
+        <p>Transformamos parte do saldo do FGTS em recursos imediatos para pagar dívidas, investir em projetos ou organizar seu orçamento. Processo com orientação personalizada e segurança jurídica.</p>
+      </div>
     </div>
 
-    <button class="carousel-btn left" onclick="prev()">‹</button>
-    <button class="carousel-btn right" onclick="next()">›</button>
+    <div class="card">
+      <div class="frame"><img src="foto08.jpeg"></div>
+      <div class="textbox card-textbox">
+        <h3>Crédito Consignado INSS</h3>
+        <p>Empréstimo consignado para aposentados e pensionistas com taxas reduzidas, parcelas descontadas diretamente do benefício e aprovação simplificada.</p>
+      </div>
+    </div>
 
-    <div class="carousel-indicators" id="dots"></div>
+    <div class="card">
+      <div class="frame"><img src="foto09.jpeg"></div>
+      <div class="textbox card-textbox">
+        <h3>Portabilidade & Refinanciamento</h3>
+        <p>Portabilidade para mover seu contrato a taxas melhores e refinanciamento para alongar prazos e reduzir parcelas, equilibrando suas finanças com clareza.</p>
+      </div>
+    </div>
+
   </div>
 </div>
 
-<section class="services-wrap" id="servicos">
-  <div class="services">
-    <div class="card">
-      <img src="foto07.jpeg">
-      <div class="textbox">
-        <h3>Antecipação FGTS</h3>
-        <p>Transforme seu FGTS em dinheiro imediato com segurança.</p>
-      </div>
-    </div>
+<section id="sobre" class="who">
+<h2>Quem Somos</h2>
 
-    <div class="card">
-      <img src="foto08.jpeg">
-      <div class="textbox">
-        <h3>Consignado INSS</h3>
-        <p>Taxas reduzidas e parcelas direto no benefício.</p>
-      </div>
-    </div>
+<p><strong>A Sonho Real Empréstimos</strong> é uma empresa especializada em crédito consignado, fundada para oferecer soluções financeiras seguras, rápidas e transparentes. Atuamos com foco total no cliente, oferecendo atendimento humanizado e processos claros do início ao fim.</p>
 
-    <div class="card">
-      <img src="foto09.jpeg">
-      <div class="textbox">
-        <h3>Portabilidade</h3>
-        <p>Reduza parcelas e melhore sua taxa.</p>
-      </div>
-    </div>
-  </div>
+<h3>Nossa História</h3>
+<p>Fundada em Formiga, no interior de Minas Gerais, a empresa nasceu com a missão de descomplicar o acesso ao crédito e transformar a vida de aposentados, pensionistas e trabalhadores CLT. Com mais de 8 anos de experiência no setor, hoje contamos com 3 unidades em Minas Gerais: Formiga, Arcos e Lagoa da Prata, mas não nos limitamos a cidades, atendemos a todo território brasileiro!</p>
+
+<h3>Trabalhamos com:</h3>
+<ul>
+<li>Empréstimo consignado INSS</li>
+<li>Portabilidade</li>
+<li>Refinanciamento</li>
+<li>Cartão consignado</li>
+<li>Margem extra</li>
+<li>Consultoria financeira personalizada</li>
+<li>Antecipação de FGTS</li>
+<li>Empréstimo CLT</li>
+</ul>
+
+<p><strong>Nosso objetivo</strong> é sempre garantir a melhor taxa, o melhor prazo e a melhor experiência no processo de contratação! Entre em contato e faça sua simulação!</p>
 </section>
 
-<section class="who" id="sobre">
-  <h2>Quem Somos</h2>
-  <p>A Sonho Real Empréstimos é especialista em crédito consignado com atendimento humano e transparente.</p>
-</section>
-
-<section class="image10">
-  <img src="foto10.jpeg">
-  <div class="box">
-    <h3>PARE DE PERDER TEMPO!</h3>
-    <p>Solicite agora seu consignado com taxas reduzidas.</p>
-  </div>
+<section class="image10-wrap">
+<img src="foto10.jpeg">
+<div class="image10-box">
+<h3>PARE DE PERDER TEMPO! Seu futuro financeiro começa agora.</h3>
+<p>Aposentado(a) ou Pensionista? Solicite hoje mesmo seu Empréstimo Consignado Sonho Real com taxas reduzidas e dinheiro rápido na conta!</p>
+</div>
 </section>
 
 <footer id="unidades">
-  <div class="footer-inner">
-    <div>
-      <h4>Unidades</h4>
-      <p>Formiga • Arcos • Lagoa da Prata</p>
-    </div>
-    <div>
-      <h4>© 2025 Sonho Real</h4>
-    </div>
-  </div>
+<div class="footer-inner">
+<div>
+<h4>Unidades & Contato</h4>
+<p><strong>Formiga:</strong> (37) 99843-1401</p>
+<p><strong>Arcos:</strong> (37) 99861-5963</p>
+<p><strong>Lagoa da Prata:</strong> (37) 98803-6587</p>
+</div>
+<div>
+<p>© 2025 Sonho Real Empréstimos</p>
+</div>
+</div>
 </footer>
 
-</div>
-
 <div class="whatsapp">
-  <a href="https://wa.me/5537998431401" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="34">
-  </a>
+<div class="whatsapp-menu" id="zapMenu">
+<a href="https://wa.me/5537998431401" target="_blank">Formiga</a>
+<a href="https://wa.me/5537998615963" target="_blank">Arcos</a>
+<a href="https://wa.me/5537988036587" target="_blank">Lagoa da Prata</a>
+</div>
+<div class="whatsapp-btn" onclick="toggleZap()">💬</div>
 </div>
 
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-let i=0;
-const track=document.getElementById('track');
-const slides=document.querySelectorAll('.carousel-slide');
-const dots=document.getElementById('dots');
+AOS.init();
 
-slides.forEach((_,idx)=>{
-  const d=document.createElement('div');
-  d.className='indicator'+(idx==0?' active':'');
-  dots.appendChild(d);
-});
-
-function update(){
-  track.style.transform=`translateX(-${i*100}%)`;
-  document.querySelectorAll('.indicator').forEach((d,idx)=>{
-    d.classList.toggle('active',idx===i);
-  });
+function toggleZap(){
+  const menu = document.getElementById('zapMenu');
+  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
 }
-
-function next(){i=(i+1)%slides.length;update()}
-function prev(){i=(i-1+slides.length)%slides.length;update()}
-setInterval(next,6000);
 </script>
 
 </body>
