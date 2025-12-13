@@ -225,72 +225,73 @@ header.scrolled{
   100%{transform:scale(1)}
 }
   /* ===== WHATSAPP PROFISSIONAL ===== */
+/* ===== WHATSAPP PREMIUM ===== */
 .whatsapp-float{
   position:fixed;
-  right:20px;
-  bottom:20px;
+  right:24px;
+  bottom:24px;
   z-index:9999;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
 }
 
 .whatsapp-main{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  background:#25d366;
+  border:none;
+  cursor:pointer;
   display:flex;
   align-items:center;
-  gap:10px;
-  background:#25d366;
-  color:#fff;
-  border:none;
-  padding:14px 20px;
-  border-radius:50px;
-  font-size:15px;
-  font-weight:600;
-  cursor:pointer;
-  box-shadow:0 12px 30px rgba(0,0,0,.25);
-  transition:.3s;
+  justify-content:center;
+  box-shadow:0 15px 35px rgba(0,0,0,.3);
+  transition:.35s ease;
 }
 
 .whatsapp-main img{
-  width:26px;
+  width:32px;
 }
 
 .whatsapp-main:hover{
-  transform:translateY(-3px);
-  box-shadow:0 18px 40px rgba(0,0,0,.35);
+  transform:scale(1.08);
+  box-shadow:0 20px 45px rgba(0,0,0,.4);
 }
 
-/* MENU */
 .whatsapp-menu{
-  margin-bottom:12px;
-  display:none;
-  flex-direction:column;
+  margin-bottom:14px;
   background:#fff;
-  border-radius:14px;
+  border-radius:18px;
   overflow:hidden;
-  box-shadow:0 15px 40px rgba(0,0,0,.25);
+  min-width:220px;
+  box-shadow:0 18px 45px rgba(0,0,0,.25);
+  display:none;
+  animation:fadeUp .35s ease;
 }
 
 .whatsapp-menu a{
-  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:16px 18px;
+  text-decoration:none;
   color:#0a3d62;
   font-weight:600;
-  text-decoration:none;
-  border-bottom:1px solid #eee;
   transition:.25s;
 }
 
 .whatsapp-menu a:hover{
-  background:#f2f2f2;
+  background:#f4f6f8;
 }
 
-/* ABERTO */
 .whatsapp-float.open .whatsapp-menu{
-  display:flex;
+  display:block;
 }
 
-/* MOBILE */
-@media(max-width:768px){
-  .whatsapp-main span{
-    display:none;
-  }
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
 }
 </style>
 </head>
@@ -435,14 +436,23 @@ Avenida Benedito Valadares Nº 696 – Centro – Lagoa da Prata MG
   </div>
 </footer>
 </div>
-
-<!-- WHATSAPP -->
 <div class="whatsapp-float">
-  <button class="whatsapp-main">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
-    <span>Fale conosco</span>
-  </button>
+  <div class="whatsapp-menu">
+    <a href="https://wa.me/5537998431401" target="_blank">
+      📍 Atendimento – Formiga
+    </a>
+    <a href="https://wa.me/5537998615963" target="_blank">
+      📍 Atendimento – Arcos
+    </a>
+    <a href="https://wa.me/5537988036587" target="_blank">
+      📍 Atendimento – Lagoa da Prata
+    </a>
+  </div>
 
+  <button class="whatsapp-main" aria-label="Fale conosco no WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+  </button>
+</div>
   <div class="whatsapp-menu">
     <a href="https://wa.me/5537998431401" target="_blank">
       📍 Formiga
@@ -505,7 +515,7 @@ window.addEventListener('scroll',()=>{
     easing: 'ease-out-cubic'
   });
 </script>
-  <script>
+<script>
 document.querySelector('.whatsapp-main')
   .addEventListener('click',()=>{
     document
