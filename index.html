@@ -2,10 +2,11 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Sonho Real Empréstimos</title>
 
 <style>
+/* RESET */
 *{
   margin:0;
   padding:0;
@@ -13,25 +14,26 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-body{
-  background:#f5f5f5;
+html, body{
+  width:100%;
   overflow-x:hidden;
 }
 
 /* ===== HEADER ===== */
 header{
-  width:100%;
-  background:#f1f5fb;
   position:fixed;
   top:0;
   left:0;
+  width:100%;
+  background:#f1f5fb;
   z-index:1000;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
 .header-container{
   max-width:1200px;
   margin:auto;
-  padding:12px 20px;
+  padding:14px 20px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -44,20 +46,21 @@ header{
 }
 
 .logo img{
-  height:45px;
+  height:46px;
 }
 
 .logo span{
   font-size:22px;
-  font-weight:bold;
+  font-weight:700;
   color:#ff7a00;
+  white-space:nowrap;
 }
 
-/* MENU */
+/* MENU DESKTOP */
 nav ul{
   list-style:none;
   display:flex;
-  gap:25px;
+  gap:28px;
 }
 
 nav ul li a{
@@ -78,11 +81,12 @@ nav ul li a{
   height:3px;
   background:#1a2b49;
   margin:4px 0;
+  border-radius:3px;
 }
 
-/* ===== ESPAÇO HEADER ===== */
-.spacer{
-  height:85px;
+/* ESPAÇO DO HEADER */
+.header-spacer{
+  height:86px;
 }
 
 /* ===== CARROSSEL ===== */
@@ -99,6 +103,12 @@ nav ul li a{
   object-fit:cover;
 }
 
+.carousel-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg, rgba(31,102,209,.85), rgba(0,0,0,.3));
+}
+
 .carousel-content{
   position:absolute;
   top:50%;
@@ -106,39 +116,44 @@ nav ul li a{
   transform:translate(-50%,-50%);
   background:#1f66d1;
   color:#fff;
-  padding:25px 35px;
-  border-radius:12px;
-  max-width:520px;
+  padding:28px 36px;
+  border-radius:14px;
+  max-width:540px;
+  text-align:left;
 }
 
 .carousel-content h1{
   font-size:32px;
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
 
 .carousel-content p{
   font-size:18px;
+  line-height:1.4;
 }
 
+/* BOTÕES */
 .carousel-btn{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  background:#fff;
+  width:46px;
+  height:46px;
   border:none;
-  width:45px;
-  height:45px;
   border-radius:50%;
+  background:#fff;
+  font-size:22px;
   cursor:pointer;
-  font-size:20px;
+  z-index:10;
 }
 
-.prev{left:15px;}
-.next{right:15px;}
+.prev{left:16px;}
+.next{right:16px;}
 
-/* ===== RESPONSIVO ===== */
-@media(max-width:768px){
+/* ===== MOBILE ===== */
+@media (max-width:768px){
 
+  /* MENU MOBILE */
   nav{
     position:absolute;
     top:100%;
@@ -146,11 +161,13 @@ nav ul li a{
     width:100%;
     background:#f1f5fb;
     display:none;
+    border-top:1px solid #ddd;
   }
 
   nav ul{
     flex-direction:column;
     padding:20px;
+    gap:18px;
   }
 
   nav.active{
@@ -161,13 +178,19 @@ nav ul li a{
     display:flex;
   }
 
+  /* HEADER */
+  .header-spacer{
+    height:92px;
+  }
+
+  /* CARROSSEL */
   .carousel{
     height:420px;
   }
 
   .carousel-content{
     width:90%;
-    padding:20px;
+    padding:22px;
   }
 
   .carousel-content h1{
@@ -185,13 +208,16 @@ nav ul li a{
 
 <header>
   <div class="header-container">
+
     <div class="logo">
-      <img src="logo.png" alt="Logo">
+      <img src="logo.png" alt="Sonho Real">
       <span>Sonho Real Empréstimos</span>
     </div>
 
     <div class="menu-toggle" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
 
     <nav id="menu">
@@ -201,13 +227,15 @@ nav ul li a{
         <li><a href="#">Contato</a></li>
       </ul>
     </nav>
+
   </div>
 </header>
 
-<div class="spacer"></div>
+<div class="header-spacer"></div>
 
 <section class="carousel">
-  <img src="banner1.jpg" alt="Banner">
+  <img src="banner1.jpg" alt="Empréstimo Consignado">
+  <div class="carousel-overlay"></div>
 
   <div class="carousel-content">
     <h1>Empréstimo Consignado</h1>
