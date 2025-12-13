@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sonho Real Empréstimos</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
@@ -14,142 +14,311 @@
   --white:#fff;
   --glass:rgba(255,255,255,.92);
 }
+
 *{margin:0;padding:0;box-sizing:border-box}
+
 body{
   font-family:Montserrat,Arial,sans-serif;
   background:url('fundo.png') center/cover fixed no-repeat;
   color:var(--blue);
   line-height:1.45;
 }
+
 a{text-decoration:none;color:inherit}
 
-/* HEADER */
+/* ================= HEADER ================= */
 header{
-  position:fixed;top:0;left:0;right:0;
-  height:72px;
+  position:fixed;
+  top:0;left:0;right:0;
+  min-height:72px;
   background:var(--glass);
   backdrop-filter:blur(6px);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 22px;
-  z-index:2000;
+  padding:12px 20px;
+  z-index:3000;
   box-shadow:0 8px 30px rgba(0,0,0,.12);
 }
-.brand{display:flex;align-items:center;gap:12px}
-.brand img{height:50px}
-.brand span{font-weight:800;color:var(--orange)}
-nav{display:flex;gap:18px}
-nav a{font-weight:600;padding:8px;border-radius:8px}
-nav a:hover{background:rgba(0,0,0,.05);color:var(--orange)}
 
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.brand img{height:48px}
+
+.brand span{
+  font-weight:800;
+  color:var(--orange);
+  font-size:18px;
+  line-height:1.2;
+}
+
+/* NAV DESKTOP */
+nav{
+  display:flex;
+  gap:18px;
+}
+
+nav a{
+  font-weight:600;
+  padding:8px 10px;
+  border-radius:8px;
+}
+
+nav a:hover{
+  background:rgba(0,0,0,.06);
+  color:var(--orange);
+}
+
+/* MENU HAMBURGUER */
 .menu-toggle{
   display:none;
   flex-direction:column;
   gap:5px;
   cursor:pointer;
 }
+
 .menu-toggle span{
-  width:26px;height:3px;
+  width:26px;
+  height:3px;
   background:var(--blue);
   border-radius:4px;
 }
 
-.main-wrap{padding-top:92px}
+/* ================= MAIN ================= */
+.main-wrap{
+  padding-top:96px;
+}
 
-/* CARROSSEL */
-.carousel-wrap{width:100vw;margin-left:calc(50% - 50vw)}
-.carousel{height:85vh;max-height:820px;overflow:hidden;position:relative}
-.carousel-track{display:flex;height:100%;transition:.7s}
-.carousel-slide{min-width:100%;height:100%}
-.carousel-slide img{width:100%;height:100%;object-fit:cover}
+/* ================= CARROSSEL ================= */
+.carousel-wrap{
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  overflow:hidden;
+}
+
+.carousel{
+  position:relative;
+  width:100%;
+  height:85vh;
+  max-height:820px;
+  overflow:hidden;
+}
+
+.carousel-track{
+  display:flex;
+  height:100%;
+  transition:transform .7s cubic-bezier(.22,.9,.2,1);
+}
+
+.carousel-slide{
+  min-width:100%;
+  height:100%;
+}
+
+.carousel-slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
 
 .carousel-btn{
-  position:absolute;top:50%;transform:translateY(-50%);
-  width:46px;height:46px;border-radius:50%;
-  border:none;cursor:pointer;
-  background:white;font-size:20px;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:46px;
+  height:46px;
+  border:none;
+  border-radius:50%;
+  background:white;
+  cursor:pointer;
+  font-size:20px;
+  z-index:10;
 }
-.carousel-btn.left{left:16px}
-.carousel-btn.right{right:16px}
+
+.carousel-btn.left{left:14px}
+.carousel-btn.right{right:14px}
 
 .carousel-indicators{
-  position:absolute;bottom:18px;left:50%;
+  position:absolute;
+  bottom:18px;
+  left:50%;
   transform:translateX(-50%);
-  display:flex;gap:8px;
+  display:flex;
+  gap:8px;
 }
+
 .indicator{
-  width:12px;height:12px;border-radius:20px;
-  background:white;opacity:.7;border:none;
+  width:12px;
+  height:12px;
+  border-radius:20px;
+  background:white;
+  opacity:.6;
+  border:none;
 }
-.indicator.active{width:34px;background:var(--orange);opacity:1}
 
-/* SERVICES */
-.services-wrap{padding:40px}
+.indicator.active{
+  width:34px;
+  background:var(--orange);
+  opacity:1;
+}
+
+/* ================= SERVICES ================= */
+.services-wrap{
+  padding:40px 20px;
+}
+
 .services{
-  max-width:1200px;margin:auto;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:28px;
-}
-.card img{width:100%;height:480px;object-fit:cover;border:6px solid var(--orange);border-radius:14px}
-.textbox{
-  background:white;padding:14px;margin-top:12px;
-  border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.05)
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
 }
 
-/* SOBRE */
+.card img{
+  width:100%;
+  height:480px;
+  object-fit:cover;
+  border-radius:14px;
+  border:6px solid var(--orange);
+}
+
+.textbox{
+  background:white;
+  padding:14px;
+  margin-top:12px;
+  border-radius:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+/* ================= SOBRE ================= */
 .who{
-  max-width:1100px;margin:40px auto;
-  background:white;padding:26px;border-radius:14px;
+  max-width:1100px;
+  margin:40px auto;
+  background:white;
+  padding:26px;
+  border-radius:14px;
   border-left:8px solid var(--orange);
   border-right:8px solid var(--orange);
 }
 
-/* IMAGE 10 */
+/* ================= IMAGE 10 ================= */
 .image10-wrap{
-  max-width:1100px;margin:40px auto;
-  display:flex;gap:22px;align-items:center
-}
-.image10-wrap img{
-  width:50%;border-radius:12px;
-  border:6px solid var(--orange)
-}
-.image10-box{
-  width:50%;background:white;padding:18px;border-radius:10px
+  max-width:1100px;
+  margin:40px auto;
+  display:flex;
+  gap:22px;
+  align-items:center;
 }
 
-/* FOOTER */
-footer{background:var(--blue);color:white;padding:36px}
-.footer-inner{
-  max-width:1100px;margin:auto;
-  display:grid;grid-template-columns:1fr 1fr;gap:20px
+.image10-wrap img{
+  width:50%;
+  border-radius:12px;
+  border:6px solid var(--orange);
 }
+
+.image10-box{
+  width:50%;
+  background:white;
+  padding:18px;
+  border-radius:10px;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  background:var(--blue);
+  color:white;
+  padding:36px 20px;
+}
+
+.footer-inner{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
 footer h4{color:var(--orange)}
 
-/* WHATSAPP */
+/* ================= WHATSAPP ================= */
 .whatsapp{
-  position:fixed;right:20px;bottom:20px;z-index:3000
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:4000;
 }
-.whatsapp img{width:58px}
 
-/* MOBILE */
-@media(max-width:900px){
+.whatsapp img{
+  width:58px;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width:900px){
+
   nav{
-    position:absolute;top:72px;left:0;right:0;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
     background:white;
     flex-direction:column;
-    max-height:0;overflow:hidden;
-    transition:.35s;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .35s ease;
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
   }
-  nav.active{max-height:300px}
-  nav a{padding:16px;border-bottom:1px solid #eee}
+
+  nav.active{
+    max-height:320px;
+  }
+
+  nav a{
+    padding:16px;
+    border-bottom:1px solid #eee;
+  }
+
   .menu-toggle{display:flex}
 
-  .carousel{height:55vh}
-  .services{grid-template-columns:1fr}
-  .card img{height:280px}
-  .image10-wrap{flex-direction:column}
-  .image10-wrap img,.image10-box{width:100%}
-  .footer-inner{grid-template-columns:1fr}
+  .main-wrap{
+    padding-top:120px;
+  }
+
+  .carousel{
+    height:420px;
+    max-height:none;
+  }
+
+  .carousel-slide img{
+    object-position:center top;
+  }
+
+  .services{
+    grid-template-columns:1fr;
+  }
+
+  .card img{
+    height:280px;
+  }
+
+  .image10-wrap{
+    flex-direction:column;
+  }
+
+  .image10-wrap img,
+  .image10-box{
+    width:100%;
+  }
+
+  .footer-inner{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
@@ -158,7 +327,7 @@ footer h4{color:var(--orange)}
 
 <header>
   <div class="brand">
-    <img src="design02.png">
+    <img src="design02.png" alt="Logo">
     <span>Sonho Real Empréstimos</span>
   </div>
 
@@ -184,8 +353,10 @@ footer h4{color:var(--orange)}
       <div class="carousel-slide"><img src="foto05.jpg"></div>
       <div class="carousel-slide"><img src="foto06.jpg"></div>
     </div>
+
     <button class="carousel-btn left" onclick="prev()">‹</button>
     <button class="carousel-btn right" onclick="next()">›</button>
+
     <div class="carousel-indicators" id="indicators"></div>
   </div>
 </div>
@@ -195,15 +366,26 @@ footer h4{color:var(--orange)}
   <div class="services">
     <div class="card">
       <img src="foto07.jpeg">
-      <div class="textbox"><h3>Antecipação FGTS</h3><p>Dinheiro rápido com segurança.</p></div>
+      <div class="textbox">
+        <h3>Antecipação FGTS</h3>
+        <p>Dinheiro rápido com segurança.</p>
+      </div>
     </div>
+
     <div class="card">
       <img src="foto08.jpeg">
-      <div class="textbox"><h3>Consignado INSS</h3><p>Taxas reduzidas e facilidade.</p></div>
+      <div class="textbox">
+        <h3>Consignado INSS</h3>
+        <p>Taxas reduzidas e facilidade.</p>
+      </div>
     </div>
+
     <div class="card">
       <img src="foto09.jpeg">
-      <div class="textbox"><h3>Portabilidade</h3><p>Reduza parcelas e juros.</p></div>
+      <div class="textbox">
+        <h3>Portabilidade</h3>
+        <p>Reduza parcelas e juros.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -228,11 +410,11 @@ footer h4{color:var(--orange)}
   <div class="footer-inner">
     <div>
       <h4>Contato</h4>
-      <p>Formiga - (37) 99843-1401</p>
+      <p>Formiga – (37) 99843-1401</p>
     </div>
     <div>
       <h4>Legal</h4>
-      <p>© 2025 Sonho Real</p>
+      <p>© 2025 Sonho Real Empréstimos</p>
     </div>
   </div>
 </footer>
@@ -246,15 +428,18 @@ footer h4{color:var(--orange)}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
-AOS.init();
-const menu=document.getElementById('menuToggle');
-const nav=document.getElementById('navMenu');
-menu.onclick=()=>nav.classList.toggle('active');
+AOS.init({duration:800});
 
-let i=0;
-const track=document.getElementById('track');
-const slides=track.children;
-const ind=document.getElementById('indicators');
+const menu = document.getElementById('menuToggle');
+const nav  = document.getElementById('navMenu');
+
+menu.onclick = () => nav.classList.toggle('active');
+
+/* CARROSSEL */
+let i = 0;
+const track = document.getElementById('track');
+const slides = track.children;
+const ind = document.getElementById('indicators');
 
 for(let x=0;x<slides.length;x++){
   const b=document.createElement('button');
@@ -264,11 +449,12 @@ for(let x=0;x<slides.length;x++){
 }
 
 function update(){
-  track.style.transform=`translateX(-${i*100}%)`;
+  track.style.transform = `translateX(-${i*100}%)`;
   [...ind.children].forEach((e,n)=>e.classList.toggle('active',n===i));
 }
-function next(){i=(i+1)%slides.length;update()}
-function prev(){i=(i-1+slides.length)%slides.length;update()}
+function next(){ i=(i+1)%slides.length; update(); }
+function prev(){ i=(i-1+slides.length)%slides.length; update(); }
+
 setInterval(next,6000);
 </script>
 
