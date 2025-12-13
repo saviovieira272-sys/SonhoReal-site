@@ -1,323 +1,181 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sonho Real Empréstimos</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
-
 <style>
-:root{
-  --blue:#0a3d62;
-  --orange:#ff7a00;
-  --white:#fff;
-  --glass:rgba(255,255,255,.92);
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
-*{margin:0;padding:0;box-sizing:border-box}
 
 body{
-  font-family:Montserrat,Arial,sans-serif;
-  background:url('fundo.png') center/cover fixed no-repeat;
-  color:var(--blue);
-  line-height:1.45;
+  background:#f5f5f5;
+  overflow-x:hidden;
 }
 
-a{text-decoration:none;color:inherit}
-
-/* ================= HEADER ================= */
+/* ===== HEADER ===== */
 header{
+  width:100%;
+  background:#f1f5fb;
   position:fixed;
-  top:0;left:0;right:0;
-  min-height:72px;
-  background:var(--glass);
-  backdrop-filter:blur(6px);
+  top:0;
+  left:0;
+  z-index:1000;
+}
+
+.header-container{
+  max-width:1200px;
+  margin:auto;
+  padding:12px 20px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:12px 20px;
-  z-index:3000;
-  box-shadow:0 8px 30px rgba(0,0,0,.12);
 }
 
-.brand{
+.logo{
   display:flex;
   align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
+  gap:10px;
 }
 
-.brand img{height:48px}
-
-.brand span{
-  font-weight:800;
-  color:var(--orange);
-  font-size:18px;
-  line-height:1.2;
+.logo img{
+  height:45px;
 }
 
-/* NAV DESKTOP */
-nav{
+.logo span{
+  font-size:22px;
+  font-weight:bold;
+  color:#ff7a00;
+}
+
+/* MENU */
+nav ul{
+  list-style:none;
   display:flex;
-  gap:18px;
+  gap:25px;
 }
 
-nav a{
+nav ul li a{
+  text-decoration:none;
+  color:#1a2b49;
   font-weight:600;
-  padding:8px 10px;
-  border-radius:8px;
 }
 
-nav a:hover{
-  background:rgba(0,0,0,.06);
-  color:var(--orange);
-}
-
-/* MENU HAMBURGUER */
+/* HAMBURGER */
 .menu-toggle{
   display:none;
   flex-direction:column;
-  gap:5px;
   cursor:pointer;
 }
 
 .menu-toggle span{
-  width:26px;
+  width:28px;
   height:3px;
-  background:var(--blue);
-  border-radius:4px;
+  background:#1a2b49;
+  margin:4px 0;
 }
 
-/* ================= MAIN ================= */
-.main-wrap{
-  padding-top:96px;
+/* ===== ESPAÇO HEADER ===== */
+.spacer{
+  height:85px;
 }
 
-/* ================= CARROSSEL ================= */
-.carousel-wrap{
-  width:100vw;
-  margin-left:calc(50% - 50vw);
-  overflow:hidden;
-}
-
+/* ===== CARROSSEL ===== */
 .carousel{
   position:relative;
   width:100%;
-  height:85vh;
-  max-height:820px;
+  height:480px;
   overflow:hidden;
 }
 
-.carousel-track{
-  display:flex;
-  height:100%;
-  transition:transform .7s cubic-bezier(.22,.9,.2,1);
-}
-
-.carousel-slide{
-  min-width:100%;
-  height:100%;
-}
-
-.carousel-slide img{
+.carousel img{
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:center;
+}
+
+.carousel-content{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:#1f66d1;
+  color:#fff;
+  padding:25px 35px;
+  border-radius:12px;
+  max-width:520px;
+}
+
+.carousel-content h1{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.carousel-content p{
+  font-size:18px;
 }
 
 .carousel-btn{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  width:46px;
-  height:46px;
+  background:#fff;
   border:none;
+  width:45px;
+  height:45px;
   border-radius:50%;
-  background:white;
   cursor:pointer;
   font-size:20px;
-  z-index:10;
 }
 
-.carousel-btn.left{left:14px}
-.carousel-btn.right{right:14px}
+.prev{left:15px;}
+.next{right:15px;}
 
-.carousel-indicators{
-  position:absolute;
-  bottom:18px;
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  gap:8px;
-}
-
-.indicator{
-  width:12px;
-  height:12px;
-  border-radius:20px;
-  background:white;
-  opacity:.6;
-  border:none;
-}
-
-.indicator.active{
-  width:34px;
-  background:var(--orange);
-  opacity:1;
-}
-
-/* ================= SERVICES ================= */
-.services-wrap{
-  padding:40px 20px;
-}
-
-.services{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:28px;
-}
-
-.card img{
-  width:100%;
-  height:480px;
-  object-fit:cover;
-  border-radius:14px;
-  border:6px solid var(--orange);
-}
-
-.textbox{
-  background:white;
-  padding:14px;
-  margin-top:12px;
-  border-radius:10px;
-  box-shadow:0 10px 30px rgba(0,0,0,.05);
-}
-
-/* ================= SOBRE ================= */
-.who{
-  max-width:1100px;
-  margin:40px auto;
-  background:white;
-  padding:26px;
-  border-radius:14px;
-  border-left:8px solid var(--orange);
-  border-right:8px solid var(--orange);
-}
-
-/* ================= IMAGE 10 ================= */
-.image10-wrap{
-  max-width:1100px;
-  margin:40px auto;
-  display:flex;
-  gap:22px;
-  align-items:center;
-}
-
-.image10-wrap img{
-  width:50%;
-  border-radius:12px;
-  border:6px solid var(--orange);
-}
-
-.image10-box{
-  width:50%;
-  background:white;
-  padding:18px;
-  border-radius:10px;
-}
-
-/* ================= FOOTER ================= */
-footer{
-  background:var(--blue);
-  color:white;
-  padding:36px 20px;
-}
-
-.footer-inner{
-  max-width:1100px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-
-footer h4{color:var(--orange)}
-
-/* ================= WHATSAPP ================= */
-.whatsapp{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  z-index:4000;
-}
-
-.whatsapp img{
-  width:58px;
-}
-
-/* ================= MOBILE ================= */
-@media (max-width:900px){
+/* ===== RESPONSIVO ===== */
+@media(max-width:768px){
 
   nav{
     position:absolute;
     top:100%;
     left:0;
-    right:0;
-    background:white;
+    width:100%;
+    background:#f1f5fb;
+    display:none;
+  }
+
+  nav ul{
     flex-direction:column;
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .35s ease;
-    box-shadow:0 12px 30px rgba(0,0,0,.12);
+    padding:20px;
   }
 
   nav.active{
-    max-height:320px;
+    display:block;
   }
 
-  nav a{
-    padding:16px;
-    border-bottom:1px solid #eee;
-  }
-
-  .menu-toggle{display:flex}
-
-  .main-wrap{
-    padding-top:120px;
+  .menu-toggle{
+    display:flex;
   }
 
   .carousel{
     height:420px;
-    max-height:none;
   }
 
-  .carousel-slide img{
-    object-position:center top;
+  .carousel-content{
+    width:90%;
+    padding:20px;
   }
 
-  .services{
-    grid-template-columns:1fr;
+  .carousel-content h1{
+    font-size:26px;
   }
 
-  .card img{
-    height:280px;
-  }
-
-  .image10-wrap{
-    flex-direction:column;
-  }
-
-  .image10-wrap img,
-  .image10-box{
-    width:100%;
-  }
-
-  .footer-inner{
-    grid-template-columns:1fr;
+  .carousel-content p{
+    font-size:16px;
   }
 }
 </style>
@@ -326,136 +184,44 @@ footer h4{color:var(--orange)}
 <body>
 
 <header>
-  <div class="brand">
-    <img src="design02.png" alt="Logo">
-    <span>Sonho Real Empréstimos</span>
-  </div>
+  <div class="header-container">
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
+      <span>Sonho Real Empréstimos</span>
+    </div>
 
-  <div class="menu-toggle" id="menuToggle">
-    <span></span><span></span><span></span>
-  </div>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
 
-  <nav id="navMenu">
-    <a href="#inicio">Início</a>
-    <a href="#servicos">Serviços</a>
-    <a href="#sobre">Sobre</a>
-    <a href="#unidades">Unidades</a>
-  </nav>
+    <nav id="menu">
+      <ul>
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Serviços</a></li>
+        <li><a href="#">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
-<div class="main-wrap" id="inicio">
+<div class="spacer"></div>
 
-<!-- CARROSSEL -->
-<div class="carousel-wrap">
-  <div class="carousel">
-    <div class="carousel-track" id="track">
-      <div class="carousel-slide"><img src="foto03.jpg"></div>
-      <div class="carousel-slide"><img src="foto05.jpg"></div>
-      <div class="carousel-slide"><img src="foto06.jpg"></div>
-    </div>
+<section class="carousel">
+  <img src="banner1.jpg" alt="Banner">
 
-    <button class="carousel-btn left" onclick="prev()">‹</button>
-    <button class="carousel-btn right" onclick="next()">›</button>
-
-    <div class="carousel-indicators" id="indicators"></div>
+  <div class="carousel-content">
+    <h1>Empréstimo Consignado</h1>
+    <p>Fácil, rápido e com as menores taxas do mercado.</p>
   </div>
-</div>
 
-<!-- SERVICES -->
-<div class="services-wrap" id="servicos">
-  <div class="services">
-    <div class="card">
-      <img src="foto07.jpeg">
-      <div class="textbox">
-        <h3>Antecipação FGTS</h3>
-        <p>Dinheiro rápido com segurança.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="foto08.jpeg">
-      <div class="textbox">
-        <h3>Consignado INSS</h3>
-        <p>Taxas reduzidas e facilidade.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="foto09.jpeg">
-      <div class="textbox">
-        <h3>Portabilidade</h3>
-        <p>Reduza parcelas e juros.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SOBRE -->
-<section class="who" id="sobre">
-  <h2>Quem Somos</h2>
-  <p>Empresa especializada em crédito consignado, com atendimento humanizado e seguro.</p>
+  <button class="carousel-btn prev">&#10094;</button>
+  <button class="carousel-btn next">&#10095;</button>
 </section>
 
-<!-- IMAGE 10 -->
-<section class="image10-wrap">
-  <img src="foto10.jpeg">
-  <div class="image10-box">
-    <h3>PARE DE PERDER TEMPO!</h3>
-    <p>Solicite hoje seu empréstimo com taxas reduzidas.</p>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer id="unidades">
-  <div class="footer-inner">
-    <div>
-      <h4>Contato</h4>
-      <p>Formiga – (37) 99843-1401</p>
-    </div>
-    <div>
-      <h4>Legal</h4>
-      <p>© 2025 Sonho Real Empréstimos</p>
-    </div>
-  </div>
-</footer>
-
-</div>
-
-<!-- WHATSAPP -->
-<a class="whatsapp" href="https://wa.me/5537998431401" target="_blank">
-  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
-</a>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
-AOS.init({duration:800});
-
-const menu = document.getElementById('menuToggle');
-const nav  = document.getElementById('navMenu');
-
-menu.onclick = () => nav.classList.toggle('active');
-
-/* CARROSSEL */
-let i = 0;
-const track = document.getElementById('track');
-const slides = track.children;
-const ind = document.getElementById('indicators');
-
-for(let x=0;x<slides.length;x++){
-  const b=document.createElement('button');
-  b.className='indicator'+(x===0?' active':'');
-  b.onclick=()=>{i=x;update()};
-  ind.appendChild(b);
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
 }
-
-function update(){
-  track.style.transform = `translateX(-${i*100}%)`;
-  [...ind.children].forEach((e,n)=>e.classList.toggle('active',n===i));
-}
-function next(){ i=(i+1)%slides.length; update(); }
-function prev(){ i=(i-1+slides.length)%slides.length; update(); }
-
-setInterval(next,6000);
 </script>
 
 </body>
