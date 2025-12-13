@@ -190,6 +190,40 @@ footer p{
   margin-bottom:12px;
   line-height:1.5;
 } 
+  .card img,
+.image10 img{
+  transition: transform .6s ease, box-shadow .6s ease;
+}
+
+.card:hover img,
+.image10:hover img{
+  transform: scale(1.04);
+  box-shadow:0 18px 40px rgba(0,0,0,.25);
+}
+.textbox h3{
+  transition: color .3s ease;
+}
+
+.card:hover h3{
+  color: var(--orange);
+}
+header{
+  transition: background .3s ease, box-shadow .3s ease;
+}
+
+header.scrolled{
+  background:#fff;
+  box-shadow:0 8px 30px rgba(0,0,0,.15);
+}
+  .whatsapp a{
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
 </style>
 </head>
 
@@ -210,7 +244,7 @@ footer p{
 
 <div class="main" id="inicio">
 
-<div class="carousel-wrap">
+<div class="carousel-wrap" data-aos="fade-in">
   <div class="carousel">
     <div class="carousel-track" id="track">
       <div class="carousel-slide"><img src="foto03.jpg"></div>
@@ -227,7 +261,7 @@ footer p{
 
 <section class="services-wrap" id="servicos">
   <div class="services">
-    <div class="card">
+    <div class="card" data-aos="fade-up" data-aos-delay="100">
       <img src="foto07.jpeg">
       <div class="textbox">
         <h3>Antecipação de FGTS</h3>
@@ -235,7 +269,7 @@ footer p{
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-aos="fade-up" data-aos-delay="200">
       <img src="foto08.jpeg">
       <div class="textbox">
         <h3>Crédito Consignado INSS</h3>
@@ -243,7 +277,7 @@ footer p{
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" data-aos="fade-up" data-aos-delay="300">
       <img src="foto09.jpeg">
       <div class="textbox">
         <h3>Portabilidade & Refinanciamento</h3>
@@ -253,7 +287,7 @@ footer p{
   </div>
 </section>
 
-<section class="who" id="sobre">
+<section class="who" id="sobre" data-aos="zoom-in">
 <h2>Quem Somos</h2>
 
 <p><strong>A Sonho Real Empréstimos</strong> é uma empresa especializada em crédito consignado, fundada para oferecer soluções financeiras seguras, rápidas e transparentes.</p>
@@ -280,9 +314,9 @@ footer p{
 <p><strong>Lagoa da Prata:</strong> (37) 98803-6587<br>CNPJ: 43.286.201/0001-00</p>
 </section>
 
-<section class="image10">
-  <img src="foto10.jpeg">
-  <div class="box">
+<section class="image10" data-aos="fade-up">
+  <img src="foto10.jpeg" data-aos="fade-right">
+<div class="box" data-aos="fade-left">
     <h3>PARE DE PERDER TEMPO!</h3>
     <p>Solicite hoje mesmo seu empréstimo consignado com taxas reduzidas e dinheiro rápido na conta.</p>
   </div>
@@ -374,6 +408,27 @@ function toggleWhats(){
   m.style.display=m.style.display==='flex'?'none':'flex';
 }
 </script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 900,
+    once: true,
+    easing: 'ease-out-cubic'
+  });
+</script>
+  <script>
+window.addEventListener('scroll',()=>{
+  document.querySelector('header')
+    .classList.toggle('scrolled',window.scrollY>20);
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 900,
+    once: true,
+    easing: 'ease-out-cubic'
+  });
+</script>
 </body>
 </html>
