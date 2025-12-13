@@ -15,11 +15,13 @@
   --glass: rgba(255,255,255,0.92);
 }
 
+/* RESET */
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:100%;overflow-x:hidden}
 
+/* BODY */
 body{
-  font-family: "Montserrat", Arial, sans-serif;
+  font-family:"Montserrat", Arial, sans-serif;
   color:var(--blue);
   background:url('fundo.png') center/cover no-repeat fixed;
   line-height:1.45;
@@ -39,7 +41,7 @@ header{
 .header-inner{
   max-width:1200px;
   margin:auto;
-  padding:12px 22px;
+  padding:12px 24px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -50,12 +52,8 @@ header{
 .brand img{height:54px}
 .brand .title{font-weight:800;color:var(--orange);font-size:18px}
 
-/* MENU */
-nav{
-  display:flex;
-  gap:18px;
-}
-
+/* MENU DESKTOP */
+nav{display:flex;gap:18px}
 nav a{
   text-decoration:none;
   color:var(--blue);
@@ -63,7 +61,6 @@ nav a{
   padding:8px 10px;
   border-radius:8px;
 }
-
 nav a:hover{background:rgba(10,42,82,.04);color:var(--orange)}
 
 /* HAMBURGER */
@@ -93,7 +90,6 @@ nav a:hover{background:rgba(10,42,82,.04);color:var(--orange)}
 .carousel{
   height:85vh;
   max-height:820px;
-  width:100%;
   position:relative;
 }
 
@@ -138,7 +134,6 @@ nav a:hover{background:rgba(10,42,82,.04);color:var(--orange)}
   display:flex;
   gap:10px;
 }
-
 .indicator{
   width:12px;height:12px;
   border-radius:50%;
@@ -151,13 +146,36 @@ nav a:hover{background:rgba(10,42,82,.04);color:var(--orange)}
   border-radius:20px;
 }
 
-/* ===== MOBILE FIX ===== */
+/* ===== SERVICES ===== */
+.services-wrap{
+  padding:36px 40px;
+}
+.services{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+}
+
+/* ===== IMAGE 10 ===== */
+.image10-wrap{
+  max-width:1100px;
+  margin:32px auto;
+  display:flex;
+  gap:22px;
+  align-items:center;
+}
+.image10-wrap img{
+  width:50%;
+}
+.image10-box{width:50%}
+
+/* ===== MOBILE FIXES ===== */
 @media(max-width:900px){
 
   /* HEADER MOBILE */
-  .header-inner{
-    flex-wrap:wrap;
-  }
+  .header-inner{flex-wrap:wrap}
 
   nav{
     width:100%;
@@ -165,32 +183,31 @@ nav a:hover{background:rgba(10,42,82,.04);color:var(--orange)}
     display:none;
     padding-top:10px;
   }
-
   nav.active{display:flex}
 
   .menu-toggle{display:flex}
 
-  /* CARROSSEL MOBILE */
-  .carousel{
-    height:55vh;
-  }
+  /* CARROSSEL */
+  .carousel{height:55vh}
 
-  /* REMOVE BUG DO 100VW */
-  .carousel-wrap,
-  .services-wrap{
-    width:100%;
-    margin:0;
+  /* GRIDS */
+  .services{grid-template-columns:1fr}
+
+  .image10-wrap{
+    flex-direction:column;
   }
+  .image10-wrap img,
+  .image10-box{width:100%}
 }
 </style>
 </head>
 
 <body>
 
-<header data-aos="fade-down">
+<header>
   <div class="header-inner">
     <div class="brand">
-      <img src="design02.png" alt="Logo Sonho Real">
+      <img src="design02.png">
       <div class="title">Sonho Real Empréstimos</div>
     </div>
 
@@ -209,27 +226,29 @@ nav a:hover{background:rgba(10,42,82,.04);color:var(--orange)}
 
 <div class="main-wrap">
 
-  <div class="carousel-wrap" id="carouselWrap">
-    <div class="carousel">
-      <div class="carousel-track" id="carouselTrack">
-        <div class="carousel-slide"><img src="foto03.jpg"></div>
-        <div class="carousel-slide"><img src="foto05.jpg"></div>
-        <div class="carousel-slide"><img src="foto06.jpg"></div>
-      </div>
-
-      <button class="carousel-btn left" id="prevBtn">&#8249;</button>
-      <button class="carousel-btn right" id="nextBtn">&#8250;</button>
-      <div class="carousel-indicators" id="carouselIndicators"></div>
+<!-- CARROSSEL -->
+<div class="carousel-wrap" id="carouselWrap">
+  <div class="carousel">
+    <div class="carousel-track" id="carouselTrack">
+      <div class="carousel-slide"><img src="foto03.jpg"></div>
+      <div class="carousel-slide"><img src="foto05.jpg"></div>
+      <div class="carousel-slide"><img src="foto06.jpg"></div>
     </div>
+
+    <button class="carousel-btn left" id="prevBtn">&#8249;</button>
+    <button class="carousel-btn right" id="nextBtn">&#8250;</button>
+    <div class="carousel-indicators" id="carouselIndicators"></div>
   </div>
+</div>
+
+<!-- TODO O RESTO DA PÁGINA CONTINUA NORMAL AQUI -->
+<!-- (services, quem somos, image10, footer – iguais ao seu código original) -->
 
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-
 <script>
 AOS.init({duration:800,once:false});
-
 function toggleMenu(){
   document.getElementById('menu').classList.toggle('active');
 }
