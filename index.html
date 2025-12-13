@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sonho Real Empréstimos</title>
+<title>Sonho Real Emprésti3mos</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 
@@ -104,8 +104,11 @@ nav a{text-decoration:none;color:var(--blue);font-weight:600}
 
 /* IMAGE 10 */
 .image10{
-  max-width:1100px;margin:40px auto;
-  display:flex;gap:20px;
+  max-width:1100px;
+  margin:40px auto;
+  display:flex;
+  gap:20px;
+  align-items:flex-start; /* 🔴 ESSENCIAL */
 }
 .image10 img{
   width:50%;border:6px solid var(--orange);border-radius:12px;
@@ -113,12 +116,9 @@ nav a{text-decoration:none;color:var(--blue);font-weight:600}
 .image10 .box{
   width:50%;
   background:#fff;
-  padding:24px 26px;
+  padding:24px;
   border-radius:12px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center; /* CENTRALIZA O TEXTO NA ALTURA */
-  height:auto; /* GARANTE QUE NÃO ESTIQUE */
+  height:fit-content;     /* 🔴 FAZ O QUADRADO SE AJUSTAR AO TEXTO */
 }
 /* FOOTER */
 footer{
@@ -169,6 +169,20 @@ footer h4{color:var(--orange)}
 
   .footer-inner{grid-template-columns:1fr}
 }
+ /* ===== AJUSTES VISUAIS DO FOOTER ===== */
+footer a{
+  color:#fff;
+  text-decoration:none;
+}
+
+footer a:hover{
+  text-decoration:underline;
+}
+
+footer p{
+  margin-bottom:12px;
+  line-height:1.5;
+} 
 </style>
 </head>
 
@@ -269,16 +283,48 @@ footer h4{color:var(--orange)}
 
 <footer id="unidades">
   <div class="footer-inner">
+
     <div>
-      <h4>Unidades</h4>
-      <p>Formiga • Arcos • Lagoa da Prata</p>
+      <h4>Unidades & Contato</h4>
+
+      <p>
+        <strong>Formiga:</strong>
+        <a href="https://wa.me/5537998431401" target="_blank">(37) 99843-1401</a><br>
+        <a href="https://goo.gl/maps/7t3LqgjERZK2" target="_blank">
+          Rua João Domingos da Fonseca nº 31, Centro – Formiga MG
+        </a>
+      </p>
+
+      <p>
+        <strong>Arcos:</strong>
+        <a href="https://wa.me/5537998615963" target="_blank">(37) 99861-5963</a><br>
+        <a href="https://goo.gl/maps/9jGkL7rP5x92" target="_blank">
+          Rua Jarbas Ferreira Pires nº 465, Centro – Arcos MG
+        </a>
+      </p>
+
+      <p>
+        <strong>Lagoa da Prata:</strong>
+        <a href="https://wa.me/5537988036587" target="_blank">(37) 98803-6587</a><br>
+        <a href="https://goo.gl/maps/1f9L4Zc8xGK2" target="_blank">
+          Avenida Benedito Valadares nº 696, Centro – Lagoa da Prata MG
+        </a>
+      </p>
     </div>
+
     <div>
-      <h4>© 2025 Sonho Real Empréstimos</h4>
+      <h4>Informações Legais</h4>
+      <p><strong>Formiga CNPJ:</strong> 32.851.952/0001-05</p>
+      <p><strong>Arcos CNPJ:</strong> 37.893.986/0001-05</p>
+      <p><strong>Lagoa da Prata CNPJ:</strong> 43.286.201/0001-00</p>
+
+      <p style="margin-top:14px;font-size:14px;opacity:.9">
+        © 2025 Sonho Real Empréstimos — Transformando sonhos em realidade
+      </p>
     </div>
+
   </div>
 </footer>
-
 </div>
 
 <!-- WHATSAPP -->
