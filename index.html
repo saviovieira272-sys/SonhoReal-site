@@ -326,6 +326,44 @@ header.scrolled{
   }
 
 }
+  /* ===== AJUSTE FINAL HEADER + CARROSSEL (MOBILE) ===== */
+@media (max-width: 768px) {
+
+  /* remove qualquer espaço fantasma */
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* header fixo mantém altura correta */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+  }
+
+  /* carrossel encosta no header sem sobrepor */
+  .carousel {
+    margin-top: 80px !important; /* altura real do header */
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* remove espaço extra dos slides */
+  .carousel-inner,
+  .carousel-item {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* garante que a borda laranja fique colada */
+  .carousel img {
+    display: block;
+  }
+
+}
 </style>
 </head>
 
