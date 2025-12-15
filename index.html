@@ -293,6 +293,30 @@ header.scrolled{
   from{opacity:0;transform:translateY(12px)}
   to{opacity:1;transform:translateY(0)}
 }
+  /* ===== CORREÇÃO BORDA PRETA DO CARROSSEL (MOBILE) ===== */
+@media (max-width: 768px) {
+
+  .carousel,
+  .carousel-container,
+  .carousel-slide {
+    height: auto !important;
+    min-height: unset !important;
+    background: transparent !important;
+  }
+
+  .carousel img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+}
+  /* REMOVE QUALQUER ESPAÇO EXTRA ACIMA/ABAIXO */
+.carousel {
+  margin: 0 !important;
+  padding: 0 !important;
+}
 </style>
 </head>
 
